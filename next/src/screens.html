@@ -1,0 +1,461 @@
+<!-- 01 WELCOME -->
+<section class="vp" data-id="welcome" hidden>
+<div class="scr dark" style="padding-bottom: 38px">
+  <div class="aurora"><i></i><i></i><i></i></div>
+  <img src="{{img:hotel}}" alt="" style="position: absolute; left: 0; top: 0; width: 100%; height: 560px; object-fit: cover; opacity: .42; -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.5) 50%, transparent 100%); mask-image: linear-gradient(180deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.5) 50%, transparent 100%)">
+  <div class="between rise" style="--d: 0">
+    <span class="row-x" style="gap: 9px; font-weight: 800; font-size: 22px; letter-spacing: -.03em">{{logo:26}}truepas</span>
+    <span class="chip chip-glass">EN</span>
+  </div>
+
+  <div style="position: relative; height: 366px; margin-top: 0">
+    <canvas class="facefield" data-mode="welcome" style="position: absolute; left: 50%; top: 0; width: 290px; height: 290px; margin-left: -145px"></canvas>
+    <div class="glass-card row-x float" style="position: absolute; right: -4px; top: 246px; padding: 10px 16px 10px 10px; gap: 12px">
+      <img class="av" src="{{img:pradeep}}" alt="" style="width: 46px; height: 46px; box-shadow: 0 0 0 2px #08B6FC">
+      <span style="display: flex; flex-direction: column; gap: 1px"><b style="font-size: 15px; display: flex; align-items: center; gap: 6px">Face verified <span style="width: 18px; height: 18px; border-radius: 9px; background: #08B6FC; display: grid; place-items: center">{{i:check:12}}</span></b><span style="font-size: 12.5px; color: rgba(255,255,255,.72)">Matched in 0.8 seconds</span></span>
+    </div>
+    <div class="glass-card row-x float" style="position: absolute; left: -4px; top: 306px; padding: 10px 18px 10px 10px; gap: 12px; animation-delay: -3s">
+      <span style="width: 46px; height: 46px; border-radius: 15px; background: linear-gradient(135deg, #36C9FF, #0A8BFF); display: grid; place-items: center">{{i:bed:22}}</span>
+      <span style="display: flex; flex-direction: column; gap: 1px"><b style="font-size: 15px">Checked in · Room 1208</b><span style="font-size: 12.5px; color: rgba(255,255,255,.72)">Marine Bay Grand, Mumbai</span></span>
+    </div>
+  </div>
+
+  <div class="grow"></div>
+  <span class="eyebrow rise" style="--d: 2">Your face is your pass</span>
+  <h1 class="t-hero rise" style="--d: 3; margin-top: 12px">One face.<br>Every <em>check-in.</em></h1>
+  <p class="lead rise" style="--d: 4; margin-top: 14px; color: rgba(234,244,250,.72)">Hotels, flights, theme parks and cruises — verified in a glance. No queues, no paperwork.</p>
+  <div class="row-x rise" style="--d: 5; gap: 6px; margin-top: 18px"><i style="width: 26px; height: 5px; border-radius: 3px; background: #08B6FC"></i><i style="width: 6px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.3)"></i><i style="width: 6px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.3)"></i></div>
+  <div class="stack rise" style="--d: 6; margin-top: 24px">
+    <a class="btn btn-primary" href="#create">Create your Truepas {{i:arrow-right}}</a>
+    <a class="btn btn-glass" href="#home">I already have an account</a>
+  </div>
+</div>
+</section>
+
+<!-- 02 CREATE ACCOUNT -->
+<section class="vp" data-id="create" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#welcome" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Create account</span><span class="count">1/3</span></div>
+  <div class="steps-bar mt-16"><i class="on"></i><i></i><i></i></div>
+  <h1 class="t-xl mt-28 rise" style="--d: 0">Create your <em>Truepas.</em></h1>
+  <p class="lead mt-8 rise" style="--d: 1">Three quick steps. Your face does the rest.</p>
+  <form class="stack mt-24 rise" style="--d: 2; gap: 16px">
+    <div class="field"><label for="c-name">Full name, as on your ID</label><div class="box"><input id="c-name" value="Pradeep Mali" autocomplete="off"><span style="color: var(--mint)">{{i:check:18}}</span></div></div>
+    <div class="field"><label for="c-phone">Mobile number</label><div class="box focus"><span class="pre">+91</span><input id="c-phone" value="98200 41827" autocomplete="off"></div><span class="hint">We’ll text a 6-digit code to verify it.</span></div>
+    <div class="field"><label for="c-mail">Email</label><div class="box"><input id="c-mail" value="pradeep.mali@mail.com" autocomplete="off"></div></div>
+  </form>
+  <label class="row-x mt-20 rise" style="--d: 3; align-items: flex-start; gap: 12px; font-size: 13px; line-height: 1.5; color: var(--ink-2)"><span style="width: 22px; height: 22px; flex: none; border-radius: 7px; background: var(--grad); color: #fff; display: grid; place-items: center; margin-top: 1px">{{i:check:14}}</span><span>I agree to the <b style="color: var(--ink)">Terms</b> and <b style="color: var(--ink)">Privacy Policy</b>, and to receive verification codes.</span></label>
+  <div class="grow"></div>
+  <a class="btn btn-primary mt-24" href="#consent">Continue {{i:arrow-right}}</a>
+  <p class="small mt-16" style="text-align: center">Already have an account? <a href="#home" style="color: var(--blue); font-weight: 700; text-decoration: none">Sign in with your face</a></p>
+</div>
+</section>
+
+<!-- 03 CONSENT -->
+<section class="vp" data-id="consent" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#create" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Biometric consent</span><span class="count">2/3</span></div>
+  <div class="steps-bar mt-16"><i class="on"></i><i class="on"></i><i></i></div>
+  <h1 class="t-xl mt-28 rise" style="--d: 0">Your face, <em>your control.</em></h1>
+  <p class="lead mt-8 rise" style="--d: 1">Three promises before we ever open the camera.</p>
+  <div class="card list mt-20 rise" style="--d: 2">
+    <div class="lrow"><span class="ic">{{i:lock}}</span><span class="main"><b>Encrypted on this phone</b><span>Stored as math, never as a photo</span></span></div>
+    <div class="lrow"><span class="ic">{{i:eye-off}}</span><span class="main"><b>Never sold, never shared</b><span>Venues see a yes or no — not your face</span></span></div>
+    <div class="lrow"><span class="ic">{{i:trash}}</span><span class="main"><b>Delete anytime</b><span>Two taps in Privacy center</span></span></div>
+  </div>
+  <div class="sec-head rise" style="--d: 3"><h3>Where can we verify you?</h3></div>
+  <div class="card list rise" style="--d: 4">
+    <div class="lrow"><span class="ic">{{i:plane}}</span><span class="main"><b>Airports</b><span>Entry, security, boarding</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Airports"></button></div>
+    <div class="lrow"><span class="ic">{{i:bed}}</span><span class="main"><b>Hotels</b><span>Check-in, room keys</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Hotels"></button></div>
+    <div class="lrow"><span class="ic">{{i:ticket}}</span><span class="main"><b>Parks &amp; venues</b><span>Gates, fast lanes, seats</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Parks and venues"></button></div>
+    <div class="lrow"><span class="ic">{{i:ship}}</span><span class="main"><b>Cruise</b><span>Terminal and onboard</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Cruise"></button></div>
+    <div class="lrow"><span class="ic">{{i:car}}</span><span class="main"><b>Car rentals</b><span>Counter-free pickup</span></span><button type="button" class="tg" role="switch" aria-checked="false" aria-label="Car rentals"></button></div>
+    <div class="lrow"><span class="ic">{{i:heart}}</span><span class="main"><b>Healthcare</b><span>Patient check-in</span></span><button type="button" class="tg" role="switch" aria-checked="false" aria-label="Healthcare"></button></div>
+  </div>
+  <p class="small mt-16" style="text-align: center">Covered by India’s DPDP Act 2023 and GDPR.</p>
+  <a class="btn btn-primary mt-20" href="#facescan">{{i:scan-face}} I agree · Scan my face</a>
+</div>
+</section>
+
+<!-- 04 FACE SCAN -->
+<section class="vp" data-id="facescan" hidden>
+<div class="scr dark">
+  <div class="aurora"><i></i><i></i><i></i></div>
+  <div class="topbar"><a class="iconbtn glass" href="#consent" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Face verification</span><span class="count" style="color: rgba(234,244,250,.5)">3/3</span></div>
+  <div class="steps-bar mt-16"><i class="on"></i><i class="on"></i><i class="on" id="fs-bar3" style="opacity: .45"></i></div>
+  <h1 class="t-xl mt-28" style="text-align: center">Verify your <em>face</em></h1>
+  <p class="lead mt-8" id="fs-instr" style="text-align: center; color: rgba(234,244,250,.72); min-height: 46px">Blink slowly, twice.</p>
+  <div class="scanner mt-20" id="fs-scanner">
+    <svg class="ring" viewBox="0 0 300 300" aria-hidden="true">
+      <defs><linearGradient id="fsg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FD8FF"></stop><stop offset="1" stop-color="#0A8BFF"></stop></linearGradient></defs>
+      <circle cx="150" cy="150" r="148" fill="none" stroke="rgba(127,216,255,.12)" stroke-width="1"></circle>
+      <circle cx="150" cy="150" r="128" fill="none" stroke="rgba(127,216,255,.28)" stroke-width="9" stroke-dasharray="1.6 8.45"></circle>
+      <circle class="ring-prog" id="fs-prog" cx="150" cy="150" r="140" fill="none" stroke="url(#fsg)" stroke-width="4" stroke-linecap="round" stroke-dasharray="879.6" stroke-dashoffset="879.6" transform="rotate(-90 150 150)"></circle>
+    </svg>
+    <div class="core"><canvas class="facefield" data-mode="scan" id="fs-canvas"></canvas></div>
+  </div>
+  <div class="live-steps mt-28">
+    <span class="ls on" id="fs-s1"><span class="d"></span>Blink</span>
+    <span class="ls" id="fs-s2"><span class="d"></span>Turn left</span>
+    <span class="ls" id="fs-s3"><span class="d"></span>Smile</span>
+  </div>
+  <div class="grow"></div>
+  <a class="btn btn-primary is-hidden" id="fs-cta" href="#born">Continue {{i:arrow-right}}</a>
+  <p class="small mt-16 row-x" style="justify-content: center; gap: 8px; color: rgba(234,244,250,.5)">{{i:shield-check:16}}Encrypted on-device · never stored as a photo</p>
+</div>
+</section>
+
+<!-- 05 IDENTITY BORN -->
+<section class="vp" data-id="born" hidden>
+<div class="scr dark">
+  <div class="aurora"><i></i><i></i><i></i></div>
+  <div class="mt-32" style="text-align: center">
+    <span class="eyebrow rise" style="--d: 0">Identity sealed · 2.6 s</span>
+    <h1 class="t-xl mt-12 rise" style="--d: 1">You’re <em>verified.</em></h1>
+    <p class="lead mt-8 rise" style="--d: 2; color: rgba(234,244,250,.7)">Meet your Truepas — one identity for every check-in.</p>
+  </div>
+  <div class="holo-wrap mt-32 born-in">
+    <div class="holo" data-tilt>
+      <svg class="guilloche" viewBox="0 0 350 212" preserveAspectRatio="none" aria-hidden="true"></svg>
+      <div class="hc top"><span class="wm">{{logo:22}}truepas</span><span class="chip chip-glass">{{i:scan-face:14}} Verified</span></div>
+      <div class="hc mid"><img class="portrait" src="{{img:pradeep}}" alt="Pradeep Mali"><div><div class="lbl">DIGITAL IDENTITY</div><div class="name">Pradeep Mali</div><div class="id">TP 4821 7730</div></div></div>
+      <div class="hc bottom"><span>Member since Oct 2026</span><span class="chipgold"></span></div>
+    </div>
+  </div>
+  <div class="mt-28" style="display: flex; flex-direction: column; gap: 10px">
+    <div class="row-x rise" style="--d: 4; padding: 12px 14px; border-radius: 18px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)"><span class="okdot">{{i:check:14}}</span><span style="flex: 1; font-weight: 700; font-size: 14.5px">Passport</span><span style="font-size: 12.5px; color: rgba(234,244,250,.55)">Verified · Republic of India</span></div>
+    <div class="row-x rise" style="--d: 5; padding: 12px 14px; border-radius: 18px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)"><span class="okdot">{{i:check:14}}</span><span style="flex: 1; font-weight: 700; font-size: 14.5px">Face template</span><span style="font-size: 12.5px; color: rgba(234,244,250,.55)">Sealed on this phone</span></div>
+    <div class="row-x rise" style="--d: 6; padding: 12px 14px; border-radius: 18px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.08)"><span class="okdot">{{i:check:14}}</span><span style="flex: 1; font-weight: 700; font-size: 14.5px">Consent</span><span style="font-size: 12.5px; color: rgba(234,244,250,.55)">4 industries</span></div>
+  </div>
+  <div class="grow"></div>
+  <a class="btn btn-primary mt-24" href="#home">Enter Truepas {{i:arrow-right}}</a>
+</div>
+</section>
+
+<!-- 06 HOME -->
+<section class="vp" data-id="home" hidden>
+<div class="scr has-tab">
+  <div class="sky-wash"></div>
+  <div class="row-x">
+    <a href="#profile" aria-label="Profile"><img class="av ring" src="{{img:pradeep}}" alt=""></a>
+    <span style="flex: 1; display: flex; flex-direction: column"><span class="small" style="font-size: 13px">Good evening</span><b style="font-size: 18px; letter-spacing: -.02em">Pradeep</b></span>
+    <button type="button" class="iconbtn" aria-label="Show my code">{{i:qr}}</button>
+    <button type="button" class="iconbtn" aria-label="Notifications">{{i:bell}}<span class="dot"></span></button>
+  </div>
+  <h1 class="t-xl mt-20 rise" style="--d: 0">Where are you going <em>today?</em></h1>
+  <div class="holo-wrap mt-20 rise" style="--d: 1">
+    <div class="holo" data-tilt style="height: 196px">
+      <svg class="guilloche" viewBox="0 0 350 196" preserveAspectRatio="none" aria-hidden="true"></svg>
+      <div class="hc top"><span class="wm">{{logo:22}}truepas</span><span class="chip chip-glass">{{i:scan-face:14}} Verified</span></div>
+      <div class="hc mid"><img class="portrait" src="{{img:pradeep}}" alt="Pradeep Mali"><div><div class="lbl">DIGITAL IDENTITY</div><div class="name">Pradeep Mali</div><div class="id">TP 4821 7730</div></div></div>
+    </div>
+  </div>
+
+  <div class="sec-head"><h3>Today</h3><a class="link" href="#key">Details</a></div>
+  <div class="photo" style="height: 400px">
+    <img src="{{img:hotel}}" alt="Marine Bay Grand at dusk">
+    <div class="shade"></div>
+    <div class="pc">
+      <div class="between"><span class="chip chip-dark">{{i:bed:14}} Hotel</span><span class="chip chip-ok dotted">Ready for face check-in</span></div>
+      <div class="grow"></div>
+      <span style="font-size: 13px; font-weight: 700; color: #7FD8FF">Today · from 2:00 PM</span>
+      <b style="font-size: 30px; font-weight: 800; letter-spacing: -.04em; margin-top: 4px">Marine Bay Grand</b>
+      <span style="font-size: 13.5px; color: rgba(255,255,255,.78); margin-top: 2px">Colaba, Mumbai · Deluxe Sea View · 2 nights</span>
+      <a class="btn btn-primary mt-16" href="#checkin">{{i:scan-face}} Check in with your face</a>
+    </div>
+  </div>
+
+  <div class="sec-head"><h3>Coming up</h3><a class="link" href="#checkins">See all</a></div>
+  <div class="carousel">
+    <a class="ccard" href="#journey" style="text-decoration: none; color: inherit"><div class="im"><img src="{{img:t_flight}}" alt=""><span class="chip chip-dark">{{i:plane:14}} Flight</span></div><div class="tx"><span class="w">Sat, 4 Oct · 06:45</span><b>Mumbai → Jaipur</b><span>BOM T2 · Gate 42B</span></div></a>
+    <div class="ccard"><div class="im"><img src="{{img:park}}" alt=""><span class="chip chip-dark">{{i:ticket:14}} Theme park</span></div><div class="tx"><span class="w">Tomorrow · 10:30 AM</span><b>Celestia Wonderland</b><span>Lonavala · 4 guests</span></div></div>
+    <div class="ccard"><div class="im"><img src="{{img:t_cruise}}" alt=""><span class="chip chip-dark">{{i:ship:14}} Cruise</span></div><div class="tx"><span class="w">12 – 16 Oct</span><b>Coral Voyager</b><span>Goa → Lakshadweep</span></div></div>
+  </div>
+
+  <div class="sec-head" style="margin-top: 10px"><h3>Quick actions</h3></div>
+  <nav class="qa" aria-label="Quick actions">
+    <a href="#wallet"><span class="i">{{i:file-plus}}</span>Add<br>document</a>
+    <a href="#family"><span class="i">{{i:user-plus}}</span>Add<br>family</a>
+    <a href="#key"><span class="i">{{i:key}}</span>Digital<br>keys</a>
+    <a href="#privacy"><span class="i">{{i:shield-check}}</span>Privacy<br>center</a>
+  </nav>
+
+  <div class="sec-head"><h3>Travelling together</h3><a class="link" href="#family">Manage</a></div>
+  <a class="card pad" href="#family" style="display: block; text-decoration: none; color: inherit">
+    <div class="between"><div class="av-stack"><img src="{{img:ananya}}" alt=""><img src="{{img:kiara}}" alt=""><img src="{{img:rajesh}}" alt=""><img src="{{img:meera}}" alt=""></div><span class="iconbtn" style="box-shadow: inset 0 0 0 1.5px var(--line); border: 1px dashed #C8D3DA">{{i:user-plus:18}}</span></div>
+    <div class="between mt-16" style="align-items: flex-end"><span style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 15px">4 family members</b><span class="small">3 verified · 1 awaiting face scan</span></span><span style="width: 96px; height: 6px; border-radius: 3px; background: #E7ECF0; overflow: hidden"><i style="display: block; width: 75%; height: 100%; background: var(--grad); border-radius: 3px"></i></span></div>
+  </a>
+
+  <div class="sec-head"><h3>Recent check-ins</h3><a class="link" href="#checkins">History</a></div>
+  <div class="card list">
+    <div class="lrow"><img class="thumb" src="{{img:t_aravali}}" alt=""><span class="main"><b>Aravali Palace</b><span>Hotel · Jaipur · 21 Sep, 3:12 PM</span></span><span class="okdot">{{i:check:14}}</span></div>
+    <div class="lrow"><img class="thumb" src="{{img:t_t20}}" alt=""><span class="main"><b>T20 Final</b><span>Stadium · Mumbai Arena · 14 Sep</span></span><span class="okdot">{{i:check:14}}</span></div>
+    <div class="lrow"><img class="thumb" src="{{img:t_sunset}}" alt=""><span class="main"><b>Sunset Bay Resort</b><span>Hotel · Candolim, Goa · 2 Sep</span></span><span class="okdot">{{i:check:14}}</span></div>
+  </div>
+</div>
+</section>
+
+<!-- 07 LIVE CHECK-IN -->
+<section class="vp" data-id="checkin" hidden>
+<div class="scr dark">
+  <div class="aurora"><i></i><i></i><i></i></div>
+  <div class="topbar"><a class="iconbtn glass" href="#home" aria-label="Close">{{i:x}}</a><span style="display: flex; flex-direction: column; align-items: center"><span class="ttl">Marine Bay Grand</span><span style="font-size: 12px; color: rgba(234,244,250,.55)">Front desk · Kiosk 2</span></span><span style="width: 44px"></span></div>
+  <h1 class="t-xl mt-28" id="ci-title" style="text-align: center">Look at the <em>camera.</em></h1>
+  <p class="lead mt-8" id="ci-sub" style="text-align: center; color: rgba(234,244,250,.7)">Hold still for a moment.</p>
+  <div class="scanner mt-24" id="ci-scanner">
+    <svg class="ring" viewBox="0 0 300 300" aria-hidden="true">
+      <circle cx="150" cy="150" r="148" fill="none" stroke="rgba(127,216,255,.12)" stroke-width="1"></circle>
+      <circle cx="150" cy="150" r="128" fill="none" stroke="rgba(127,216,255,.25)" stroke-width="9" stroke-dasharray="1.6 8.45"></circle>
+      <circle class="ring-prog" id="ci-prog" cx="150" cy="150" r="140" fill="none" stroke="#36C9FF" stroke-width="4" stroke-linecap="round" stroke-dasharray="879.6" stroke-dashoffset="879.6" transform="rotate(-90 150 150)"></circle>
+    </svg>
+    <div class="core">
+      <img src="{{img:pradeep}}" alt="Live camera view">
+      <svg class="meshover" id="ci-mesh" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <g fill="none" stroke="#7FD8FF" stroke-width=".35" stroke-dasharray="2 1.4" opacity=".9">
+          <path d="M50 12 L33 40 L50 58 L67 40 Z M33 40 L22 60 L38 72 L50 58 L62 72 L78 60 L67 40 M38 72 L50 92 L62 72 M22 60 L28 85 L50 92 L72 85 L78 60 M33 40 L50 12 M38 72 L62 72"></path>
+        </g>
+        <g fill="#BFF0FF">
+          <circle cx="50" cy="12" r="1.2"></circle><circle cx="33" cy="40" r="1.4"></circle><circle cx="67" cy="40" r="1.4"></circle><circle cx="50" cy="58" r="1.4"></circle><circle cx="22" cy="60" r="1.1"></circle><circle cx="78" cy="60" r="1.1"></circle><circle cx="38" cy="72" r="1.2"></circle><circle cx="62" cy="72" r="1.2"></circle><circle cx="50" cy="92" r="1.2"></circle><circle cx="28" cy="85" r="1"></circle><circle cx="72" cy="85" r="1"></circle>
+        </g>
+      </svg>
+      <div class="beam" id="ci-beam"></div>
+    </div>
+  </div>
+  <div class="mt-28" style="display: flex; flex-direction: column; gap: 8px">
+    <div class="row-x ci-step" data-s="1" style="padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.05)"><span class="ci-mark"></span><span style="flex: 1; font-weight: 700; font-size: 14.5px">Face found</span><span class="mono" style="font-size: 12px; color: rgba(234,244,250,.45)">1 face</span></div>
+    <div class="row-x ci-step" data-s="2" style="padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.05)"><span class="ci-mark"></span><span style="flex: 1; font-weight: 700; font-size: 14.5px">Liveness confirmed</span><span class="mono" style="font-size: 12px; color: rgba(234,244,250,.45)">3D depth</span></div>
+    <div class="row-x ci-step" data-s="3" style="padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.05)"><span class="ci-mark"></span><span style="flex: 1; font-weight: 700; font-size: 14.5px">Matching identity</span><span class="mono" id="ci-timer" style="font-size: 13px; color: #7FD8FF">0.00 s</span></div>
+  </div>
+  <div class="grow"></div>
+  <a class="btn btn-primary is-hidden mt-20" id="ci-cta" href="#welcomed">See your room {{i:arrow-right}}</a>
+  <button type="button" class="btn btn-text is-hidden" id="ci-replay" style="margin-top: 4px">{{i:replay:18}} Replay</button>
+</div>
+</section>
+
+<!-- 08 CHECKED IN -->
+<section class="vp" data-id="welcomed" hidden>
+<div class="scr">
+  <div class="medal mt-8"><i></i><i></i><span class="core"><svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span></div>
+  <span class="eyebrow rise" style="--d: 0; text-align: center; margin-top: 6px">Matched in 0.8 seconds</span>
+  <h1 class="t-xl mt-12 rise" style="--d: 1; text-align: center">Welcome, <em>Pradeep.</em></h1>
+  <p class="lead mt-8 rise" style="--d: 2; text-align: center">You’re checked in at Marine Bay Grand. Your room key is ready on this phone.</p>
+  <div class="card mt-24 rise" style="--d: 3; overflow: hidden">
+    <img src="{{img:room}}" alt="Deluxe Sea View room" style="display: block; width: 100%; height: 168px; object-fit: cover">
+    <div class="between" style="padding: 14px 18px 16px; align-items: flex-start">
+      <span style="display: flex; flex-direction: column; gap: 3px"><b style="font-size: 20px; letter-spacing: -.03em">Room 1208</b><span class="small" style="font-size: 13px">Deluxe Sea View · Floor 12</span></span>
+      <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 6px"><span class="chip chip-ok dotted">Checked in</span><span style="font-size: 12.5px; font-weight: 600">Until Sat, 11 AM</span></span>
+    </div>
+  </div>
+  <div class="card pad mt-12 rise" style="--d: 4">
+    <div class="between"><b style="font-size: 13px">Shared with the hotel</b><span class="small">Today, 2:04 PM</span></div>
+    <div class="row-x mt-12" style="flex-wrap: wrap; gap: 6px"><span class="chip chip-ok">{{i:check:12}} Name</span><span class="chip chip-ok">{{i:check:12}} Face match</span><span class="chip chip-ok">{{i:check:12}} Booking</span><span class="chip" style="background: #EEF2F5; color: var(--ink-3)">{{i:lock:12}} Aadhaar no.</span><span class="chip" style="background: #EEF2F5; color: var(--ink-3)">{{i:lock:12}} Face image</span></div>
+  </div>
+  <div class="grow"></div>
+  <a class="btn btn-primary mt-24" href="#key">Open digital key {{i:arrow-right}}</a>
+  <a class="btn btn-text" href="#home">Back to home</a>
+</div>
+</section>
+
+<!-- 09 DIGITAL KEY -->
+<section class="vp" data-id="key" hidden>
+<div class="scr" style="padding-top: 0">
+  <div style="position: relative; margin: 0 -22px; height: 300px; color: #fff">
+    <img src="{{img:hotel}}" alt="Marine Bay Grand" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+    <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(3,11,19,.35), rgba(3,11,19,0) 35%, rgba(3,11,19,.7))"></div>
+    <div class="between" style="position: absolute; left: 22px; right: 22px; top: 58px"><a class="iconbtn glass" href="#welcomed" aria-label="Back">{{i:chev-left}}</a><button type="button" class="iconbtn glass" aria-label="Share">{{i:share}}</button></div>
+    <div style="position: absolute; left: 22px; bottom: 50px"><span class="row-x" style="gap: 6px; font-size: 13px; font-weight: 700; color: #7FD8FF">{{i:bed:15}} Hotel</span><b style="display: block; font-size: 32px; font-weight: 800; letter-spacing: -.04em; margin-top: 2px">Marine Bay Grand</b><span style="font-size: 14px; opacity: .85">Colaba, Mumbai</span></div>
+  </div>
+  <div style="margin: -30px -22px 0; padding: 18px 22px 0; border-radius: 30px 30px 0 0; background: var(--ground); position: relative">
+    <div class="keycard">
+      <div class="nfc"><i></i><i></i><i></i><span>{{i:wifi-key:26}}</span></div>
+      <span class="chip chip-glass dotted" style="color: #4BE39A">Face check-in open</span>
+      <div class="eyebrow mt-16" style="color: #7FD8FF">Digital key</div>
+      <div style="font-size: 64px; font-weight: 800; letter-spacing: -.05em; line-height: 1; margin-top: 4px">1208</div>
+      <div style="font-size: 14px; opacity: .75; margin-top: 4px">Floor 12 · Sea-facing</div>
+      <button type="button" class="hold mt-20" id="key-hold"><span class="fill"></span><span class="lbl" id="key-lbl">{{i:fingerprint:20}} Hold to unlock</span></button>
+      <p style="margin: 12px 0 0; font-size: 12.5px; color: rgba(255,255,255,.6); text-align: center">Or just look at the lock camera.</p>
+    </div>
+    <div class="card mt-16" style="display: grid; grid-template-columns: 1fr 1fr">
+      <div style="padding: 16px 18px; border-right: 1px solid var(--line)"><span class="small">Check-in</span><b style="display: block; font-size: 17px; margin-top: 2px">Thu, 2 Oct</b><span class="small">from 2:00 PM</span></div>
+      <div style="padding: 16px 18px"><span class="small">Check-out</span><b style="display: block; font-size: 17px; margin-top: 2px">Sat, 4 Oct</b><span class="small">until 11:00 AM</span></div>
+      <div class="between" style="grid-column: 1 / -1; padding: 14px 18px; border-top: 1px solid var(--line)"><span class="row-x" style="gap: 8px; font-size: 14px; color: var(--ink-2)">{{i:calendar:18}} Confirmation</span><span class="mono" style="font-size: 14px; font-weight: 500">MBG-82K4QZ</span></div>
+    </div>
+    <div class="sec-head"><h3>Stay services</h3><span class="small">24 × 7</span></div>
+    <div class="card list" style="margin-bottom: 40px">
+      <div class="lrow"><span class="ic">{{i:coffee}}</span><span class="main"><b>In-room dining</b><span>Order to room 1208</span></span><span class="chev">{{i:chev-right:18}}</span></div>
+      <div class="lrow"><span class="ic">{{i:sparkles}}</span><span class="main"><b>Spa &amp; wellness</b><span>Pay with your face</span></span><span class="chev">{{i:chev-right:18}}</span></div>
+      <div class="lrow"><span class="ic">{{i:car}}</span><span class="main"><b>Airport transfer</b><span>Sat 4:30 AM · Confirmed</span></span><span class="chip chip-ok">Booked</span></div>
+      <div class="lrow"><span class="ic">{{i:wifi}}</span><span class="main"><b>Wi-Fi</b><span>MarineBay-Guest · auto-connected</span></span><span class="chev">{{i:chev-right:18}}</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- 10 JOURNEY -->
+<section class="vp" data-id="journey" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#home" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Your trip</span><button type="button" class="iconbtn" aria-label="Share trip">{{i:share}}</button></div>
+  <h1 class="t-xl mt-20 rise" style="--d: 0">Curb to gate, <em>by face.</em></h1>
+  <div class="bpass mt-20 rise" style="--d: 1">
+    <div class="head">
+      <div class="between"><span class="eyebrow" style="color: #7FD8FF">Flight SK 512 · Sat 4 Oct</span><span class="chip chip-glass dotted" style="color: #4BE39A">On time</span></div>
+      <div class="codes">
+        <span><span class="code">BOM</span><span class="city" style="display: block">Mumbai · 06:45</span></span>
+        <svg class="arc" viewBox="0 0 120 54" preserveAspectRatio="none" aria-hidden="true"><path class="trail" d="M4 48 Q60 -10 116 48"></path></svg>
+        <span style="text-align: right"><span class="code">JAI</span><span class="city" style="display: block">Jaipur · 08:20</span></span>
+      </div>
+      <span class="plane-fly" aria-hidden="true">{{i:plane:18}}</span>
+    </div>
+    <div class="grid3"><div><span>GATE</span><b>42B</b></div><div><span>BOARDS</span><b>06:15</b></div><div><span>SEAT</span><b>14A</b></div></div>
+    <div class="perf"></div>
+    <div class="between" style="padding: 14px 20px 16px"><span class="row-x" style="gap: 10px; font-size: 14px; font-weight: 700">{{i:scan-face:20}} Face boarding</span><span class="chip chip-ok dotted">Ready</span></div>
+  </div>
+  <div class="sec-head"><h3>Your journey</h3><span class="small">3 of 5 done</span></div>
+  <div class="tl">
+    <div class="tl-row"><div class="rail-c"><span class="node">{{i:check:14}}</span><span class="line"></span></div><div class="tx"><b>Terminal entry</b><span>Face verified · 0.9 s</span></div><span class="time">05:52</span></div>
+    <div class="tl-row"><div class="rail-c"><span class="node">{{i:check:14}}</span><span class="line"></span></div><div class="tx"><b>Bag drop</b><span>1 bag · tagged to JAI</span></div><span class="time">05:58</span></div>
+    <div class="tl-row"><div class="rail-c"><span class="node">{{i:check:14}}</span><span class="line fade"></span></div><div class="tx"><b>Security</b><span>Face verified · 1.1 s</span></div><span class="time">06:04</span></div>
+    <div class="tl-row" style="min-height: 78px"><div class="rail-c"><span class="node now"></span><span class="line grey"></span></div><div class="tx"><b style="color: var(--blue)">Lounge · Level 3</b><span>Walk in — your face is your pass</span></div><span class="time" style="color: var(--blue)">now</span></div>
+    <div class="tl-row" style="min-height: 40px"><div class="rail-c"><span class="node next">{{i:plane:13}}</span></div><div class="tx"><b style="color: var(--ink-3)">Boarding · Gate 42B</b></div><span class="time">06:15</span></div>
+  </div>
+  <div class="note mt-20">{{i:info:18}}<span>No boarding pass and no ID at any gate. Each checkpoint receives only a yes or no.</span></div>
+</div>
+</section>
+
+<!-- 11 CHECK-INS -->
+<section class="vp" data-id="checkins" hidden>
+<div class="scr has-tab">
+  <div class="between"><h1 class="t-xl">Check-ins</h1><button type="button" class="iconbtn" aria-label="Search">{{i:search}}</button></div>
+  <div class="keycard mt-20" style="padding: 20px">
+    <span class="eyebrow" style="color: #7FD8FF">Your 2026 so far</span>
+    <div class="stats mt-12"><div><b>24</b><span>Check-ins</span></div><div><b>9</b><span>Cities</span></div><div><b>3.1s</b><span>Avg. time</span></div><div><b>6h</b><span>Saved</span></div></div>
+  </div>
+  <div class="pills mt-20" role="tablist" aria-label="Filter">
+    <button type="button" class="pill" role="tab" aria-selected="true" data-f="all">All</button>
+    <button type="button" class="pill" role="tab" aria-selected="false" data-f="hotel">Hotels</button>
+    <button type="button" class="pill" role="tab" aria-selected="false" data-f="travel">Travel</button>
+    <button type="button" class="pill" role="tab" aria-selected="false" data-f="event">Events</button>
+  </div>
+  <div class="f-group"><div class="sec-head"><h3>Upcoming</h3><span class="link">5 trips</span></div>
+  <div class="card list">
+    <a class="lrow f-row" data-cat="hotel" href="#key" style="text-decoration: none"><img class="thumb" src="{{img:t_marine}}" alt=""><span class="main"><b>Marine Bay Grand</b><span>Hotel · Colaba · Today 2:00 PM</span></span><span class="chip chip-ok">Ready</span></a>
+    <div class="lrow f-row" data-cat="event"><img class="thumb" src="{{img:t_park}}" alt=""><span class="main"><b>Celestia Wonderland</b><span>Theme park · Tomorrow 10:30</span></span><span class="chip chip-info">Upcoming</span></div>
+    <a class="lrow f-row" data-cat="travel" href="#journey" style="text-decoration: none"><img class="thumb" src="{{img:t_flight}}" alt=""><span class="main"><b>Mumbai → Jaipur</b><span>Flight · BOM T2 · Sat 06:45</span></span><span class="chip chip-info">Upcoming</span></a>
+    <div class="lrow f-row" data-cat="event"><img class="thumb" src="{{img:t_cinema}}" alt=""><span class="main"><b>Midnight Monsoon</b><span>Cinema · IMAX · Sat 7:30 PM</span></span><span class="chip chip-info">Upcoming</span></div>
+    <div class="lrow f-row" data-cat="travel"><img class="thumb" src="{{img:t_cruise}}" alt=""><span class="main"><b>Coral Voyager</b><span>Cruise · Goa → Lakshadweep</span></span><span class="chip chip-info">Upcoming</span></div>
+  </div></div>
+  <div class="f-group"><div class="sec-head"><h3>September</h3><span class="small">4 visits</span></div>
+  <div class="card list">
+    <div class="lrow f-row" data-cat="hotel"><img class="thumb" src="{{img:t_aravali}}" alt=""><span class="main"><b>Aravali Palace</b><span>Hotel · Jaipur · 21 Sep · 0.9 s</span></span><span class="okdot">{{i:check:14}}</span></div>
+    <div class="lrow f-row" data-cat="event"><img class="thumb" src="{{img:t_t20}}" alt=""><span class="main"><b>T20 Final</b><span>Stadium · Mumbai Arena · 14 Sep</span></span><span class="okdot">{{i:check:14}}</span></div>
+    <div class="lrow f-row" data-cat="hotel"><img class="thumb" src="{{img:t_sunset}}" alt=""><span class="main"><b>Sunset Bay Resort</b><span>Hotel · Candolim, Goa · 2 Sep</span></span><span class="okdot">{{i:check:14}}</span></div>
+    <div class="lrow f-row" data-cat="event"><img class="thumb" src="{{img:t_neon}}" alt=""><span class="main"><b>Neon Nights Live</b><span>Live event · Dome Arena, Worli</span></span><span class="okdot">{{i:check:14}}</span></div>
+  </div></div>
+</div>
+</section>
+
+<!-- 12 WALLET -->
+<section class="vp" data-id="wallet" hidden>
+<div class="scr has-tab">
+  <div class="between"><h1 class="t-xl">Wallet</h1><button type="button" class="iconbtn" aria-label="Add a document" style="background: var(--grad); color: #fff; box-shadow: 0 10px 22px -8px rgba(10,139,255,.6)">{{i:plus}}</button></div>
+  <div class="card pad mt-20 strength">
+    <div class="ringnum"><svg width="58" height="58" viewBox="0 0 58 58" aria-hidden="true"><circle cx="29" cy="29" r="25" fill="none" stroke="#E3F6EC" stroke-width="6"></circle><circle cx="29" cy="29" r="25" fill="none" stroke="#14A866" stroke-width="6" stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="12.6" transform="rotate(-90 29 29)"></circle></svg><b>92</b></div>
+    <span style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 16px">3 of 4 documents verified</b><span class="small" style="font-size: 13px">Your identity strength is excellent</span></span>
+  </div>
+  <p class="small mt-20">Tap a card to bring it forward.</p>
+  <div class="wallet mt-12" id="wallet-stack">
+    <button type="button" class="wcard pan" data-k="pan"><svg class="guilloche" viewBox="0 0 350 216" preserveAspectRatio="none" aria-hidden="true"></svg><div class="between"><div><div class="issuer">INCOME TAX DEPT.</div><div class="doc">PAN Card</div></div><span class="chip chip-warn dotted">In review</span></div><div class="between" style="align-items: flex-end"><div><div class="num">ABC••••21F</div><div class="meta">Pradeep Mali · No expiry</div></div><span class="chipgold sm"></span></div></button>
+    <button type="button" class="wcard dl" data-k="dl"><svg class="guilloche" viewBox="0 0 350 216" preserveAspectRatio="none" aria-hidden="true"></svg><div class="between"><div><div class="issuer">MAHARASHTRA RTO</div><div class="doc">Driving Licence</div></div><span class="chip chip-glass">{{i:scan-face:14}} Verified</span></div><div class="between" style="align-items: flex-end"><div><div class="num">MH01 ••••• 4410</div><div class="meta">Valid till Jun 2034</div></div><span class="chipgold sm"></span></div></button>
+    <button type="button" class="wcard aadhaar" data-k="aadhaar"><svg class="guilloche" viewBox="0 0 350 216" preserveAspectRatio="none" aria-hidden="true"></svg><div class="between"><div><div class="issuer">UIDAI</div><div class="doc">Aadhaar</div></div><span class="chip chip-glass">{{i:scan-face:14}} Verified</span></div><div class="between" style="align-items: flex-end"><div><div class="num">•••• •••• 7730</div><div class="meta">Masked · shown only to you</div></div><span class="chipgold sm"></span></div></button>
+    <button type="button" class="wcard passport" data-k="passport"><svg class="guilloche" viewBox="0 0 350 216" preserveAspectRatio="none" aria-hidden="true"></svg><div class="between"><div><div class="issuer">REPUBLIC OF INDIA</div><div class="doc">Passport</div></div><span class="chip chip-glass">{{i:scan-face:14}} Verified</span></div><div class="between" style="align-items: flex-end"><div><div class="num">Z•••••5678</div><div class="meta">Pradeep Mali · Expires Mar 2034</div></div><span class="chipgold sm"></span></div></button>
+  </div>
+  <div class="sec-head" style="margin-top: 8px"><h3>Add more to your wallet</h3></div>
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+    <button type="button" style="border: 1.5px dashed #CBD6DD; border-radius: 22px; background: none; padding: 16px; text-align: left; display: flex; flex-direction: column; gap: 10px"><span class="ic" style="width: 38px; height: 38px; border-radius: 12px; background: #E9F6FF; color: var(--blue); display: grid; place-items: center">{{i:plus:18}}</span><b style="font-size: 15px">Voter ID</b><span class="small">Election Commission</span></button>
+    <button type="button" style="border: 1.5px dashed #CBD6DD; border-radius: 22px; background: none; padding: 16px; text-align: left; display: flex; flex-direction: column; gap: 10px"><span class="ic" style="width: 38px; height: 38px; border-radius: 12px; background: #E9F6FF; color: var(--blue); display: grid; place-items: center">{{i:plus:18}}</span><b style="font-size: 15px">Visa</b><span class="small">Any country</span></button>
+  </div>
+  <p class="small row-x mt-20" style="justify-content: center; gap: 8px">{{i:shield-check:15}} Stored with AES-256 · on-device keys</p>
+</div>
+</section>
+
+<!-- 13 FAMILY -->
+<section class="vp" data-id="family" hidden>
+<div class="scr">
+  <div class="topbar"><a class="iconbtn" href="#home" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Family</span><span style="width: 44px"></span></div>
+  <h1 class="t-xl mt-20 rise" style="--d: 0">Travel <em>together.</em></h1>
+  <p class="lead mt-8 rise" style="--d: 1">Everyone checks in with their own face — kids included, under your supervision.</p>
+  <div class="fam mt-20">
+    <div class="fcard rise" style="--d: 2"><img src="{{img:ananya}}" alt=""><div class="shade"></div><span class="chip chip-ok dotted">Verified</span><div class="who"><b>Ananya</b><span>Spouse · 31</span></div></div>
+    <div class="fcard rise" style="--d: 3"><img src="{{img:kiara}}" alt=""><div class="shade"></div><span class="chip chip-ok dotted">Verified</span><div class="who"><b>Kiara</b><span>Daughter · 7</span></div></div>
+    <a class="fcard rise" href="#facescan" style="--d: 4"><img src="{{img:rajesh}}" alt=""><div class="shade"></div><span class="chip chip-warn dotted">Face pending</span><div class="who"><b>Rajesh</b><span>Father · 64 · Tap to finish</span></div></a>
+    <div class="fcard rise" style="--d: 5"><img src="{{img:meera}}" alt=""><div class="shade"></div><span class="chip chip-ok dotted">Verified</span><div class="who"><b>Meera</b><span>Sister · 18</span></div></div>
+  </div>
+  <div class="card pad mt-16 row-x" style="align-items: flex-start; gap: 14px"><span class="ic" style="width: 42px; height: 42px; flex: none; border-radius: 14px; background: #E9F6FF; color: var(--blue); display: grid; place-items: center">{{i:shield-check}}</span><span style="display: flex; flex-direction: column; gap: 3px"><b style="font-size: 15px">Guardian controls on</b><span class="small" style="font-size: 13px">Kiara (7) can only check in alongside an adult.</span></span></div>
+  <div class="grow"></div>
+  <a class="btn btn-primary mt-24" href="#create">{{i:user-plus}} Add a family member</a>
+  <p class="small mt-12" style="text-align: center">Up to 8 members per family plan</p>
+</div>
+</section>
+
+<!-- 14 PRIVACY -->
+<section class="vp" data-id="privacy" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#profile" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Privacy center</span><span style="width: 44px"></span></div>
+  <h1 class="t-xl mt-20 rise" style="--d: 0">Your data, <em>your rules.</em></h1>
+  <div class="card pad mt-20 row-x rise" style="--d: 1; gap: 14px">
+    <span style="width: 52px; height: 52px; flex: none; border-radius: 17px; background: var(--grad); color: #fff; display: grid; place-items: center; box-shadow: 0 12px 24px -10px rgba(10,139,255,.6)">{{i:shield-check:26}}</span>
+    <span style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 16px">Nothing leaves without you</b><span class="small" style="font-size: 13px">Venues get a yes or no. Never your face.</span></span>
+  </div>
+  <div class="sec-head"><h3>Who can verify you</h3><span class="small">4 of 6 on</span></div>
+  <div class="card list">
+    <div class="lrow"><span class="ic">{{i:plane}}</span><span class="main"><b>Airports</b><span>Used 3 times this month</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Airports"></button></div>
+    <div class="lrow"><span class="ic">{{i:bed}}</span><span class="main"><b>Hotels</b><span>Used today</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Hotels"></button></div>
+    <div class="lrow"><span class="ic">{{i:ticket}}</span><span class="main"><b>Parks &amp; venues</b><span>Used 14 Sep</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Parks and venues"></button></div>
+    <div class="lrow"><span class="ic">{{i:car}}</span><span class="main"><b>Car rentals</b><span>Off · 1 blocked attempt</span></span><button type="button" class="tg" role="switch" aria-checked="false" aria-label="Car rentals"></button></div>
+  </div>
+  <div class="sec-head"><h3>Recent shares</h3><a class="link" href="#checkins">All</a></div>
+  <div class="card list">
+    <div class="lrow" style="align-items: flex-start; padding: 14px 0"><img class="thumb" src="{{img:t_marine}}" alt="" style="width: 44px; height: 44px; border-radius: 13px"><span class="main"><b>Marine Bay Grand</b><span>Today, 2:04 PM · Name, face match, booking</span></span></div>
+    <div class="lrow" style="align-items: flex-start; padding: 14px 0"><img class="thumb" src="{{img:t_t20}}" alt="" style="width: 44px; height: 44px; border-radius: 13px"><span class="main"><b>Mumbai Arena</b><span>14 Sep · Name, ticket</span></span></div>
+  </div>
+  <div class="sec-head"><h3>Your data</h3></div>
+  <div class="card list" style="margin-bottom: 8px">
+    <button type="button" class="lrow"><span class="ic">{{i:download}}</span><span class="main"><b>Download my data</b><span>Ready in about a minute</span></span><span class="chev">{{i:chev-right:18}}</span></button>
+    <button type="button" class="lrow"><span class="ic red">{{i:trash}}</span><span class="main"><b style="color: var(--red)">Delete biometric data</b><span>Your face template is erased everywhere</span></span><span class="chev">{{i:chev-right:18}}</span></button>
+  </div>
+</div>
+</section>
+
+<!-- 15 PROFILE -->
+<section class="vp" data-id="profile" hidden>
+<div class="scr has-tab">
+  <div class="sky-wash"></div>
+  <div style="display: flex; flex-direction: column; align-items: center; margin-top: 10px">
+    <span style="position: relative"><img src="{{img:pradeep}}" alt="Pradeep Mali" style="width: 104px; height: 104px; border-radius: 52px; object-fit: cover; box-shadow: 0 0 0 4px #fff, 0 0 0 6px #08B6FC, 0 20px 40px -14px rgba(10,139,255,.5)"><span style="position: absolute; right: 0; bottom: 2px; width: 30px; height: 30px; border-radius: 15px; background: var(--grad); color: #fff; display: grid; place-items: center; box-shadow: 0 0 0 3px #fff">{{i:check:16}}</span></span>
+    <h1 class="t-l mt-16">Pradeep <em>Mali</em></h1>
+    <span class="mono mt-8" style="font-size: 13px; color: var(--ink-3)">TP 4821 7730</span>
+  </div>
+  <div class="card mt-20" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 14px 0">
+    <a href="#checkins" style="text-align: center; text-decoration: none; color: inherit; border-right: 1px solid var(--line)"><b style="display: block; font-size: 22px; letter-spacing: -.03em">24</b><span class="small">Check-ins</span></a>
+    <a href="#family" style="text-align: center; text-decoration: none; color: inherit; border-right: 1px solid var(--line)"><b style="display: block; font-size: 22px; letter-spacing: -.03em">4</b><span class="small">Family</span></a>
+    <a href="#wallet" style="text-align: center; text-decoration: none; color: inherit"><b style="display: block; font-size: 22px; letter-spacing: -.03em">4</b><span class="small">Documents</span></a>
+  </div>
+  <div class="sec-head"><h3>Account</h3></div>
+  <div class="card list">
+    <button type="button" class="lrow"><span class="ic">{{i:user}}</span><span class="main"><b>Personal details</b><span>Verified from your passport</span></span><span class="chev">{{i:chev-right:18}}</span></button>
+    <button type="button" class="lrow"><span class="ic">{{i:lock}}</span><span class="main"><b>Security &amp; PIN</b><span>Score 96 · 2 devices</span></span><span class="chip chip-ok">Strong</span></button>
+    <a class="lrow" href="#facescan" style="text-decoration: none"><span class="ic">{{i:scan-face}}</span><span class="main"><b>Update face scan</b><span>Last updated Oct 2026</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+  </div>
+  <div class="sec-head"><h3>Preferences</h3></div>
+  <div class="card list">
+    <a class="lrow" href="#privacy" style="text-decoration: none"><span class="ic">{{i:shield-check}}</span><span class="main"><b>Privacy center</b><span>4 industries on</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+    <button type="button" class="lrow"><span class="ic">{{i:bell}}</span><span class="main"><b>Notifications</b><span>Check-ins, family, security</span></span><span class="chev">{{i:chev-right:18}}</span></button>
+    <button type="button" class="lrow"><span class="ic">{{i:help}}</span><span class="main"><b>Help &amp; support</b><span>24 × 7 chat and phone</span></span><span class="chev">{{i:chev-right:18}}</span></button>
+  </div>
+  <a class="btn btn-text mt-16" href="#welcome" style="color: var(--red)">{{i:logout:18}} Sign out</a>
+</div>
+</section>

@@ -1,0 +1,91 @@
+<title>TruePas Next</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+/*STYLES*/
+</style>
+
+<div class="shell">
+  <aside class="rail" id="rail" aria-label="Screens">
+    <header class="rail-head">
+      <div class="brand">{{logo:24}}truepas <span class="ver">Next</span></div>
+      <h1 class="rail-title">One face. Every <em>check-in.</em></h1>
+      <p class="rail-sub">The truepas.com redesign and Truepas 3.0, merged into one app and taken a step further: a live 3D face, a holographic ID and a check-in timed to the millisecond. Everything on the phone is tappable. People, venues and numbers are sample data.</p>
+    </header>
+    <nav class="index" id="index" aria-label="All screens"></nav>
+    <footer class="rail-foot">
+      <div class="rail-nav"><button type="button" id="drawer-prev">Previous</button><button type="button" id="drawer-next">Next</button></div>
+      <span><span class="kbd">←</span> <span class="kbd">→</span> step through screens</span>
+      <span>Hover the ID card to tilt it · hold the room key to unlock</span>
+    </footer>
+  </aside>
+
+  <main class="stage" id="stage">
+    <div class="device-wrap" id="wrap">
+      <div class="device" id="device">
+        <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="area" id="area">
+          <div class="statusbar" id="statusbar" aria-hidden="true">
+            <span>9:41</span>
+            <span class="icons">
+              <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="currentColor"></rect><rect x="5" y="5.5" width="3" height="6.5" rx="1" fill="currentColor"></rect><rect x="10" y="3" width="3" height="9" rx="1" fill="currentColor"></rect><rect x="15" y="0" width="3" height="12" rx="1" fill="currentColor"></rect></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.4 0 4.6.9 6.2 2.5l1.1-1.1A10.3 10.3 0 0 0 8 .6 10.3 10.3 0 0 0 .7 3.6l1.1 1.1A8.7 8.7 0 0 1 8 2.2Zm0 3.3c1.5 0 2.9.6 3.9 1.6L13 6A7 7 0 0 0 8 3.9 7 7 0 0 0 3 6l1.1 1.1A5.4 5.4 0 0 1 8 5.5Zm0 3.3c.7 0 1.2.3 1.7.7L8 11.2 6.3 9.5c.5-.4 1-.7 1.7-.7Z" fill="currentColor"></path></svg>
+              <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".4"></rect><rect x="2" y="2" width="20" height="9" rx="2.5" fill="currentColor"></rect><path d="M25 4.5v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2Z" fill="currentColor" opacity=".45"></path></svg>
+            </span>
+          </div>
+          <div class="island" id="island" aria-live="polite">
+            <div class="island-in"><img src="{{img:pradeep}}" alt=""><span class="ii-t"><b>Checked in · Room 1208</b><span>Marine Bay Grand · key ready</span></span><span class="ii-r">0.8s</span></div>
+          </div>
+<!--SCREENS-->
+          <nav class="tabbar" id="tabbar" hidden aria-label="Main">
+            <span class="tb-blob" id="tb-blob"></span>
+            <a class="tb" data-t="home" href="#home">{{i:home:22}}Home</a>
+            <a class="tb" data-t="checkins" href="#checkins">{{i:calendar-check:22}}Check-ins</a>
+            <a class="tb-face" href="#checkin" aria-label="Check in with your face">{{i:scan-face:28}}</a>
+            <a class="tb" data-t="wallet" href="#wallet">{{i:wallet:22}}Wallet</a>
+            <a class="tb" data-t="me" href="#profile">{{i:user:22}}Me</a>
+          </nav>
+          <div class="homebar" id="homebar" aria-hidden="true"></div>
+        </div>
+      </div>
+      <button type="button" class="side side-prev" id="side-prev" aria-label="Previous screen">{{i:chev-left:20}}</button>
+      <button type="button" class="side side-next" id="side-next" aria-label="Next screen">{{i:chev-right:20}}</button>
+    </div>
+    <div class="bar">
+      <button type="button" class="navbtn menu" id="menu" aria-label="All screens">{{i:grid:18}}</button>
+      <button type="button" class="navbtn" id="prev" aria-label="Previous screen">{{i:chev-left}}</button>
+      <span class="label" id="label" aria-live="polite"></span>
+      <button type="button" class="navbtn" id="next" aria-label="Next screen">{{i:chev-right}}</button>
+    </div>
+  </main>
+
+  <aside class="notes" aria-label="Design notes">
+    <span class="n-eyebrow" id="n-eyebrow"></span>
+    <h2 class="n-title" id="n-title"></h2>
+    <p class="n-text" id="n-text"></p>
+    <div class="n-refs" id="n-refs"></div>
+    <ul class="n-list" id="n-list"></ul>
+    <div class="system">
+      <span class="sys-label">Design system</span>
+      <div class="swatches">
+        <div class="sw"><i style="background: #0A8BFF"></i><span>#0A8BFF</span></div>
+        <div class="sw"><i style="background: #08B6FC"></i><span>#08B6FC</span></div>
+        <div class="sw"><i style="background: #052338"></i><span>#052338</span></div>
+        <div class="sw"><i style="background: #0A1E2A"></i><span>#0A1E2A</span></div>
+        <div class="sw"><i style="background: #CDEFFF"></i><span>#CDEFFF</span></div>
+        <div class="sw"><i style="background: #14A866"></i><span>#14A866</span></div>
+      </div>
+      <div class="type-row"><b>Jakarta</b><em>Instrument</em><span>UI + editorial accent</span></div>
+    </div>
+  </aside>
+
+  <button type="button" class="edge" id="edge" aria-label="All screens"><span></span><span></span><span></span></button>
+  <div class="scrim" id="scrim"></div>
+  <div class="live-toast" id="live-toast" aria-live="polite"><div class="island-in"><img src="{{img:pradeep}}" alt=""><span class="ii-t"><b>Checked in · Room 1208</b><span>Marine Bay Grand · key ready</span></span><span class="ii-r">0.8s</span></div></div>
+  <div class="hint" id="hint" role="status">Swipe or tap the side arrows to change screens. The tab on the left edge lists them all.</div>
+</div>
+
+<script>
+/*APP*/
+</script>
