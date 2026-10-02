@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Face and liveness scan</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#4da3ff;text-decoration:none}a:hover{color:#7dbbff}
+@keyframes tpScanFace{0%{transform:translateY(0)}50%{transform:translateY(212px)}100%{transform:translateY(0)}}
+@keyframes tpPulse{0%{transform:scale(0.92);opacity:0.6}100%{transform:scale(1.18);opacity:0}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 34px; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #ffffff; background: radial-gradient(90% 60% at 50% 46%, #0e2a4d 0%, #071322 55%, #03070d 100%)">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="IdScan.dc.html" aria-label="Close" style="width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); color: #ffffff"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></a>
+    <span style="font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7)">Step 3 of 4</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 18px" aria-hidden="true">
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+    <span style="height: 4px; border-radius: 2px; background: rgba(255,255,255,0.14)"></span>
+  </div>
+
+  <div style="margin-top: 30px; text-align: center; display: flex; flex-direction: column; gap: 8px">
+    <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; color: #4da3ff">LIVENESS CHECK · 2 OF 3</span>
+    <h1 style="margin: 0; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -0.02em">Slowly turn your head<br>to the left</h1>
+  </div>
+
+  <a href="Consent.dc.html" aria-label="Continue to consent (demo)" style="position: relative; align-self: center; margin-top: 30px; width: 300px; height: 300px; display: block">
+    <span style="position: absolute; inset: 6px; border-radius: 50%; border: 2px solid rgba(0,122,255,0.5); animation: tpPulse 2.4s ease-out infinite"></span>
+    <svg viewBox="0 0 300 300" width="300" height="300" aria-hidden="true" style="position: absolute; inset: 0">
+      <defs>
+        <mask id="fsDone"><circle cx="150" cy="150" r="140" fill="none" stroke="#ffffff" stroke-width="16" stroke-dasharray="580 900" transform="rotate(-90 150 150)"></circle></mask>
+      </defs>
+      <circle cx="150" cy="150" r="140" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="12" stroke-dasharray="2.2 12.46"></circle>
+      <circle cx="150" cy="150" r="140" fill="none" stroke="#2f95ff" stroke-width="12" stroke-dasharray="2.2 12.46" mask="url(#fsDone)"></circle>
+    </svg>
+    <span style="position: absolute; inset: 32px; border-radius: 50%; overflow: hidden; background: radial-gradient(80% 80% at 45% 35%, #2b3a4d 0%, #141e2b 70%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12), 0 0 60px rgba(0,122,255,0.25)">
+      <span style="position: absolute; left: 70px; top: 46px; width: 96px; height: 116px; border-radius: 48px 48px 44px 44px; background: linear-gradient(160deg, #4a5a6e, #2d3a4a)"></span>
+      <span style="position: absolute; left: 30px; top: 168px; width: 176px; height: 110px; border-radius: 88px 88px 0 0; background: linear-gradient(180deg, #3b4a5d, #232f3e)"></span>
+      <svg viewBox="0 0 200 240" width="112" height="134" fill="none" aria-hidden="true" style="position: absolute; left: 60px; top: 38px; transform: perspective(400px) rotateY(-24deg)">
+        <g stroke="#4da3ff" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M100 18C146 18 170 56 170 106C170 160 140 212 100 222C60 212 30 160 30 106C30 56 54 18 100 18Z" stroke-width="3" opacity="0.9"></path>
+          <path d="M100 18C124 60 126 172 100 222M100 18C76 60 74 172 100 222" stroke-width="1.5" opacity="0.55"></path>
+          <path d="M100 18C144 52 152 170 100 222M100 18C56 52 48 170 100 222" stroke-width="1.5" opacity="0.4"></path>
+          <path d="M34 76Q100 94 166 76M30 112Q100 132 170 112M36 150Q100 170 164 150M56 190Q100 206 144 190" stroke-width="1.5" opacity="0.4"></path>
+          <path d="M64 102q13-9 26 0M110 102q13-9 26 0" stroke-width="4"></path>
+          <path d="M100 110v30l-9 6" stroke-width="3.5"></path>
+          <path d="M80 172q20 13 40 0" stroke-width="4"></path>
+        </g>
+        <g fill="#9fd0ff">
+          <circle cx="100" cy="18" r="4"></circle><circle cx="100" cy="222" r="4"></circle><circle cx="30" cy="112" r="4"></circle><circle cx="170" cy="112" r="4"></circle><circle cx="52" cy="58" r="3.5"></circle><circle cx="148" cy="58" r="3.5"></circle><circle cx="52" cy="178" r="3.5"></circle><circle cx="148" cy="178" r="3.5"></circle><circle cx="77" cy="102" r="3"></circle><circle cx="123" cy="102" r="3"></circle>
+        </g>
+      </svg>
+      <span style="position: absolute; left: 0; right: 0; top: 12px; height: 2px; background: linear-gradient(90deg, rgba(77,163,255,0), #7dbbff, rgba(77,163,255,0)); box-shadow: 0 0 18px 4px rgba(47,149,255,0.55); animation: tpScanFace 3s ease-in-out infinite"></span>
+      <span style="position: absolute; left: 14px; top: 104px; width: 28px; height: 28px; border-radius: 14px; background: rgba(0,122,255,0.85); display: flex; align-items: center; justify-content: center; color: #ffffff"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></span>
+    </span>
+  </a>
+
+  <div style="display: flex; gap: 8px; justify-content: center; margin-top: 34px">
+    <span style="padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 6px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#4da3ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Look straight</span>
+    <span style="padding: 8px 12px; border-radius: 999px; background: #007aff; box-shadow: 0 6px 18px rgba(0,122,255,0.45); font-size: 13px; font-weight: 600; color: #ffffff">Turn left</span>
+    <span style="padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6)">Smile</span>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+
+  <div style="padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,0.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1); display: flex; gap: 12px; align-items: center">
+    <span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 11px; background: rgba(0,122,255,0.18); color: #4da3ff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+    <p style="margin: 0; font-size: 13px; line-height: 19px; color: rgba(255,255,255,0.8)">3D liveness detection blocks photos, screens and masks. Your template is encrypted before it leaves this phone.</p>
+  </div>
+  <a href="#" style="margin-top: 16px; text-align: center; font-size: 14px; font-weight: 600">Tips for a good scan</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

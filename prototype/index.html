@@ -1,0 +1,1375 @@
+<title>TruePas App Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+:root {
+  --bg: #eaf5fb;
+  --bg-glow: radial-gradient(70% 60% at 55% 40%, rgba(201,241,255,0.9), rgba(201,241,255,0) 70%);
+  --ink: #1c1b1f;
+  --ink-2: #525455;
+  --ink-3: #7a7e84;
+  --line: rgba(28,27,31,0.10);
+  --card: #ffffff;
+  --card-line: rgba(28,27,31,0.06);
+  --accent: #007aff;
+  --accent-soft: rgba(0,122,255,0.10);
+  --shadow: 2px 2px 16px rgba(0,0,0,0.08);
+  --scrim: rgba(10,16,22,0.35);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a1016;
+    --bg-glow: radial-gradient(70% 60% at 55% 40%, rgba(0,122,255,0.16), rgba(0,122,255,0) 70%);
+    --ink: #eef2f6;
+    --ink-2: rgba(238,242,246,0.68);
+    --ink-3: rgba(238,242,246,0.45);
+    --line: rgba(255,255,255,0.10);
+    --card: rgba(255,255,255,0.05);
+    --card-line: rgba(255,255,255,0.08);
+    --accent: #4da3ff;
+    --accent-soft: rgba(77,163,255,0.14);
+    --shadow: 0 10px 30px rgba(0,0,0,0.4);
+    --scrim: rgba(0,0,0,0.55);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a1016;
+  --bg-glow: radial-gradient(70% 60% at 55% 40%, rgba(0,122,255,0.16), rgba(0,122,255,0) 70%);
+  --ink: #eef2f6;
+  --ink-2: rgba(238,242,246,0.68);
+  --ink-3: rgba(238,242,246,0.45);
+  --line: rgba(255,255,255,0.10);
+  --card: rgba(255,255,255,0.05);
+  --card-line: rgba(255,255,255,0.08);
+  --accent: #4da3ff;
+  --accent-soft: rgba(77,163,255,0.14);
+  --shadow: 0 10px 30px rgba(0,0,0,0.4);
+  --scrim: rgba(0,0,0,0.55);
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+a { color: #007aff; text-decoration: none; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.shell {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 300px minmax(0, 1fr);
+  background: var(--bg-glow), var(--bg);
+}
+
+/* ---------- screen list ---------- */
+.rail {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-right: 1px solid var(--line);
+  background: var(--bg);
+}
+.rail-head { padding: 28px 24px 16px; display: flex; flex-direction: column; gap: 12px; }
+.brand { display: flex; align-items: center; gap: 8px; color: #007aff; font-weight: 700; font-size: 18px; }
+:root[data-theme="dark"] .brand { color: #4da3ff; }
+.rail-title { margin: 0; font-size: 26px; line-height: 30px; font-weight: 800; letter-spacing: -0.03em; text-wrap: balance; }
+.rail-title span { color: var(--accent); }
+.rail-sub { margin: 0; font-size: 13px; line-height: 19px; color: var(--ink-2); }
+.index { flex: 1; min-height: 0; overflow-y: auto; padding: 4px 12px 16px; scrollbar-width: thin; }
+.group-label {
+  display: flex; justify-content: space-between;
+  padding: 14px 12px 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-3);
+}
+.item {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%;
+  padding: 9px 12px;
+  border: 0; border-radius: 10px;
+  background: none;
+  text-align: left;
+  font-size: 14px; font-weight: 500;
+  color: var(--ink-2);
+}
+.item:hover { background: var(--accent-soft); color: var(--ink); }
+.item.is-on { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.item-num { font-size: 11px; font-variant-numeric: tabular-nums; color: var(--ink-3); min-width: 18px; }
+.item.is-on .item-num { color: var(--accent); }
+.rail-foot { padding: 14px 24px 22px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; font-size: 12px; color: var(--ink-3); }
+.rail-nav { display: none; gap: 8px; }
+.rail-nav button {
+  flex: 1; height: 44px; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--card);
+  font-size: 14px; font-weight: 600; color: var(--ink);
+}
+.kbd { display: inline-grid; place-items: center; min-width: 22px; height: 22px; padding: 0 5px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); font-size: 11px; color: var(--ink-2); }
+
+/* ---------- stage + device ---------- */
+.stage {
+  position: relative;
+  min-width: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 20px;
+  padding-block: 24px;
+  padding-inline: 16px;
+  overflow: hidden;
+}
+.device-wrap { position: relative; flex: none; }
+.device {
+  position: absolute; left: 0; top: 0;
+  width: 418px; height: 872px;
+  transform-origin: top left;
+}
+.frame {
+  position: absolute; inset: 0;
+  border-radius: 64px;
+  background: linear-gradient(145deg, #3a3d42 0%, #17181b 24%, #2b2d31 50%, #121315 76%, #34373c 100%);
+  box-shadow: inset 0 0 0 1.5px rgba(255,255,255,0.16), inset 0 0 0 5px #0a0a0b, 0 50px 100px -30px rgba(0,40,90,0.45), 0 24px 50px -24px rgba(0,0,0,0.45);
+}
+.frame i { position: absolute; width: 4px; border-radius: 2px; background: linear-gradient(90deg, #1b1c1f, #3a3c40); }
+.frame i:nth-child(1) { left: -3px; top: 132px; height: 30px; }
+.frame i:nth-child(2) { left: -3px; top: 190px; height: 58px; }
+.frame i:nth-child(3) { left: -3px; top: 260px; height: 58px; }
+.frame i:nth-child(4) { right: -3px; top: 220px; height: 92px; }
+.area {
+  position: absolute; left: 14px; top: 14px;
+  width: 390px; height: 844px;
+  border-radius: 50px;
+  overflow: hidden;
+  background: #ffffff;
+  isolation: isolate;
+}
+.statusbar {
+  position: absolute; z-index: 30; top: 0; left: 0; right: 0;
+  height: 50px; padding: 17px 30px 0 40px;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  font-size: 15px; font-weight: 600; color: #1c1b1f;
+  pointer-events: none;
+}
+.statusbar.is-light { color: #ffffff; }
+.statusbar .icons { display: flex; gap: 6px; align-items: center; padding-top: 2px; }
+.island {
+  position: absolute; z-index: 31; top: 11px; left: 50%;
+  width: 120px; height: 34px; margin-left: -60px;
+  border-radius: 20px; background: #000;
+}
+.homebar {
+  position: absolute; z-index: 31; bottom: 8px; left: 50%;
+  width: 134px; height: 5px; margin-left: -67px;
+  border-radius: 3px; background: #1c1b1f; opacity: 0.85;
+  pointer-events: none;
+}
+.homebar.is-light { background: #ffffff; }
+
+.vp {
+  position: absolute; inset: 0;
+  overflow-y: auto; overflow-x: hidden;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+.vp::-webkit-scrollbar { display: none; }
+.vp.in-next { animation: vpNext 360ms cubic-bezier(.16,1,.3,1) both; }
+.vp.in-prev { animation: vpPrev 360ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes vpNext { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+@keyframes vpPrev { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+
+/* ---------- side arrows ---------- */
+.side {
+  position: absolute; z-index: 40; top: 50%;
+  width: 40px; height: 40px; margin-top: -20px; padding: 0;
+  border: 1px solid var(--card-line); border-radius: 20px;
+  background: var(--card); color: var(--ink-2);
+  box-shadow: var(--shadow);
+  display: grid; place-items: center;
+  opacity: 0.7;
+  transition: opacity 200ms, transform 200ms cubic-bezier(.16,1,.3,1);
+}
+.side:hover { opacity: 1; }
+.side:active { transform: scale(0.92); }
+.side[disabled] { visibility: hidden; }
+.side-prev { left: -64px; }
+.side-next { right: -64px; }
+body.native .side {
+  width: 32px; height: 32px; margin-top: -16px;
+  border: 0; border-radius: 16px;
+  background: rgba(28,27,31,0.16);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  color: rgba(255,255,255,0.95);
+  box-shadow: none;
+  opacity: 0.55;
+}
+body.native .side-prev { left: 6px; }
+body.native .side-next { right: 6px; }
+
+/* ---------- control bar ---------- */
+.bar { display: flex; align-items: center; gap: 14px; max-width: 520px; width: 100%; }
+.navbtn {
+  flex: none; width: 46px; height: 46px; border-radius: 23px;
+  border: 1px solid var(--card-line); background: var(--card);
+  box-shadow: var(--shadow);
+  display: grid; place-items: center; color: var(--ink);
+}
+.navbtn:disabled { opacity: 0.35; cursor: default; }
+.navbtn.menu { display: none; }
+.label { flex: 1; min-width: 0; text-align: center; display: flex; flex-direction: column; gap: 3px; }
+.label-top { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; }
+.label-top span { color: var(--ink-3); font-weight: 600; font-variant-numeric: tabular-nums; margin-right: 6px; }
+.label-cap { font-size: 13px; line-height: 18px; color: var(--ink-2); }
+
+/* ---------- toggles + filters used inside screens ---------- */
+.tg { width: 51px; height: 31px; flex-shrink: 0; border: none; padding: 0; border-radius: 16px; background: #e3e5e8; position: relative; transition: background 0.2s; }
+.tg::after { content: ""; position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; border-radius: 14px; background: #ffffff; box-shadow: 0 2px 6px rgba(0,0,0,0.2); transition: left 0.25s cubic-bezier(.34,1.4,.64,1); }
+.tg[aria-checked="true"] { background: #007aff; }
+.tg[aria-checked="true"]::after { left: 22px; }
+.fchip { height: 36px; padding: 0 14px; border: none; border-radius: 999px; font-size: 13px; font-weight: 600; background: #ffffff; color: #2a2a2a; box-shadow: inset 0 0 0 1px #e3e6ea; }
+.fchip[aria-selected="true"] { background: #1c1b1f; color: #ffffff; box-shadow: none; }
+.scr-root a, .scr-root button { -webkit-tap-highlight-color: transparent; }
+.scr-root a:active, .scr-root button:active { opacity: 0.85; }
+
+/* ---------- drawer pieces ---------- */
+.edge, .scrim, .hint { display: none; }
+
+/* ---------- medium: list becomes a drawer ---------- */
+@media (max-width: 960px) {
+  .shell { display: block; }
+  .stage { position: fixed; inset: 0; }
+  .navbtn.menu { display: grid; }
+  .rail {
+    position: fixed; z-index: 60; inset: 0 auto 0 0;
+    width: min(86vw, 320px);
+    transform: translateX(-102%);
+    transition: transform 420ms cubic-bezier(.16,1,.3,1);
+    box-shadow: 30px 0 60px rgba(0,0,0,0.25);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  body.drawer-open .rail { transform: none; }
+  .scrim { display: block; position: fixed; inset: 0; z-index: 55; background: var(--scrim); opacity: 0; pointer-events: none; transition: opacity 300ms; }
+  body.drawer-open .scrim { opacity: 1; pointer-events: auto; }
+}
+
+/* ---------- phone: the app runs full screen ---------- */
+body.native .stage { padding: 0; gap: 0; display: block; background: #ffffff; }
+body.native .device-wrap { position: absolute; inset: 0; width: auto !important; height: auto !important; }
+body.native .device { position: absolute; inset: 0; width: auto; height: auto; transform: none !important; }
+body.native .frame, body.native .statusbar, body.native .island, body.native .homebar, body.native .bar { display: none; }
+body.native .area { left: 0; top: 0; width: 100%; height: 100%; border-radius: 0; }
+body.native .scr-root { padding-top: calc(18px + env(safe-area-inset-top, 0px)) !important; }
+body.native .scr-root.has-tab { padding-bottom: calc(118px + env(safe-area-inset-bottom, 0px)) !important; }
+body.native .scr-root:not(.has-tab) { padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)) !important; }
+body.native .tabbar { position: fixed !important; bottom: calc(16px + env(safe-area-inset-bottom, 0px)) !important; z-index: 20; }
+body.native .rail-nav { display: flex; }
+body.native .edge {
+  display: grid; gap: 3px; place-content: center;
+  position: fixed; z-index: 50; left: 0; top: 30%;
+  width: 16px; height: 52px; margin-top: -26px; padding: 0;
+  border: 0; border-radius: 0 12px 12px 0;
+  background: rgba(28,27,31,0.22);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+}
+body.native .edge span { display: block; width: 4px; height: 4px; border-radius: 2px; background: rgba(255,255,255,0.95); }
+body.native .hint {
+  display: flex; align-items: center; gap: 10px;
+  position: fixed; z-index: 70; left: 50%; bottom: calc(110px + env(safe-area-inset-bottom, 0px));
+  transform: translate(-50%, 12px);
+  max-width: calc(100% - 32px);
+  padding: 12px 16px; border-radius: 16px;
+  background: rgba(28,27,31,0.88); color: #ffffff;
+  font-size: 13px; line-height: 18px; font-weight: 500;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 300ms, transform 400ms cubic-bezier(.16,1,.3,1);
+}
+body.native .hint.is-on { opacity: 1; transform: translate(-50%, 0); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; transition-duration: 1ms !important; }
+}
+
+@keyframes tpPulse_welcome{0%{transform:scale(0.85);opacity:0.55}100%{transform:scale(1.5);opacity:0}}
+@keyframes tpScan_welcome{0%{transform:translateY(0)}50%{transform:translateY(170px)}100%{transform:translateY(0)}}
+@keyframes tpFloat_welcome{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+@keyframes tpScanDoc_idscan{0%{transform:translateY(0)}50%{transform:translateY(176px)}100%{transform:translateY(0)}}
+@keyframes tpSpin_idscan{to{transform:rotate(360deg)}}
+@keyframes tpScanFace_facescan{0%{transform:translateY(0)}50%{transform:translateY(212px)}100%{transform:translateY(0)}}
+@keyframes tpPulse_facescan{0%{transform:scale(0.92);opacity:0.6}100%{transform:scale(1.18);opacity:0}}
+
+@keyframes tpPulse_enrolled{0%{transform:scale(0.9);opacity:0.6}100%{transform:scale(1.6);opacity:0}}
+@keyframes tpPop_enrolled{0%{transform:scale(0.6);opacity:0}60%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+
+@keyframes tpPulse_pass{0%{transform:scale(0.7);opacity:0.7}100%{transform:scale(1.25);opacity:0}}
+@keyframes tpBlink_pass{0%,100%{opacity:1}50%{opacity:0.35}}
+@keyframes tpPop_verified{0%{transform:scale(0.6);opacity:0}60%{transform:scale(1.08);opacity:1}100%{transform:scale(1)}}
+@keyframes tpRing_verified{0%{transform:scale(0.8);opacity:0.7}100%{transform:scale(1.7);opacity:0}}
+@keyframes tpRing_trip{0%{transform:scale(0.9);opacity:0.7}100%{transform:scale(2);opacity:0}}
+
+
+
+
+
+
+</style>
+
+<div class="shell">
+  <aside class="rail" id="rail" aria-label="Screens">
+    <header class="rail-head">
+      <div class="brand">
+        <svg viewBox="0 0 546 404" width="26" height="19" aria-hidden="true"><path fill="currentColor" d="M0 0h263c44 0 77 30 77 72 0 14-4 29-11 42L177 404l-76-97 106-195H86L0 0Z"></path><path fill="currentColor" d="M420 0h93c18 0 33 15 33 32 0 6-2 12-5 18l-15 27c-12 21-39 35-66 35H360L420 0Z"></path></svg>
+        TRUEPAS
+      </div>
+      <h1 class="rail-title">One Face. <span>Infinite Places.</span></h1>
+      <p class="rail-sub">The redesigned TruePas app in the look of truepas.com. 15 screens from first launch to the boarding gate. Buttons inside the screens work. Names and numbers are sample data.</p>
+    </header>
+    <nav class="index" id="index" aria-label="All screens"></nav>
+    <footer class="rail-foot">
+      <div class="rail-nav">
+        <button type="button" id="drawer-prev">Previous</button>
+        <button type="button" id="drawer-next">Next</button>
+      </div>
+      <span><span class="kbd">←</span> <span class="kbd">→</span> to step through screens</span>
+    </footer>
+  </aside>
+
+  <main class="stage" id="stage">
+    <div class="device-wrap" id="wrap">
+      <div class="device" id="device">
+        <div class="frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+        <div class="area" id="area">
+          <div class="statusbar" id="statusbar" aria-hidden="true">
+            <span>9:41</span>
+            <span class="icons">
+              <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="currentColor"></rect><rect x="5" y="5.5" width="3" height="6.5" rx="1" fill="currentColor"></rect><rect x="10" y="3" width="3" height="9" rx="1" fill="currentColor"></rect><rect x="15" y="0" width="3" height="12" rx="1" fill="currentColor"></rect></svg>
+              <svg width="16" height="12" viewBox="0 0 16 12"><path d="M8 2.2c2.4 0 4.6.9 6.2 2.5l1.1-1.1A10.3 10.3 0 0 0 8 .6 10.3 10.3 0 0 0 .7 3.6l1.1 1.1A8.7 8.7 0 0 1 8 2.2Zm0 3.3c1.5 0 2.9.6 3.9 1.6L13 6A7 7 0 0 0 8 3.9 7 7 0 0 0 3 6l1.1 1.1A5.4 5.4 0 0 1 8 5.5Zm0 3.3c.7 0 1.2.3 1.7.7L8 11.2 6.3 9.5c.5-.4 1-.7 1.7-.7Z" fill="currentColor"></path></svg>
+              <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.8" fill="none" stroke="currentColor" opacity=".4"></rect><rect x="2" y="2" width="20" height="9" rx="2.5" fill="currentColor"></rect><path d="M25 4.5v4c.8-.3 1.3-1.1 1.3-2s-.5-1.7-1.3-2Z" fill="currentColor" opacity=".45"></path></svg>
+            </span>
+          </div>
+          <div class="island" aria-hidden="true"></div>
+<div class="vp" data-id="welcome" hidden>
+<div class="scr-root" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 60px 24px 34px; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #c9f1ff 0%, #def7ff 42%, #ffffff 74%)">
+
+  <div style="display: flex; align-items: center; justify-content: center; gap: 8px; color: #007aff">
+    <svg viewBox="0 0 546 404" width="30" height="22" aria-hidden="true"><path fill="currentColor" d="M0 0h263c44 0 77 30 77 72 0 14-4 29-11 42L177 404l-76-97 106-195H86L0 0Z"></path><path fill="currentColor" d="M420 0h93c18 0 33 15 33 32 0 6-2 12-5 18l-15 27c-12 21-39 35-66 35H360L420 0Z"></path></svg>
+    <span style="font-size: 22px; line-height: 26px; font-weight: 700">TRUEPAS</span>
+  </div>
+
+  <div style="flex-grow: 1; position: relative; display: flex; align-items: center; justify-content: center">
+    <div style="position: relative; width: 300px; height: 300px; display: flex; align-items: center; justify-content: center">
+      <div style="position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(0,122,255,0.14)"></div>
+      <div style="position: absolute; inset: 34px; border-radius: 50%; border: 1px solid rgba(0,122,255,0.2)"></div>
+      <div style="position: absolute; inset: 50px; border-radius: 50%; border: 2px solid rgba(0,122,255,0.35); animation: tpPulse_welcome 2.8s ease-out infinite"></div>
+      <div style="position: relative; width: 200px; height: 200px; border-radius: 50%; overflow: hidden; background: rgba(255,255,255,0.55); backdrop-filter: blur(12px); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 0 24px 48px rgba(0,122,255,0.18); display: flex; align-items: center; justify-content: center">
+        <svg viewBox="0 0 200 240" width="112" height="134" fill="none" aria-hidden="true">
+          <g stroke="#007aff" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M100 18C146 18 170 56 170 106C170 160 140 212 100 222C60 212 30 160 30 106C30 56 54 18 100 18Z" stroke-width="3.5"></path>
+            <path d="M100 18C124 60 126 172 100 222M100 18C76 60 74 172 100 222" stroke-width="1.6" opacity="0.4"></path>
+            <path d="M100 18C144 52 152 170 100 222M100 18C56 52 48 170 100 222" stroke-width="1.6" opacity="0.25"></path>
+            <path d="M34 76Q100 94 166 76M30 112Q100 132 170 112M36 150Q100 170 164 150M56 190Q100 206 144 190" stroke-width="1.6" opacity="0.25"></path>
+            <path d="M64 102q13-9 26 0M110 102q13-9 26 0" stroke-width="5"></path>
+            <path d="M100 110v30l-9 6" stroke-width="4.5"></path>
+            <path d="M80 172q20 13 40 0" stroke-width="5"></path>
+          </g>
+          <g fill="#007aff">
+            <circle cx="100" cy="18" r="5"></circle><circle cx="100" cy="222" r="5"></circle><circle cx="30" cy="112" r="5"></circle><circle cx="170" cy="112" r="5"></circle><circle cx="52" cy="58" r="4"></circle><circle cx="148" cy="58" r="4"></circle><circle cx="52" cy="178" r="4"></circle><circle cx="148" cy="178" r="4"></circle>
+          </g>
+        </svg>
+        <div style="position: absolute; left: 16px; right: 16px; top: 14px; height: 2px; border-radius: 1px; background: linear-gradient(90deg, rgba(0,122,255,0), #007aff, rgba(0,122,255,0)); box-shadow: 0 0 14px 2px rgba(0,122,255,0.45); animation: tpScan_welcome 3.2s ease-in-out infinite"></div>
+      </div>
+
+      <div style="position: absolute; left: -8px; top: 34px; padding: 8px 12px; border-radius: 12px; background: rgba(255,255,255,0.55); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.85), 2px 2px 16px rgba(0,0,0,0.10); display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: #2a2a2a; animation: tpFloat_welcome 5s ease-in-out infinite">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#007aff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>
+        Sub-3-second checks
+      </div>
+      <div style="position: absolute; right: -14px; top: 128px; padding: 8px 12px; border-radius: 12px; background: rgba(255,255,255,0.55); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.85), 2px 2px 16px rgba(0,0,0,0.10); display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: #2a2a2a; animation: tpFloat_welcome 6s ease-in-out 1s infinite">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#007aff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        Encrypted
+      </div>
+      <div style="position: absolute; left: 6px; bottom: 22px; padding: 8px 12px; border-radius: 12px; background: rgba(255,255,255,0.55); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.85), 2px 2px 16px rgba(0,0,0,0.10); display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; color: #2a2a2a; animation: tpFloat_welcome 5.5s ease-in-out 0.5s infinite">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#007aff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg>
+        Airports · Hotels · Cruise
+      </div>
+    </div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px">
+    <h1 style="margin: 0; font-size: 40px; line-height: 46px; font-weight: 800; letter-spacing: -0.035em">One Face.<br><span style="color: #007aff">Infinite Places.</span></h1>
+    <p style="margin: 0; font-size: 16px; line-height: 24px; color: #525455">Enroll once and move through airports, hotels, cruises and venues — with just a glance.</p>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 28px">
+    <a href="#signup" style="height: 54px; border-radius: 14px; background: #007aff; color: #ffffff; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 24px rgba(0,122,255,0.28), inset 0 1px 0 rgba(255,255,255,0.25)">Get started<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+    <a href="#home" style="height: 54px; border-radius: 14px; background: rgba(255,255,255,0.5); box-shadow: inset 0 0 0 1px #e3e6ea, 2px 2px 16px rgba(0,0,0,0.06); color: #1c1b1f; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center">I already have an account</a>
+  </div>
+  <p style="margin: 16px 0 0; text-align: center; font-size: 12px; line-height: 18px; color: #6b6f74">By continuing you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a></p>
+</div>
+</div>
+<div class="vp" data-id="signup" hidden>
+<div class="scr-root" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 34px; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #d8f6ff 0%, #f4fcff 26%, #ffffff 44%)">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="#welcome" aria-label="Back" style="width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 2px 2px 16px rgba(0,0,0,0.08); color: #1c1b1f"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></a>
+    <span style="font-size: 13px; font-weight: 600; color: #525455">Step 1 of 4</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 18px" aria-hidden="true">
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+    <span style="height: 4px; border-radius: 2px; background: rgba(0,122,255,0.15)"></span>
+    <span style="height: 4px; border-radius: 2px; background: rgba(0,122,255,0.15)"></span>
+    <span style="height: 4px; border-radius: 2px; background: rgba(0,122,255,0.15)"></span>
+  </div>
+
+  <span style="align-self: flex-start; margin-top: 28px; padding: 6px 10px; border-radius: 999px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.06); font-size: 12px; font-weight: 600; color: #007aff; display: flex; align-items: center; gap: 6px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>Enroll in about 3 minutes</span>
+  <h1 style="margin: 14px 0 0; font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -0.03em">Let’s start with<br>the basics</h1>
+  <p style="margin: 10px 0 0; font-size: 15px; line-height: 22px; color: #525455">We use these to secure your TruePas ID and send your verification codes.</p>
+
+  <form style="display: flex; flex-direction: column; gap: 18px; margin-top: 28px">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="su-name" style="font-size: 13px; font-weight: 600; color: #2a2a2a">Full name</label>
+      <input id="su-name" value="Alex Morgan" style="height: 54px; border-radius: 14px; border: 1px solid #dfdfdf; background: #ffffff; padding: 0 16px; font-size: 16px; color: #1c1b1f; box-sizing: border-box">
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="su-email" style="font-size: 13px; font-weight: 600; color: #007aff">Email address</label>
+      <div style="position: relative">
+        <input id="su-email" value="alex.morgan@email.com" style="width: 100%; height: 54px; border-radius: 14px; border: 1.5px solid #007aff; background: #ffffff; padding: 0 48px 0 16px; font-size: 16px; color: #1c1b1f; box-sizing: border-box; box-shadow: 0 0 0 4px rgba(0,122,255,0.12)">
+        <span style="position: absolute; right: 14px; top: 15px; width: 24px; height: 24px; border-radius: 12px; background: #007aff; color: #ffffff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <label for="su-phone" style="font-size: 13px; font-weight: 600; color: #2a2a2a">Mobile number</label>
+      <div style="display: flex; gap: 8px">
+        <button type="button" aria-label="Country code" style="height: 54px; padding: 0 12px; border-radius: 14px; border: 1px solid #dfdfdf; background: #f5f5f5; font-family: inherit; font-size: 16px; font-weight: 600; color: #1c1b1f; display: flex; align-items: center; gap: 6px">+1<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#525455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"></path></svg></button>
+        <input id="su-phone" value="(415) 555-0142" style="flex-grow: 1; min-width: 0; height: 54px; border-radius: 14px; border: 1px solid #dfdfdf; background: #ffffff; padding: 0 16px; font-size: 16px; color: #1c1b1f; box-sizing: border-box">
+      </div>
+    </div>
+  </form>
+
+  <div style="margin-top: 22px; padding: 14px 16px; border-radius: 16px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; display: flex; gap: 12px; align-items: flex-start">
+    <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 10px; background: #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>
+    <p style="margin: 0; font-size: 13px; line-height: 19px; color: #2a2a2a">Your details are encrypted and never sold. You choose what each venue can see.</p>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+  <a href="#idscan" style="height: 54px; border-radius: 14px; background: #007aff; color: #ffffff; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 24px rgba(0,122,255,0.28), inset 0 1px 0 rgba(255,255,255,0.25)">Continue</a>
+  <p style="margin: 16px 0 0; text-align: center; font-size: 13px; color: #525455">Prefer in person? <a href="#" style="font-weight: 600">Enroll at a partner kiosk</a></p>
+</div>
+</div>
+<div class="vp" data-id="idscan" hidden>
+<div class="scr-root" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 34px; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #d8f6ff 0%, #f4fcff 26%, #ffffff 44%)">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="#signup" aria-label="Back" style="width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 2px 2px 16px rgba(0,0,0,0.08); color: #1c1b1f"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></a>
+    <span style="font-size: 13px; font-weight: 600; color: #525455">Step 2 of 4</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 18px" aria-hidden="true">
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+    <span style="height: 4px; border-radius: 2px; background: rgba(0,122,255,0.15)"></span>
+    <span style="height: 4px; border-radius: 2px; background: rgba(0,122,255,0.15)"></span>
+  </div>
+
+  <h1 style="margin: 26px 0 0; font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -0.03em">Verify your ID</h1>
+  <p style="margin: 8px 0 0; font-size: 15px; line-height: 22px; color: #525455">Choose a government-issued photo ID and place it inside the frame.</p>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 20px" role="radiogroup" aria-label="Document type">
+    <button type="button" role="radio" aria-checked="true" style="height: 64px; border-radius: 14px; border: 1.5px solid #007aff; background: #f4fcff; font-family: inherit; color: #007aff; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><circle cx="12" cy="10" r="3"></circle><path d="M8 17h8"></path></svg>Passport</button>
+    <button type="button" role="radio" aria-checked="false" style="height: 64px; border-radius: 14px; border: 1px solid #dfdfdf; background: #ffffff; font-family: inherit; color: #2a2a2a; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#525455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect><circle cx="8" cy="12" r="2"></circle><path d="M13 10h5M13 14h3"></path></svg>Driver’s licence</button>
+    <button type="button" role="radio" aria-checked="false" style="height: 64px; border-radius: 14px; border: 1px solid #dfdfdf; background: #ffffff; font-family: inherit; color: #2a2a2a; font-size: 13px; font-weight: 600; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#525455" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M15 8h2M15 12h2M7 16h10"></path></svg>National ID</button>
+  </div>
+
+  <div style="position: relative; margin-top: 20px; height: 232px; border-radius: 24px; overflow: hidden; background: radial-gradient(120% 90% at 50% 40%, #243142 0%, #0d131b 70%); box-shadow: 0 16px 32px rgba(13,19,27,0.25)">
+    <div style="position: absolute; left: calc(50% - 127px); top: 30px; width: 254px; height: 168px; border-radius: 10px; background: linear-gradient(160deg, #f4f1ea 0%, #e3ded2 100%); box-shadow: 0 10px 24px rgba(0,0,0,0.45); transform: rotate(-1.5deg); padding: 14px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+      <div style="display: flex; gap: 12px">
+        <div style="width: 58px; height: 74px; border-radius: 6px; background: linear-gradient(180deg, #c7d3e0, #9fb0c3); position: relative; overflow: hidden">
+          <span style="position: absolute; left: 17px; top: 12px; width: 24px; height: 26px; border-radius: 12px; background: #7f93aa"></span>
+          <span style="position: absolute; left: 7px; top: 42px; width: 44px; height: 40px; border-radius: 22px 22px 0 0; background: #7f93aa"></span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 7px; padding-top: 2px; flex-grow: 1">
+          <span style="font-size: 8px; font-weight: 700; letter-spacing: 0.12em; color: #6a6252">PASSPORT</span>
+          <span style="height: 6px; width: 70%; border-radius: 3px; background: #c9c1b0"></span>
+          <span style="height: 6px; width: 90%; border-radius: 3px; background: #c9c1b0"></span>
+          <span style="height: 6px; width: 55%; border-radius: 3px; background: #c9c1b0"></span>
+          <span style="height: 6px; width: 75%; border-radius: 3px; background: #c9c1b0"></span>
+        </div>
+      </div>
+      <div style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 8.5px; line-height: 12px; letter-spacing: 0.06em; color: #4a4437; white-space: nowrap; overflow: hidden">P&lt;USAMORGAN&lt;&lt;ALEX&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>X12345678&lt;USA9003154M3104298&lt;&lt;&lt;&lt;</div>
+    </div>
+    <span style="position: absolute; left: 30px; top: 18px; width: 28px; height: 28px; border-left: 3px solid #ffffff; border-top: 3px solid #ffffff; border-top-left-radius: 12px"></span>
+    <span style="position: absolute; right: 30px; top: 18px; width: 28px; height: 28px; border-right: 3px solid #ffffff; border-top: 3px solid #ffffff; border-top-right-radius: 12px"></span>
+    <span style="position: absolute; left: 30px; bottom: 18px; width: 28px; height: 28px; border-left: 3px solid #ffffff; border-bottom: 3px solid #ffffff; border-bottom-left-radius: 12px"></span>
+    <span style="position: absolute; right: 30px; bottom: 18px; width: 28px; height: 28px; border-right: 3px solid #ffffff; border-bottom: 3px solid #ffffff; border-bottom-right-radius: 12px"></span>
+    <div style="position: absolute; left: 36px; right: 36px; top: 26px; height: 2px; background: linear-gradient(90deg, rgba(77,163,255,0), #4da3ff, rgba(77,163,255,0)); box-shadow: 0 0 16px 3px rgba(77,163,255,0.6); animation: tpScanDoc_idscan 2.6s ease-in-out infinite"></div>
+    <span style="position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); padding: 6px 12px; border-radius: 999px; background: rgba(0,0,0,0.45); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18); color: #ffffff; font-size: 12px; font-weight: 600; white-space: nowrap">Hold steady — capturing automatically</span>
+  </div>
+
+  <ul style="list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+    <li style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #2a2a2a"><span style="width: 22px; height: 22px; border-radius: 11px; background: #007aff; color: #ffffff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Good lighting</li>
+    <li style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #2a2a2a"><span style="width: 22px; height: 22px; border-radius: 11px; background: #007aff; color: #ffffff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>All four corners in frame</li>
+    <li style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #007aff; font-weight: 600"><span style="width: 22px; height: 22px; border-radius: 11px; box-sizing: border-box; border: 2.5px solid rgba(0,122,255,0.2); border-top-color: #007aff; animation: tpSpin_idscan 0.9s linear infinite"></span>Checking for glare…</li>
+  </ul>
+
+  <div style="flex-grow: 1"></div>
+  <a href="#facescan" style="height: 54px; border-radius: 14px; background: #007aff; color: #ffffff; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 24px rgba(0,122,255,0.28), inset 0 1px 0 rgba(255,255,255,0.25)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"></path><circle cx="12" cy="13" r="3"></circle></svg>Capture</a>
+  <a href="#" style="margin-top: 14px; text-align: center; font-size: 14px; font-weight: 600">Upload from photos instead</a>
+</div>
+</div>
+<div class="vp" data-id="facescan" hidden>
+<div class="scr-root" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 34px; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #ffffff; background: radial-gradient(90% 60% at 50% 46%, #0e2a4d 0%, #071322 55%, #03070d 100%)">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="#idscan" aria-label="Close" style="width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.14); color: #ffffff"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></a>
+    <span style="font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7)">Step 3 of 4</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 18px" aria-hidden="true">
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+    <span style="height: 4px; border-radius: 2px; background: rgba(255,255,255,0.14)"></span>
+  </div>
+
+  <div style="margin-top: 30px; text-align: center; display: flex; flex-direction: column; gap: 8px">
+    <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.12em; color: #4da3ff">LIVENESS CHECK · 2 OF 3</span>
+    <h1 style="margin: 0; font-size: 26px; line-height: 32px; font-weight: 700; letter-spacing: -0.02em">Slowly turn your head<br>to the left</h1>
+  </div>
+
+  <a href="#consent" aria-label="Continue to consent (demo)" style="position: relative; align-self: center; margin-top: 30px; width: 300px; height: 300px; display: block">
+    <span style="position: absolute; inset: 6px; border-radius: 50%; border: 2px solid rgba(0,122,255,0.5); animation: tpPulse_facescan 2.4s ease-out infinite"></span>
+    <svg viewBox="0 0 300 300" width="300" height="300" aria-hidden="true" style="position: absolute; inset: 0">
+      <defs>
+        <mask id="fsDone"><circle cx="150" cy="150" r="140" fill="none" stroke="#ffffff" stroke-width="16" stroke-dasharray="580 900" transform="rotate(-90 150 150)"></circle></mask>
+      </defs>
+      <circle cx="150" cy="150" r="140" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="12" stroke-dasharray="2.2 12.46"></circle>
+      <circle cx="150" cy="150" r="140" fill="none" stroke="#2f95ff" stroke-width="12" stroke-dasharray="2.2 12.46" mask="url(#fsDone)"></circle>
+    </svg>
+    <span style="position: absolute; inset: 32px; border-radius: 50%; overflow: hidden; background: radial-gradient(80% 80% at 45% 35%, #2b3a4d 0%, #141e2b 70%); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12), 0 0 60px rgba(0,122,255,0.25)">
+      <span style="position: absolute; left: 70px; top: 46px; width: 96px; height: 116px; border-radius: 48px 48px 44px 44px; background: linear-gradient(160deg, #4a5a6e, #2d3a4a)"></span>
+      <span style="position: absolute; left: 30px; top: 168px; width: 176px; height: 110px; border-radius: 88px 88px 0 0; background: linear-gradient(180deg, #3b4a5d, #232f3e)"></span>
+      <svg viewBox="0 0 200 240" width="112" height="134" fill="none" aria-hidden="true" style="position: absolute; left: 60px; top: 38px; transform: perspective(400px) rotateY(-24deg)">
+        <g stroke="#4da3ff" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M100 18C146 18 170 56 170 106C170 160 140 212 100 222C60 212 30 160 30 106C30 56 54 18 100 18Z" stroke-width="3" opacity="0.9"></path>
+          <path d="M100 18C124 60 126 172 100 222M100 18C76 60 74 172 100 222" stroke-width="1.5" opacity="0.55"></path>
+          <path d="M100 18C144 52 152 170 100 222M100 18C56 52 48 170 100 222" stroke-width="1.5" opacity="0.4"></path>
+          <path d="M34 76Q100 94 166 76M30 112Q100 132 170 112M36 150Q100 170 164 150M56 190Q100 206 144 190" stroke-width="1.5" opacity="0.4"></path>
+          <path d="M64 102q13-9 26 0M110 102q13-9 26 0" stroke-width="4"></path>
+          <path d="M100 110v30l-9 6" stroke-width="3.5"></path>
+          <path d="M80 172q20 13 40 0" stroke-width="4"></path>
+        </g>
+        <g fill="#9fd0ff">
+          <circle cx="100" cy="18" r="4"></circle><circle cx="100" cy="222" r="4"></circle><circle cx="30" cy="112" r="4"></circle><circle cx="170" cy="112" r="4"></circle><circle cx="52" cy="58" r="3.5"></circle><circle cx="148" cy="58" r="3.5"></circle><circle cx="52" cy="178" r="3.5"></circle><circle cx="148" cy="178" r="3.5"></circle><circle cx="77" cy="102" r="3"></circle><circle cx="123" cy="102" r="3"></circle>
+        </g>
+      </svg>
+      <span style="position: absolute; left: 0; right: 0; top: 12px; height: 2px; background: linear-gradient(90deg, rgba(77,163,255,0), #7dbbff, rgba(77,163,255,0)); box-shadow: 0 0 18px 4px rgba(47,149,255,0.55); animation: tpScanFace_facescan 3s ease-in-out infinite"></span>
+      <span style="position: absolute; left: 14px; top: 104px; width: 28px; height: 28px; border-radius: 14px; background: rgba(0,122,255,0.85); display: flex; align-items: center; justify-content: center; color: #ffffff"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></span>
+    </span>
+  </a>
+
+  <div style="display: flex; gap: 8px; justify-content: center; margin-top: 34px">
+    <span style="padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 6px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="#4da3ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Look straight</span>
+    <span style="padding: 8px 12px; border-radius: 999px; background: #007aff; box-shadow: 0 6px 18px rgba(0,122,255,0.45); font-size: 13px; font-weight: 600; color: #ffffff">Turn left</span>
+    <span style="padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.08); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12); font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.6)">Smile</span>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+
+  <div style="padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,0.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.1); display: flex; gap: 12px; align-items: center">
+    <span style="width: 36px; height: 36px; flex-shrink: 0; border-radius: 11px; background: rgba(0,122,255,0.18); color: #4da3ff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+    <p style="margin: 0; font-size: 13px; line-height: 19px; color: rgba(255,255,255,0.8)">3D liveness detection blocks photos, screens and masks. Your template is encrypted before it leaves this phone.</p>
+  </div>
+  <a href="#" style="margin-top: 16px; text-align: center; font-size: 14px; font-weight: 600">Tips for a good scan</a>
+</div>
+</div>
+<div class="vp" data-id="consent" hidden>
+<div class="scr-root" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 34px; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #d8f6ff 0%, #f4fcff 22%, #ffffff 40%)">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="#facescan" aria-label="Back" style="width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 2px 2px 16px rgba(0,0,0,0.08); color: #1c1b1f"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></a>
+    <span style="font-size: 13px; font-weight: 600; color: #525455">Step 4 of 4</span>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; margin-top: 18px" aria-hidden="true">
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+    <span style="height: 4px; border-radius: 2px; background: #007aff"></span>
+  </div>
+
+  <h1 style="margin: 24px 0 0; font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -0.03em">You decide who<br>can verify you</h1>
+  <p style="margin: 8px 0 0; font-size: 15px; line-height: 22px; color: #525455">Turn on the places where you’d like to use your face. Change this anytime.</p>
+
+  <div style="display: flex; gap: 6px; margin-top: 16px; flex-wrap: wrap">
+    <span style="padding: 6px 10px; border-radius: 999px; background: #ffffff; box-shadow: 2px 2px 12px rgba(0,0,0,0.06); font-size: 12px; font-weight: 600; color: #2a2a2a; display: flex; align-items: center; gap: 6px"><span style="width: 6px; height: 6px; border-radius: 3px; background: #007aff"></span>Encrypted template</span>
+    <span style="padding: 6px 10px; border-radius: 999px; background: #ffffff; box-shadow: 2px 2px 12px rgba(0,0,0,0.06); font-size: 12px; font-weight: 600; color: #2a2a2a; display: flex; align-items: center; gap: 6px"><span style="width: 6px; height: 6px; border-radius: 3px; background: #007aff"></span>No central face database</span>
+    <span style="padding: 6px 10px; border-radius: 999px; background: #ffffff; box-shadow: 2px 2px 12px rgba(0,0,0,0.06); font-size: 12px; font-weight: 600; color: #2a2a2a; display: flex; align-items: center; gap: 6px"><span style="width: 6px; height: 6px; border-radius: 3px; background: #007aff"></span>Delete anytime</span>
+  </div>
+
+  <div style="margin-top: 18px; border-radius: 20px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.08); padding: 4px 16px">
+    <div style="display: flex; align-items: center; gap: 12px; height: 62px; border-bottom: 1px solid #f0f1f3"><span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 12px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg></span><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">Airports &amp; airlines</span><span style="font-size: 12px; color: #6b6f74; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Check-in, security, lounge, boarding</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Airports &amp; airlines"></button></div>
+<div style="display: flex; align-items: center; gap: 12px; height: 62px; border-bottom: 1px solid #f0f1f3"><span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 12px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"></path><path d="M2 8h18a2 2 0 0 1 2 2v10"></path><path d="M2 17h20"></path><path d="M6 8v9"></path></svg></span><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">Hotels</span><span style="font-size: 12px; color: #6b6f74; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Front desk, room access, amenities</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Hotels"></button></div>
+<div style="display: flex; align-items: center; gap: 12px; height: 62px; border-bottom: 1px solid #f0f1f3"><span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 12px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></svg></span><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">Car rentals</span><span style="font-size: 12px; color: #6b6f74; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Counter-free pickup and return</span></span><button type="button" class="tg" role="switch" aria-checked="false" aria-label="Car rentals"></button></div>
+<div style="display: flex; align-items: center; gap: 12px; height: 62px; border-bottom: 1px solid #f0f1f3"><span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 12px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1 .6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"></path><path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"></path><path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"></path><path d="M12 10v4"></path><path d="M12 2v3"></path></svg></span><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">Cruise</span><span style="font-size: 12px; color: #6b6f74; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Terminal, embarkation, onboard</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Cruise"></button></div>
+<div style="display: flex; align-items: center; gap: 12px; height: 62px; border-bottom: 1px solid #f0f1f3"><span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 12px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path></svg></span><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">Stadiums, venues &amp; parks</span><span style="font-size: 12px; color: #6b6f74; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Gates, VIP areas, season passes</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Stadiums, venues &amp; parks"></button></div>
+<div style="display: flex; align-items: center; gap: 12px; height: 62px; border-bottom: none"><span style="width: 38px; height: 38px; flex-shrink: 0; border-radius: 12px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg></span><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">Healthcare</span><span style="font-size: 12px; color: #6b6f74; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Patient check-in and records</span></span><button type="button" class="tg" role="switch" aria-checked="false" aria-label="Healthcare"></button></div>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+  <a href="#enrolled" style="height: 54px; border-radius: 14px; background: #007aff; color: #ffffff; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 24px rgba(0,122,255,0.28), inset 0 1px 0 rgba(255,255,255,0.25)">Agree &amp; finish setup</a>
+  <p style="margin: 14px 0 0; text-align: center; font-size: 12px; line-height: 18px; color: #6b6f74">Read how your data is used in our <a href="#">Privacy Notice</a></p>
+</div>
+</div>
+<div class="vp" data-id="enrolled" hidden>
+<div class="scr-root" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 34px; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #c9f1ff 0%, #e2f8ff 40%, #ffffff 66%)">
+
+  <div style="display: flex; align-items: center; justify-content: center; gap: 8px; color: #007aff">
+    <svg viewBox="0 0 546 404" width="26" height="19" aria-hidden="true"><path fill="currentColor" d="M0 0h263c44 0 77 30 77 72 0 14-4 29-11 42L177 404l-76-97 106-195H86L0 0Z"></path><path fill="currentColor" d="M420 0h93c18 0 33 15 33 32 0 6-2 12-5 18l-15 27c-12 21-39 35-66 35H360L420 0Z"></path></svg>
+    <span style="font-size: 18px; font-weight: 700">TRUEPAS</span>
+  </div>
+
+  <div style="position: relative; align-self: center; margin-top: 44px; width: 220px; height: 220px; display: flex; align-items: center; justify-content: center">
+    <span style="position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(0,122,255,0.14)"></span>
+    <span style="position: absolute; inset: 30px; border-radius: 50%; background: rgba(255,255,255,0.45); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 2px 2px 16px rgba(0,0,0,0.06)"></span>
+    <span style="position: absolute; inset: 50px; border-radius: 50%; border: 2px solid rgba(0,122,255,0.4); animation: tpPulse_enrolled 2.6s ease-out infinite"></span>
+    <span style="position: absolute; left: 22px; top: 40px; width: 8px; height: 8px; border-radius: 4px; background: #007aff; opacity: 0.6"></span>
+    <span style="position: absolute; right: 26px; top: 64px; width: 6px; height: 6px; border-radius: 3px; background: #4da3ff"></span>
+    <span style="position: absolute; right: 40px; bottom: 30px; width: 10px; height: 10px; border-radius: 5px; background: #c9f1ff; box-shadow: inset 0 0 0 2px #007aff"></span>
+    <span style="position: absolute; left: 40px; bottom: 44px; width: 5px; height: 5px; border-radius: 3px; background: #007aff"></span>
+    <span style="position: relative; width: 112px; height: 112px; border-radius: 50%; background: linear-gradient(145deg, #3aa0ff 0%, #007aff 50%, #0058d6 100%); box-shadow: 0 18px 40px rgba(0,122,255,0.4), inset 0 2px 0 rgba(255,255,255,0.35); color: #ffffff; display: flex; align-items: center; justify-content: center; animation: tpPop_enrolled 0.8s ease-out both"><svg viewBox="0 0 24 24" width="52" height="52" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>
+  </div>
+
+  <h1 style="margin: 28px 0 0; text-align: center; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.03em">You’re all set, Alex.</h1>
+  <p style="margin: 10px auto 0; max-width: 310px; text-align: center; font-size: 15px; line-height: 22px; color: #525455">Your face is now your pass at every TruePas-enabled touchpoint. No re-verification needed.</p>
+
+  <div style="margin-top: 28px; border-radius: 20px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.08); padding: 6px 16px">
+    <div style="display: flex; align-items: center; gap: 12px; height: 60px; border-bottom: 1px solid #f0f1f3">
+      <span style="width: 36px; height: 36px; border-radius: 11px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"></rect><circle cx="12" cy="10" r="3"></circle><path d="M8 17h8"></path></svg></span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Identity document</span><span style="font-size: 12px; color: #6b6f74">Passport · ending 5678</span></span>
+      <span style="padding: 4px 9px; border-radius: 999px; background: #e7f6ee; color: #0e7a43; font-size: 12px; font-weight: 600">Verified</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; height: 60px; border-bottom: 1px solid #f0f1f3">
+      <span style="width: 36px; height: 36px; border-radius: 11px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg></span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Face biometric</span><span style="font-size: 12px; color: #6b6f74">3D liveness passed</span></span>
+      <span style="padding: 4px 9px; border-radius: 999px; background: #e7f6ee; color: #0e7a43; font-size: 12px; font-weight: 600">Enrolled</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; height: 60px">
+      <span style="width: 36px; height: 36px; border-radius: 11px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Consent</span><span style="font-size: 12px; color: #6b6f74">4 industries enabled</span></span>
+      <a href="#consent" style="font-size: 13px; font-weight: 600">Edit</a>
+    </div>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+  <a href="#home" style="height: 54px; border-radius: 14px; background: #007aff; color: #ffffff; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 24px rgba(0,122,255,0.28), inset 0 1px 0 rgba(255,255,255,0.25)">Go to my TruePas<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg></a>
+  <a href="#family" style="margin-top: 14px; text-align: center; font-size: 14px; font-weight: 600">Add family members</a>
+</div>
+</div>
+<div class="vp" data-id="home" hidden>
+<div class="scr-root has-tab" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 0; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #c9f1ff 0%, #e6f9ff 30%, #ffffff 52%)">
+
+  <header style="display: flex; align-items: center; gap: 12px">
+    <a href="#profile" aria-label="Profile" style="width: 44px; height: 44px; border-radius: 22px; background: linear-gradient(145deg, #1c1b1f, #3a3d44); color: #ffffff; font-size: 15px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 3px #ffffff, 0 4px 12px rgba(0,0,0,0.15)">AM</a>
+    <span style="flex-grow: 1; display: flex; flex-direction: column">
+      <span style="font-size: 13px; color: #525455">Good morning</span>
+      <span style="font-size: 20px; line-height: 24px; font-weight: 700; letter-spacing: -0.02em">Alex Morgan</span>
+    </span>
+    <a href="#activity" aria-label="Notifications, 2 new" style="position: relative; width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.5); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 2px 2px 16px rgba(0,0,0,0.08); color: #1c1b1f"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg><span style="position: absolute; top: 10px; right: 11px; width: 8px; height: 8px; border-radius: 4px; background: #ff5353; box-shadow: 0 0 0 2px #ffffff"></span></a>
+  </header>
+
+  <a href="#pass" style="position: relative; margin-top: 22px; height: 206px; border-radius: 26px; overflow: hidden; background: linear-gradient(140deg, #3aa0ff 0%, #007aff 46%, #0058d6 100%); box-shadow: 0 22px 44px rgba(0,90,200,0.3), inset 0 1px 0 rgba(255,255,255,0.35); color: #ffffff; padding: 20px 22px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: space-between">
+    <span style="position: absolute; left: -60px; top: -80px; width: 240px; height: 240px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.28), rgba(255,255,255,0) 70%)"></span>
+    <svg viewBox="0 0 546 404" width="220" height="163" aria-hidden="true" style="position: absolute; right: -36px; bottom: -40px; opacity: 0.13"><path fill="#ffffff" d="M0 0h263c44 0 77 30 77 72 0 14-4 29-11 42L177 404l-76-97 106-195H86L0 0Z"></path><path fill="#ffffff" d="M420 0h93c18 0 33 15 33 32 0 6-2 12-5 18l-15 27c-12 21-39 35-66 35H360L420 0Z"></path></svg>
+    <span style="display: flex; justify-content: space-between; align-items: center; position: relative">
+      <span style="display: flex; align-items: center; gap: 8px"><svg viewBox="0 0 546 404" width="20" height="15" aria-hidden="true"><path fill="#ffffff" d="M0 0h263c44 0 77 30 77 72 0 14-4 29-11 42L177 404l-76-97 106-195H86L0 0Z"></path><path fill="#ffffff" d="M420 0h93c18 0 33 15 33 32 0 6-2 12-5 18l-15 27c-12 21-39 35-66 35H360L420 0Z"></path></svg><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em">TRUEPAS ID</span></span>
+      <span style="display: flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,0.2); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.35); font-size: 12px; font-weight: 600"><span style="width: 6px; height: 6px; border-radius: 3px; background: #7dffb3; box-shadow: 0 0 6px #7dffb3"></span>Active</span>
+    </span>
+    <span style="display: flex; align-items: flex-end; justify-content: space-between; position: relative">
+      <span style="display: flex; flex-direction: column; gap: 4px">
+        <span style="font-size: 25px; line-height: 30px; font-weight: 700; letter-spacing: -0.02em">Alex Morgan</span>
+        <span style="font-size: 13px; opacity: 0.88">Biometric identity · Verified</span>
+      </span>
+      <span style="width: 52px; height: 52px; border-radius: 16px; background: rgba(255,255,255,0.18); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.4); display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg></span>
+    </span>
+    <span style="display: flex; justify-content: space-between; font-size: 12px; opacity: 0.9; position: relative; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.22)">
+      <span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: 0.08em">ID •••• 4F2A</span>
+      <span style="font-weight: 600">Tap to show pass</span>
+    </span>
+  </a>
+
+  <nav aria-label="Quick actions" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 20px">
+    <a href="#documents" style="height: 82px; border-radius: 18px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.07); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #1c1b1f; font-size: 12px; font-weight: 600"><span style="width: 36px; height: 36px; border-radius: 12px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><circle cx="9" cy="10" r="2"></circle><path d="M15 8h2M15 12h2M7 16h10"></path></svg></span>Documents</a>
+    <a href="#family" style="height: 82px; border-radius: 18px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.07); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #1c1b1f; font-size: 12px; font-weight: 600"><span style="width: 36px; height: 36px; border-radius: 12px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>Family</a>
+    <a href="#trip" style="height: 82px; border-radius: 18px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.07); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #1c1b1f; font-size: 12px; font-weight: 600"><span style="width: 36px; height: 36px; border-radius: 12px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path></svg></span>Bookings</a>
+    <a href="#privacy" style="height: 82px; border-radius: 18px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.07); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; color: #1c1b1f; font-size: 12px; font-weight: 600"><span style="width: 36px; height: 36px; border-radius: 12px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></span>Privacy</a>
+  </nav>
+
+  <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 24px">
+    <h2 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.01em">Up next</h2>
+    <a href="#trip" style="font-size: 14px; font-weight: 600">See all</a>
+  </div>
+  <a href="#trip" style="margin-top: 12px; border-radius: 20px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.08); padding: 16px; display: flex; flex-direction: column; gap: 12px; color: #1c1b1f">
+    <span style="display: flex; align-items: center; gap: 12px">
+      <span style="width: 42px; height: 42px; border-radius: 13px; background: #007aff; color: #ffffff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg></span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+        <span style="font-size: 16px; font-weight: 700">SFO → JFK</span>
+        <span style="font-size: 13px; color: #525455">Today · Boards 08:40 · Gate B12</span>
+      </span>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#9a9ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+    </span>
+    <span style="display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-radius: 12px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; font-size: 13px; font-weight: 600; color: #005ec4"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Face boarding ready — no boarding pass needed</span>
+  </a>
+
+  <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 24px">
+    <h2 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.01em">Recent activity</h2>
+    <a href="#activity" style="font-size: 14px; font-weight: 600">View all</a>
+  </div>
+  <div style="margin-top: 6px; display: flex; flex-direction: column">
+    <div style="display: flex; align-items: center; gap: 12px; height: 60px; border-bottom: 1px solid #f0f1f3">
+      <span style="width: 38px; height: 38px; border-radius: 12px; background: #f5f5f5; color: #2a2a2a; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg></span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">SFO Security · Lane 4</span><span style="font-size: 12px; color: #6b6f74">Today, 08:12 · 1.6s</span></span>
+      <span style="padding: 4px 9px; border-radius: 999px; background: #e7f6ee; color: #0e7a43; font-size: 12px; font-weight: 600">Verified</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; height: 60px">
+      <span style="width: 38px; height: 38px; border-radius: 12px; background: #f5f5f5; color: #2a2a2a; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"></path><path d="M2 8h18a2 2 0 0 1 2 2v10"></path><path d="M2 17h20"></path><path d="M6 8v9"></path></svg></span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Harbor Hotel · Check-out</span><span style="font-size: 12px; color: #6b6f74">Today, 06:30 · 1.9s</span></span>
+      <span style="padding: 4px 9px; border-radius: 999px; background: #e7f6ee; color: #0e7a43; font-size: 12px; font-weight: 600">Verified</span>
+    </div>
+  </div>
+
+  <nav class="tabbar" aria-label="Primary" style="position: absolute; left: 16px; right: 16px; bottom: 24px; height: 70px; border-radius: 24px; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.8), 0 10px 30px rgba(15,35,70,0.14); display: flex; align-items: center; justify-content: space-around; padding: 0 6px">
+    <a href="#home" aria-current="page" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #007aff"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>Home</a>
+    <a href="#activity" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #6b6f74"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>Activity</a>
+    <a href="#pass" aria-label="My pass" style="width: 58px; height: 58px; margin-top: -30px; border-radius: 20px; background: linear-gradient(145deg, #3aa0ff, #007aff 55%, #0058d6); display: flex; align-items: center; justify-content: center; color: #ffffff; box-shadow: 0 10px 22px rgba(0,122,255,0.4), inset 0 1px 0 rgba(255,255,255,0.35), 0 0 0 5px #ffffff"><svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg></a>
+    <a href="#documents" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #6b6f74"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"></path><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path></svg>Wallet</a>
+    <a href="#profile" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #6b6f74"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
+  </nav>
+</div>
+</div>
+<div class="vp" data-id="pass" hidden>
+<div class="scr-root" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 34px; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #c9f1ff 0%, #dcf6ff 45%, #ffffff 75%)">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="#home" aria-label="Close" style="width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 2px 2px 16px rgba(0,0,0,0.08); color: #1c1b1f"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></a>
+    <span style="font-size: 17px; font-weight: 700">My pass</span>
+    <a href="#privacy" aria-label="Pass settings" style="width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 2px 2px 16px rgba(0,0,0,0.08); color: #1c1b1f"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7"></path><path d="M4 10V3"></path><path d="M12 21v-9"></path><path d="M12 8V3"></path><path d="M20 21v-5"></path><path d="M20 12V3"></path><path d="M1 14h6"></path><path d="M9 8h6"></path><path d="M17 16h6"></path></svg></a>
+  </div>
+
+  <div style="position: relative; align-self: center; margin-top: 14px; width: 270px; height: 270px; display: flex; align-items: center; justify-content: center">
+    <span style="position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, rgba(0,122,255,0.22), rgba(0,122,255,0) 70%); animation: tpPulse_pass 3s ease-out infinite"></span>
+    <span style="position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle, rgba(0,122,255,0.22), rgba(0,122,255,0) 70%); animation: tpPulse_pass 3s ease-out 1.5s infinite"></span>
+    <span style="position: absolute; inset: 22px; border-radius: 50%; border: 1px dashed rgba(0,122,255,0.35)"></span>
+    <span style="position: relative; width: 196px; height: 196px; border-radius: 50%; background: rgba(255,255,255,0.7); backdrop-filter: blur(12px); box-shadow: inset 0 0 0 1px rgba(255,255,255,1), 0 24px 48px rgba(0,122,255,0.22); display: flex; align-items: center; justify-content: center">
+      <svg viewBox="0 0 200 240" width="104" height="125" fill="none" aria-hidden="true">
+        <g stroke="#007aff" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M100 18C146 18 170 56 170 106C170 160 140 212 100 222C60 212 30 160 30 106C30 56 54 18 100 18Z" stroke-width="4"></path>
+          <path d="M100 18C124 60 126 172 100 222M100 18C76 60 74 172 100 222" stroke-width="1.8" opacity="0.4"></path>
+          <path d="M34 76Q100 94 166 76M30 112Q100 132 170 112M36 150Q100 170 164 150M56 190Q100 206 144 190" stroke-width="1.8" opacity="0.25"></path>
+          <path d="M64 102q13-9 26 0M110 102q13-9 26 0" stroke-width="5.5"></path>
+          <path d="M100 110v30l-9 6" stroke-width="5"></path>
+          <path d="M80 172q20 13 40 0" stroke-width="5.5"></path>
+        </g>
+      </svg>
+      <span style="position: absolute; right: 8px; bottom: 14px; width: 40px; height: 40px; border-radius: 20px; background: #14a35a; color: #ffffff; box-shadow: 0 0 0 4px #ffffff, 0 6px 14px rgba(20,163,90,0.4); display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>
+    </span>
+  </div>
+
+  <span style="align-self: center; margin-top: 8px; padding: 6px 12px; border-radius: 999px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.08); font-size: 13px; font-weight: 600; color: #0e7a43; display: flex; align-items: center; gap: 8px"><span style="width: 8px; height: 8px; border-radius: 4px; background: #14a35a; animation: tpBlink_pass 1.6s ease-in-out infinite"></span>Pass active · ready to verify</span>
+  <h1 style="margin: 16px 0 0; text-align: center; font-size: 28px; line-height: 34px; font-weight: 800; letter-spacing: -0.03em">Just look at the camera</h1>
+  <p style="margin: 8px auto 0; max-width: 300px; text-align: center; font-size: 15px; line-height: 22px; color: #525455">No phone, no documents. Any TruePas touchpoint confirms it’s you in under 3 seconds.</p>
+
+  <a href="#verified" style="margin-top: 22px; border-radius: 20px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.08); padding: 14px 16px; display: flex; align-items: center; gap: 12px; color: #1c1b1f">
+    <span style="width: 42px; height: 42px; border-radius: 13px; background: #007aff; color: #ffffff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg></span>
+    <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px">
+      <span style="font-size: 12px; font-weight: 600; color: #007aff; letter-spacing: 0.04em">NEAREST TOUCHPOINT</span>
+      <span style="font-size: 15px; font-weight: 700">SFO Terminal 3 · Gate B12</span>
+      <span style="font-size: 12px; color: #6b6f74">Boarding opens 08:40</span>
+    </span>
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#9a9ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+  </a>
+
+  <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 10px">
+    <span style="display: flex; justify-content: space-between; align-items: baseline"><span style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #525455">ACCEPTED FOR YOU AT</span><a href="#consent" style="font-size: 13px; font-weight: 600">Manage</a></span>
+    <div style="display: flex; gap: 8px; flex-wrap: wrap">
+      <span style="padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,0.6); box-shadow: inset 0 0 0 1px #d8f6ff; font-size: 13px; font-weight: 600; color: #2a2a2a">Airports</span>
+      <span style="padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,0.6); box-shadow: inset 0 0 0 1px #d8f6ff; font-size: 13px; font-weight: 600; color: #2a2a2a">Hotels</span>
+      <span style="padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,0.6); box-shadow: inset 0 0 0 1px #d8f6ff; font-size: 13px; font-weight: 600; color: #2a2a2a">Cruise</span>
+      <span style="padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,0.6); box-shadow: inset 0 0 0 1px #d8f6ff; font-size: 13px; font-weight: 600; color: #2a2a2a">Venues</span>
+    </div>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+  <button type="button" style="height: 52px; border: none; border-radius: 14px; background: rgba(255,255,255,0.6); box-shadow: inset 0 0 0 1px #e3e6ea, 2px 2px 16px rgba(0,0,0,0.06); font-family: inherit; font-size: 15px; font-weight: 600; color: #1c1b1f; display: flex; align-items: center; justify-content: center; gap: 8px"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"></rect><rect x="14" y="5" width="4" height="14" rx="1"></rect></svg>Pause my pass</button>
+</div>
+</div>
+<div class="vp" data-id="verified" hidden>
+<div class="scr-root" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 34px; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #c9f1ff 0%, #e6f9ff 34%, #ffffff 56%)">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <span style="display: flex; align-items: center; gap: 8px; color: #007aff"><svg viewBox="0 0 546 404" width="24" height="18" aria-hidden="true"><path fill="currentColor" d="M0 0h263c44 0 77 30 77 72 0 14-4 29-11 42L177 404l-76-97 106-195H86L0 0Z"></path><path fill="currentColor" d="M420 0h93c18 0 33 15 33 32 0 6-2 12-5 18l-15 27c-12 21-39 35-66 35H360L420 0Z"></path></svg><span style="font-size: 16px; font-weight: 700">TRUEPAS</span></span>
+    <a href="#home" aria-label="Close" style="width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 2px 2px 16px rgba(0,0,0,0.08); color: #1c1b1f"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></a>
+  </div>
+
+  <div style="position: relative; align-self: center; margin-top: 26px; width: 150px; height: 150px; display: flex; align-items: center; justify-content: center">
+    <span style="position: absolute; inset: 20px; border-radius: 50%; border: 2px solid rgba(0,122,255,0.45); animation: tpRing_verified 2.2s ease-out infinite"></span>
+    <span style="position: absolute; inset: 0; border-radius: 50%; background: rgba(255,255,255,0.5); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.95)"></span>
+    <span style="position: relative; width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(145deg, #3aa0ff 0%, #007aff 50%, #0058d6 100%); box-shadow: 0 16px 36px rgba(0,122,255,0.4), inset 0 2px 0 rgba(255,255,255,0.35); color: #ffffff; display: flex; align-items: center; justify-content: center; animation: tpPop_verified 0.7s ease-out both"><svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>
+  </div>
+
+  <h1 style="margin: 22px 0 0; text-align: center; font-size: 30px; line-height: 36px; font-weight: 800; letter-spacing: -0.03em">Verified at Gate B12</h1>
+  <p style="margin: 6px 0 0; text-align: center; font-size: 15px; color: #525455">San Francisco International · Boarding</p>
+  <div style="display: flex; justify-content: center; gap: 8px; margin-top: 14px">
+    <span style="padding: 6px 12px; border-radius: 999px; background: #ffffff; box-shadow: 2px 2px 12px rgba(0,0,0,0.07); font-size: 13px; font-weight: 700; color: #007aff; display: flex; align-items: center; gap: 6px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg>1.8 seconds</span>
+    <span style="padding: 6px 12px; border-radius: 999px; background: #ffffff; box-shadow: 2px 2px 12px rgba(0,0,0,0.07); font-size: 13px; font-weight: 600; color: #2a2a2a">Today, 08:41</span>
+  </div>
+
+  <section style="margin-top: 24px; border-radius: 20px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.08); padding: 16px">
+    <h2 style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #525455">SHARED WITH THIS GATE</h2>
+    <ul style="list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+      <li style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500"><span style="width: 22px; height: 22px; border-radius: 11px; background: #e7f6ee; color: #0e7a43; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Full name</li>
+      <li style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500"><span style="width: 22px; height: 22px; border-radius: 11px; background: #e7f6ee; color: #0e7a43; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Face match result</li>
+      <li style="display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500"><span style="width: 22px; height: 22px; border-radius: 11px; background: #e7f6ee; color: #0e7a43; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span>Boarding eligibility</li>
+    </ul>
+    <div style="height: 1px; background: #f0f1f3; margin: 14px 0"></div>
+    <h2 style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #525455">NEVER SHARED</h2>
+    <ul style="list-style: none; margin: 10px 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+      <li style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #525455"><span style="width: 22px; height: 22px; border-radius: 11px; background: #f5f5f5; color: #525455; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>Passport number &amp; date of birth</li>
+      <li style="display: flex; align-items: center; gap: 10px; font-size: 14px; color: #525455"><span style="width: 22px; height: 22px; border-radius: 11px; background: #f5f5f5; color: #525455; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span>Your face image</li>
+    </ul>
+  </section>
+
+  <div style="flex-grow: 1"></div>
+  <a href="#home" style="height: 54px; border-radius: 14px; background: #007aff; color: #ffffff; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 24px rgba(0,122,255,0.28), inset 0 1px 0 rgba(255,255,255,0.25)">Done</a>
+  <a href="#" style="margin-top: 14px; text-align: center; font-size: 14px; font-weight: 600; color: #d93636">Wasn’t you? Report it</a>
+</div>
+</div>
+<div class="vp" data-id="trip" hidden>
+<div class="scr-root" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 34px; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #d8f6ff 0%, #f4fcff 24%, #ffffff 42%)">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="#home" aria-label="Back" style="width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 2px 2px 16px rgba(0,0,0,0.08); color: #1c1b1f"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></a>
+    <span style="font-size: 17px; font-weight: 700">Trip</span>
+    <span style="width: 44px"></span>
+  </div>
+
+  <section style="margin-top: 20px; border-radius: 24px; background: #ffffff; box-shadow: 2px 2px 20px rgba(0,0,0,0.08); overflow: hidden">
+    <div style="padding: 18px 20px 16px">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <span style="font-size: 13px; font-weight: 600; color: #525455">Flight 1532 · Today</span>
+        <span style="padding: 4px 9px; border-radius: 999px; background: #e7f6ee; color: #0e7a43; font-size: 12px; font-weight: 600">On time</span>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 14px">
+        <span style="display: flex; flex-direction: column"><span style="font-size: 36px; line-height: 40px; font-weight: 800; letter-spacing: -0.03em">SFO</span><span style="font-size: 13px; color: #525455">08:55 · San Francisco</span></span>
+        <span style="flex-grow: 1; margin: 0 12px; position: relative; height: 24px; display: flex; align-items: center; justify-content: center">
+          <span style="position: absolute; left: 0; right: 0; top: 11px; border-top: 2px dashed #c9d6e3"></span>
+          <span style="position: relative; width: 30px; height: 30px; border-radius: 15px; background: #007aff; color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 4px #ffffff"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="transform: rotate(45deg)"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg></span>
+        </span>
+        <span style="display: flex; flex-direction: column; align-items: flex-end"><span style="font-size: 36px; line-height: 40px; font-weight: 800; letter-spacing: -0.03em">JFK</span><span style="font-size: 13px; color: #525455">17:30 · New York</span></span>
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: #f4fcff; border-top: 1px dashed #c9f1ff; padding: 12px 20px">
+      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; font-weight: 600; color: #525455; letter-spacing: 0.06em">GATE</span><span style="font-size: 17px; font-weight: 700">B12</span></span>
+      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; font-weight: 600; color: #525455; letter-spacing: 0.06em">BOARDING</span><span style="font-size: 17px; font-weight: 700">08:40</span></span>
+      <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; font-weight: 600; color: #525455; letter-spacing: 0.06em">SEAT</span><span style="font-size: 17px; font-weight: 700">14A</span></span>
+    </div>
+  </section>
+
+  <h2 style="margin: 26px 0 0; font-size: 18px; font-weight: 700; letter-spacing: -0.01em">Your journey</h2>
+  <p style="margin: 4px 0 0; font-size: 13px; color: #525455">One face scan at every step — curb to gate.</p>
+
+  <ol style="list-style: none; margin: 16px 0 0; padding: 0; display: flex; flex-direction: column">
+    <li style="display: flex; gap: 14px; min-height: 58px">
+      <span style="display: flex; flex-direction: column; align-items: center"><span style="width: 26px; height: 26px; border-radius: 13px; background: #007aff; color: #ffffff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="flex-grow: 1; width: 2px; background: #007aff"></span></span>
+      <span style="flex-grow: 1; display: flex; justify-content: space-between; padding-top: 3px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Self check-in</span><span style="font-size: 12px; color: #6b6f74">Face verified · 1.7s</span></span><span style="font-size: 13px; color: #525455">07:58</span></span>
+    </li>
+    <li style="display: flex; gap: 14px; min-height: 58px">
+      <span style="display: flex; flex-direction: column; align-items: center"><span style="width: 26px; height: 26px; border-radius: 13px; background: #007aff; color: #ffffff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="flex-grow: 1; width: 2px; background: #007aff"></span></span>
+      <span style="flex-grow: 1; display: flex; justify-content: space-between; padding-top: 3px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Security · Lane 4</span><span style="font-size: 12px; color: #6b6f74">Face verified · 1.6s</span></span><span style="font-size: 13px; color: #525455">08:12</span></span>
+    </li>
+    <li style="display: flex; gap: 14px; min-height: 58px">
+      <span style="display: flex; flex-direction: column; align-items: center"><span style="width: 26px; height: 26px; border-radius: 13px; background: #007aff; color: #ffffff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="flex-grow: 1; width: 2px; background: linear-gradient(180deg, #007aff, #c9f1ff)"></span></span>
+      <span style="flex-grow: 1; display: flex; justify-content: space-between; padding-top: 3px"><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Lounge entry</span><span style="font-size: 12px; color: #6b6f74">Face verified · 1.9s</span></span><span style="font-size: 13px; color: #525455">08:20</span></span>
+    </li>
+    <li style="display: flex; gap: 14px; min-height: 76px">
+      <span style="display: flex; flex-direction: column; align-items: center"><span style="position: relative; width: 26px; height: 26px; border-radius: 13px; background: #ffffff; box-shadow: inset 0 0 0 2px #007aff; display: flex; align-items: center; justify-content: center"><span style="position: absolute; inset: 0; border-radius: 13px; border: 2px solid #007aff; animation: tpRing_trip 1.8s ease-out infinite"></span><span style="width: 10px; height: 10px; border-radius: 5px; background: #007aff"></span></span><span style="flex-grow: 1; width: 2px; background: #e6e8eb"></span></span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 8px; padding-top: 3px">
+        <span style="display: flex; justify-content: space-between"><span style="font-size: 15px; font-weight: 700; color: #007aff">Boarding · Gate B12</span><span style="font-size: 13px; font-weight: 600; color: #007aff">08:40</span></span>
+        <span style="align-self: flex-start; padding: 6px 10px; border-radius: 10px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; font-size: 12px; font-weight: 600; color: #005ec4">Ready — just walk up and look</span>
+      </span>
+    </li>
+    <li style="display: flex; gap: 14px; min-height: 40px">
+      <span style="display: flex; flex-direction: column; align-items: center"><span style="width: 26px; height: 26px; border-radius: 13px; background: #f5f5f5; box-shadow: inset 0 0 0 1px #dfdfdf"></span></span>
+      <span style="flex-grow: 1; display: flex; justify-content: space-between; padding-top: 3px"><span style="font-size: 15px; font-weight: 600; color: #6b6f74">Arrive JFK</span><span style="font-size: 13px; color: #6b6f74">17:30</span></span>
+    </li>
+  </ol>
+
+  <div style="flex-grow: 1"></div>
+  <a href="#pass" style="height: 54px; border-radius: 14px; background: #007aff; color: #ffffff; font-size: 16px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 24px rgba(0,122,255,0.28), inset 0 1px 0 rgba(255,255,255,0.25)"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg>Show my pass</a>
+</div>
+</div>
+<div class="vp" data-id="activity" hidden>
+<div class="scr-root has-tab" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 0; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #d8f6ff 0%, #f4fcff 20%, #ffffff 36%)">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <h1 style="margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.03em">Activity</h1>
+    <button type="button" aria-label="Search activity" style="width: 44px; height: 44px; border: none; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 2px 2px 16px rgba(0,0,0,0.08); color: #1c1b1f"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg></button>
+  </div>
+  <p style="margin: 4px 0 0; font-size: 14px; color: #525455">Every time your face was used — where, when, and what was shared.</p>
+
+  <div style="margin-top: 18px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px">
+    <div style="padding: 12px; border-radius: 16px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.07); display: flex; flex-direction: column; gap: 2px"><span style="font-size: 22px; font-weight: 800; letter-spacing: -0.02em">12</span><span style="font-size: 12px; color: #525455">This month</span></div>
+    <div style="padding: 12px; border-radius: 16px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.07); display: flex; flex-direction: column; gap: 2px"><span style="font-size: 22px; font-weight: 800; letter-spacing: -0.02em; color: #007aff">1.8s</span><span style="font-size: 12px; color: #525455">Avg. check</span></div>
+    <div style="padding: 12px; border-radius: 16px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.07); display: flex; flex-direction: column; gap: 2px"><span style="font-size: 22px; font-weight: 800; letter-spacing: -0.02em">5</span><span style="font-size: 12px; color: #525455">Places</span></div>
+  </div>
+
+  <div role="tablist" aria-label="Filter activity" style="margin-top: 18px; display: flex; gap: 8px">
+    <button type="button" class="fchip" role="tab" aria-selected="true" data-f="all">All</button>
+<button type="button" class="fchip" role="tab" aria-selected="false" data-f="travel">Travel</button>
+<button type="button" class="fchip" role="tab" aria-selected="false" data-f="stays">Stays</button>
+<button type="button" class="fchip" role="tab" aria-selected="false" data-f="venues">Venues</button>
+  </div>
+
+  <div style="margin-top: 8px; display: flex; flex-direction: column">
+    <div class="act-group" style="display: flex; flex-direction: column"><span style="margin-top: 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #6b6f74">TODAY</span><div class="act-row" data-cat="travel" style="display: flex; align-items: center; gap: 12px; height: 62px; border-bottom: 1px solid #f0f1f3"><span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 13px; background: #f4fcff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg></span><span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">SFO Gate B12 · Boarding</span><span style="font-size: 12px; color: #6b6f74">08:41 · 1.8s</span></span><span style="flex-shrink: 0; padding: 4px 9px; border-radius: 999px; background: #e7f6ee; color: #0e7a43; font-size: 12px; font-weight: 600">Verified</span></div><div class="act-row" data-cat="travel" style="display: flex; align-items: center; gap: 12px; height: 62px; border-bottom: 1px solid #f0f1f3"><span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 13px; background: #f4fcff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"></path></svg></span><span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">SFO Security · Lane 4</span><span style="font-size: 12px; color: #6b6f74">08:12 · 1.6s</span></span><span style="flex-shrink: 0; padding: 4px 9px; border-radius: 999px; background: #e7f6ee; color: #0e7a43; font-size: 12px; font-weight: 600">Verified</span></div><div class="act-row" data-cat="stays" style="display: flex; align-items: center; gap: 12px; height: 62px; border-bottom: 1px solid #f0f1f3"><span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 13px; background: #f4fcff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"></path><path d="M2 8h18a2 2 0 0 1 2 2v10"></path><path d="M2 17h20"></path><path d="M6 8v9"></path></svg></span><span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Harbor Hotel · Check-out</span><span style="font-size: 12px; color: #6b6f74">06:30 · 1.9s</span></span><span style="flex-shrink: 0; padding: 4px 9px; border-radius: 999px; background: #e7f6ee; color: #0e7a43; font-size: 12px; font-weight: 600">Verified</span></div></div>
+<div class="act-group" style="display: flex; flex-direction: column"><span style="margin-top: 14px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #6b6f74">YESTERDAY</span><div class="act-row" data-cat="venues" style="display: flex; align-items: center; gap: 12px; height: 62px; border-bottom: 1px solid #f0f1f3"><span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 13px; background: #f4fcff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path></svg></span><span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Bay Arena · Gate C entry</span><span style="font-size: 12px; color: #6b6f74">19:05 · 2.1s</span></span><span style="flex-shrink: 0; padding: 4px 9px; border-radius: 999px; background: #e7f6ee; color: #0e7a43; font-size: 12px; font-weight: 600">Verified</span></div><div class="act-row" data-cat="travel" style="display: flex; align-items: center; gap: 12px; height: 62px; border-bottom: 1px solid #f0f1f3"><span style="width: 40px; height: 40px; flex-shrink: 0; border-radius: 13px; background: #fff7f0; color: #b45309; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"></path><circle cx="7" cy="17" r="2"></circle><path d="M9 17h6"></path><circle cx="17" cy="17" r="2"></circle></svg></span><span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Swift Car Rentals · Pickup</span><span style="font-size: 12px; color: #6b6f74">10:02 · Car rentals is off</span></span><span style="flex-shrink: 0; padding: 4px 9px; border-radius: 999px; background: #fff1e6; color: #b45309; font-size: 12px; font-weight: 600">Blocked</span></div></div>
+  </div>
+
+  <nav class="tabbar" aria-label="Primary" style="position: absolute; left: 16px; right: 16px; bottom: 24px; height: 70px; border-radius: 24px; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.8), 0 10px 30px rgba(15,35,70,0.14); display: flex; align-items: center; justify-content: space-around; padding: 0 6px">
+    <a href="#home" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #6b6f74"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>Home</a>
+    <a href="#activity" aria-current="page" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #007aff"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>Activity</a>
+    <a href="#pass" aria-label="My pass" style="width: 58px; height: 58px; margin-top: -30px; border-radius: 20px; background: linear-gradient(145deg, #3aa0ff, #007aff 55%, #0058d6); display: flex; align-items: center; justify-content: center; color: #ffffff; box-shadow: 0 10px 22px rgba(0,122,255,0.4), inset 0 1px 0 rgba(255,255,255,0.35), 0 0 0 5px #ffffff"><svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg></a>
+    <a href="#documents" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #6b6f74"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"></path><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path></svg>Wallet</a>
+    <a href="#profile" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #6b6f74"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
+  </nav>
+</div>
+</div>
+<div class="vp" data-id="documents" hidden>
+<div class="scr-root has-tab" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 0; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #d8f6ff 0%, #f4fcff 20%, #ffffff 36%)">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <h1 style="margin: 0; font-size: 32px; line-height: 38px; font-weight: 800; letter-spacing: -0.03em">Wallet</h1>
+    <button type="button" aria-label="Add a document" style="width: 44px; height: 44px; border: none; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: #007aff; color: #ffffff; box-shadow: 0 8px 18px rgba(0,122,255,0.3)"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg></button>
+  </div>
+  <p style="margin: 4px 0 0; font-size: 14px; color: #525455">Verified IDs, ready whenever a checkpoint needs them.</p>
+
+  <div style="position: relative; height: 318px; margin-top: 20px">
+    <div style="position: absolute; left: 10px; right: 10px; top: 0; height: 200px; border-radius: 22px; background: #ffffff; box-shadow: inset 0 0 0 1px #e6e8eb, 0 4px 14px rgba(0,0,0,0.05); padding: 14px 18px; box-sizing: border-box">
+      <span style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: #2a2a2a">NATIONAL ID</span><span style="font-size: 12px; font-weight: 600; color: #0e7a43">Verified</span></span>
+    </div>
+    <div style="position: absolute; left: 5px; right: 5px; top: 56px; height: 200px; border-radius: 22px; background: linear-gradient(140deg, #c9f1ff 0%, #9fdcff 100%); box-shadow: 0 6px 18px rgba(0,90,200,0.12), inset 0 1px 0 rgba(255,255,255,0.7); padding: 14px 18px; box-sizing: border-box">
+      <span style="display: flex; justify-content: space-between; align-items: center"><span style="font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: #0b3a66">DRIVER’S LICENCE</span><span style="font-size: 12px; font-weight: 600; color: #0b3a66">Verified</span></span>
+    </div>
+    <a href="#" aria-label="Passport details" style="position: absolute; left: 0; right: 0; top: 112px; height: 206px; border-radius: 24px; overflow: hidden; background: linear-gradient(150deg, #2a2d34 0%, #1c1b1f 55%, #0f1013 100%); box-shadow: 0 18px 40px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.12); padding: 16px 20px; box-sizing: border-box; color: #ffffff; display: flex; flex-direction: column; justify-content: space-between">
+      <span style="position: absolute; right: -50px; top: -60px; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(0,122,255,0.45), rgba(0,122,255,0) 70%)"></span>
+      <span style="display: flex; justify-content: space-between; align-items: center; position: relative">
+        <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.12em">PASSPORT</span>
+        <span style="display: flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 999px; background: rgba(20,163,90,0.2); box-shadow: inset 0 0 0 1px rgba(125,255,179,0.35); font-size: 12px; font-weight: 600; color: #8ff0bd"><svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>Verified</span>
+      </span>
+      <span style="display: flex; gap: 14px; align-items: center; position: relative">
+        <span style="width: 52px; height: 64px; border-radius: 10px; background: linear-gradient(180deg, #3f4a59, #2b333e); position: relative; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,0.12)">
+          <span style="position: absolute; left: 15px; top: 10px; width: 22px; height: 24px; border-radius: 11px; background: #6c7b8f"></span>
+          <span style="position: absolute; left: 6px; top: 38px; width: 40px; height: 34px; border-radius: 20px 20px 0 0; background: #6c7b8f"></span>
+        </span>
+        <span style="display: flex; flex-direction: column; gap: 4px">
+          <span style="font-size: 20px; font-weight: 700; letter-spacing: 0.01em">ALEX MORGAN</span>
+          <span style="font-size: 13px; color: rgba(255,255,255,0.7)">United States of America</span>
+        </span>
+      </span>
+      <span style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); position: relative">
+        <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 0.06em">NUMBER</span><span style="font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 14px; letter-spacing: 0.08em">•••• 5678</span></span>
+        <span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 0.06em">EXPIRES</span><span style="font-size: 14px; font-weight: 600">Mar 2031</span></span>
+      </span>
+    </a>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 24px">
+    <h2 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.01em">Issued to you</h2>
+    <span style="font-size: 13px; color: #525455">2 active</span>
+  </div>
+  <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 10px">
+    <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.07)">
+      <span style="width: 40px; height: 40px; border-radius: 13px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M13 5v2"></path><path d="M13 17v2"></path><path d="M13 11v2"></path></svg></span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Bay Arena · Season pass</span><span style="font-size: 12px; color: #6b6f74">Section 112 · Valid till Dec 2026</span></span>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#9a9ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 18px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.07)">
+      <span style="width: 40px; height: 40px; border-radius: 13px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4v16"></path><path d="M2 8h18a2 2 0 0 1 2 2v10"></path><path d="M2 17h20"></path><path d="M6 8v9"></path></svg></span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Grand Pier Resort · Room key</span><span style="font-size: 12px; color: #6b6f74">Room 1208 · Oct 14 – 17</span></span>
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#9a9ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+    </div>
+  </div>
+
+  <nav class="tabbar" aria-label="Primary" style="position: absolute; left: 16px; right: 16px; bottom: 24px; height: 70px; border-radius: 24px; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.8), 0 10px 30px rgba(15,35,70,0.14); display: flex; align-items: center; justify-content: space-around; padding: 0 6px">
+    <a href="#home" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #6b6f74"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>Home</a>
+    <a href="#activity" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #6b6f74"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>Activity</a>
+    <a href="#pass" aria-label="My pass" style="width: 58px; height: 58px; margin-top: -30px; border-radius: 20px; background: linear-gradient(145deg, #3aa0ff, #007aff 55%, #0058d6); display: flex; align-items: center; justify-content: center; color: #ffffff; box-shadow: 0 10px 22px rgba(0,122,255,0.4), inset 0 1px 0 rgba(255,255,255,0.35), 0 0 0 5px #ffffff"><svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg></a>
+    <a href="#documents" aria-current="page" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #007aff"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"></path><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path></svg>Wallet</a>
+    <a href="#profile" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #6b6f74"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
+  </nav>
+</div>
+</div>
+<div class="vp" data-id="family" hidden>
+<div class="scr-root" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 34px; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #d8f6ff 0%, #f4fcff 22%, #ffffff 40%)">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="#home" aria-label="Back" style="width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 2px 2px 16px rgba(0,0,0,0.08); color: #1c1b1f"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></a>
+    <span style="font-size: 17px; font-weight: 700">Family</span>
+    <span style="width: 44px"></span>
+  </div>
+
+  <section style="margin-top: 20px; position: relative; overflow: hidden; border-radius: 24px; padding: 20px; background: linear-gradient(140deg, #3aa0ff 0%, #007aff 50%, #0058d6 100%); color: #ffffff; box-shadow: 0 18px 36px rgba(0,90,200,0.25)">
+    <span style="position: absolute; right: -40px; top: -50px; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,0.25), rgba(255,255,255,0) 70%)"></span>
+    <div style="display: flex; position: relative">
+      <span style="width: 44px; height: 44px; border-radius: 22px; background: #1c1b1f; box-shadow: 0 0 0 3px #007aff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">AM</span>
+      <span style="width: 44px; height: 44px; margin-left: -10px; border-radius: 22px; background: #f2b8a0; color: #5b2a17; box-shadow: 0 0 0 3px #007aff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">SM</span>
+      <span style="width: 44px; height: 44px; margin-left: -10px; border-radius: 22px; background: #c9f1ff; color: #0b3a66; box-shadow: 0 0 0 3px #007aff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">LM</span>
+      <span style="width: 44px; height: 44px; margin-left: -10px; border-radius: 22px; background: #ffe39a; color: #6b4a00; box-shadow: 0 0 0 3px #007aff; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">MM</span>
+    </div>
+    <h1 style="margin: 16px 0 0; font-size: 24px; line-height: 30px; font-weight: 800; letter-spacing: -0.02em; position: relative">Travel together,<br>verify together</h1>
+    <p style="margin: 8px 0 0; font-size: 14px; line-height: 20px; opacity: 0.9; position: relative">Everyone moves through checkpoints as one group. You manage profiles for children under 18.</p>
+  </section>
+
+  <div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 24px">
+    <h2 style="margin: 0; font-size: 18px; font-weight: 700; letter-spacing: -0.01em">Members</h2>
+    <span style="font-size: 13px; color: #525455">3 of 6</span>
+  </div>
+
+  <div style="margin-top: 10px; border-radius: 20px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.08); padding: 4px 16px">
+    <div style="display: flex; align-items: center; gap: 12px; height: 66px; border-bottom: 1px solid #f0f1f3">
+      <span style="width: 42px; height: 42px; border-radius: 21px; background: #f2b8a0; color: #5b2a17; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">SM</span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Sarah Morgan</span><span style="font-size: 12px; color: #6b6f74">Spouse · Own TruePas ID</span></span>
+      <span style="padding: 4px 9px; border-radius: 999px; background: #e7f6ee; color: #0e7a43; font-size: 12px; font-weight: 600">Verified</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; height: 66px; border-bottom: 1px solid #f0f1f3">
+      <span style="width: 42px; height: 42px; border-radius: 21px; background: #c9f1ff; color: #0b3a66; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">LM</span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Leo Morgan</span><span style="font-size: 12px; color: #6b6f74">Son, 9 · Managed by you</span></span>
+      <span style="padding: 4px 9px; border-radius: 999px; background: #e7f6ee; color: #0e7a43; font-size: 12px; font-weight: 600">Verified</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 12px; height: 66px">
+      <span style="width: 42px; height: 42px; border-radius: 21px; background: #ffe39a; color: #6b4a00; font-size: 14px; font-weight: 700; display: flex; align-items: center; justify-content: center">MM</span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Mia Morgan</span><span style="font-size: 12px; color: #b45309">Face scan pending</span></span>
+      <a href="#facescan" style="height: 34px; padding: 0 14px; border-radius: 10px; background: #007aff; color: #ffffff; font-size: 13px; font-weight: 600; display: flex; align-items: center">Finish</a>
+    </div>
+  </div>
+
+  <div style="margin-top: 12px; display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: 18px; background: #f5f5f5">
+    <span style="width: 42px; height: 42px; border-radius: 21px; background: #ffffff; box-shadow: inset 0 0 0 1px #dfdfdf; color: #525455; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg></span>
+    <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; font-weight: 600">Margaret Lee</span><span style="font-size: 12px; color: #6b6f74">Invite sent 2 days ago</span></span>
+    <button type="button" style="border: none; background: none; padding: 8px 0; font-size: 13px; font-weight: 600; color: #007aff">Resend</button>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+  <div style="display: flex; gap: 10px">
+    <button type="button" style="flex: 1; height: 54px; border: none; border-radius: 14px; background: rgba(255,255,255,0.6); box-shadow: inset 0 0 0 1px #e3e6ea, 2px 2px 16px rgba(0,0,0,0.06); font-size: 15px; font-weight: 600; color: #1c1b1f">Invite adult</button>
+    <a href="#signup" style="flex: 1.3; height: 54px; border-radius: 14px; background: #007aff; color: #ffffff; font-size: 15px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 10px 24px rgba(0,122,255,0.28), inset 0 1px 0 rgba(255,255,255,0.25)"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>Add a child</a>
+  </div>
+</div>
+</div>
+<div class="vp" data-id="privacy" hidden>
+<div class="scr-root" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 34px; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #d8f6ff 0%, #f4fcff 22%, #ffffff 40%)">
+
+  <div style="display: flex; align-items: center; justify-content: space-between">
+    <a href="#profile" aria-label="Back" style="width: 44px; height: 44px; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.55); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.9), 2px 2px 16px rgba(0,0,0,0.08); color: #1c1b1f"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></a>
+    <span style="font-size: 17px; font-weight: 700">Privacy &amp; control</span>
+    <span style="width: 44px"></span>
+  </div>
+
+  <section style="margin-top: 20px; display: flex; gap: 14px; align-items: center; padding: 18px; border-radius: 22px; background: rgba(255,255,255,0.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.95), 2px 2px 16px rgba(0,0,0,0.07)">
+    <span style="width: 56px; height: 56px; flex-shrink: 0; border-radius: 18px; background: linear-gradient(145deg, #3aa0ff, #007aff 55%, #0058d6); color: #ffffff; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 22px rgba(0,122,255,0.3)"><svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+    <span style="display: flex; flex-direction: column; gap: 4px">
+      <span style="font-size: 20px; line-height: 24px; font-weight: 800; letter-spacing: -0.02em">Your face, your control.</span>
+      <span style="font-size: 13px; line-height: 18px; color: #525455">Encrypted, never sold, deletable in a few taps.</span>
+    </span>
+  </section>
+
+  <h2 style="margin: 24px 0 0; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #525455">WHO CAN VERIFY YOU</h2>
+  <div style="margin-top: 10px; border-radius: 20px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.08); padding: 2px 16px">
+    <div style="display: flex; align-items: center; gap: 12px; height: 56px; border-bottom: 1px solid #f0f1f3"><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">Airports &amp; airlines</span><span class="tg-note" data-on="3 places this month" data-off="Off — use your documents" style="font-size: 12px; color: #6b6f74; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">3 places this month</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Airports &amp; airlines"></button></div>
+<div style="display: flex; align-items: center; gap: 12px; height: 56px; border-bottom: 1px solid #f0f1f3"><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">Hotels</span><span class="tg-note" data-on="1 place this month" data-off="Off — use your documents" style="font-size: 12px; color: #6b6f74; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">1 place this month</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Hotels"></button></div>
+<div style="display: flex; align-items: center; gap: 12px; height: 56px; border-bottom: 1px solid #f0f1f3"><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">Car rentals</span><span class="tg-note" data-on="Counter-free pickup" data-off="Off · 1 blocked attempt" style="font-size: 12px; color: #6b6f74; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Off · 1 blocked attempt</span></span><button type="button" class="tg" role="switch" aria-checked="false" aria-label="Car rentals"></button></div>
+<div style="display: flex; align-items: center; gap: 12px; height: 56px; border-bottom: none"><span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; min-width: 0"><span style="font-size: 15px; font-weight: 600">Healthcare</span><span class="tg-note" data-on="Patient check-in" data-off="Off" style="font-size: 12px; color: #6b6f74; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Off</span></span><button type="button" class="tg" role="switch" aria-checked="false" aria-label="Healthcare"></button></div>
+  </div>
+
+  <h2 style="margin: 24px 0 0; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #525455">YOUR DATA</h2>
+  <div style="margin-top: 10px; border-radius: 20px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.08); padding: 2px 16px">
+    <a href="#" style="display: flex; align-items: center; gap: 12px; height: 56px; border-bottom: 1px solid #f0f1f3; color: #1c1b1f">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#007aff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path><path d="M12 15V3"></path></svg>
+      <span style="flex-grow: 1; font-size: 15px; font-weight: 600">Download a copy of my data</span>
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#9a9ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+    </a>
+    <a href="#" style="display: flex; align-items: center; gap: 12px; height: 56px; color: #d93636">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"></path><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path></svg>
+      <span style="flex-grow: 1; font-size: 15px; font-weight: 600">Delete my biometric data</span>
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#9a9ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg>
+    </a>
+  </div>
+
+  <div style="flex-grow: 1"></div>
+  <p style="margin: 0; text-align: center; font-size: 12px; line-height: 18px; color: #6b6f74">Your face template is stored encrypted. There is no central face database.</p>
+</div>
+</div>
+<div class="vp" data-id="profile" hidden>
+<div class="scr-root has-tab" style="width: 100%; min-height: 100%; position: relative; overflow: hidden; box-sizing: border-box; padding: 58px 24px 0; display: flex; flex-direction: column; font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; color: #1c1b1f; background: linear-gradient(180deg, #c9f1ff 0%, #e6f9ff 26%, #ffffff 44%)">
+
+  <div style="display: flex; flex-direction: column; align-items: center">
+    <span style="position: relative; width: 84px; height: 84px; border-radius: 42px; background: linear-gradient(145deg, #1c1b1f, #3a3d44); color: #ffffff; font-size: 28px; font-weight: 700; display: flex; align-items: center; justify-content: center; box-shadow: 0 0 0 4px #ffffff, 0 12px 28px rgba(0,0,0,0.18)">AM<span style="position: absolute; right: -2px; bottom: -2px; width: 28px; height: 28px; border-radius: 14px; background: #007aff; box-shadow: 0 0 0 3px #ffffff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg></span></span>
+    <span style="margin-top: 14px; font-size: 22px; line-height: 28px; font-weight: 800; letter-spacing: -0.02em">Alex Morgan</span>
+    <span style="margin-top: 2px; font-size: 14px; color: #525455">alex.morgan@email.com</span>
+  </div>
+
+  <div style="margin-top: 20px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-radius: 18px; background: rgba(255,255,255,0.6); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.95), 2px 2px 16px rgba(0,0,0,0.07); padding: 12px 0">
+    <span style="display: flex; flex-direction: column; align-items: center; gap: 2px; border-right: 1px solid #e8ebee"><span style="font-size: 15px; font-weight: 700; color: #0e7a43">Verified</span><span style="font-size: 11px; color: #525455">Identity</span></span>
+    <span style="display: flex; flex-direction: column; align-items: center; gap: 2px; border-right: 1px solid #e8ebee"><span style="font-size: 15px; font-weight: 700">3</span><span style="font-size: 11px; color: #525455">Documents</span></span>
+    <span style="display: flex; flex-direction: column; align-items: center; gap: 2px"><span style="font-size: 15px; font-weight: 700">Mar 2026</span><span style="font-size: 11px; color: #525455">Member since</span></span>
+  </div>
+
+  <h2 style="margin: 22px 0 0; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #525455">ACCOUNT</h2>
+  <div style="margin-top: 8px; border-radius: 20px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.08); padding: 2px 16px">
+    <a href="#" style="display: flex; align-items: center; gap: 12px; height: 52px; border-bottom: 1px solid #f0f1f3; color: #1c1b1f"><span style="width: 32px; height: 32px; border-radius: 10px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></span><span style="flex-grow: 1; font-size: 15px; font-weight: 500">Personal details</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#9a9ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+    <a href="#" style="display: flex; align-items: center; gap: 12px; height: 52px; border-bottom: 1px solid #f0f1f3; color: #1c1b1f"><span style="width: 32px; height: 32px; border-radius: 10px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></span><span style="flex-grow: 1; font-size: 15px; font-weight: 500">Security &amp; PIN</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#9a9ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+    <a href="#facescan" style="display: flex; align-items: center; gap: 12px; height: 52px; color: #1c1b1f"><span style="width: 32px; height: 32px; border-radius: 10px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg></span><span style="flex-grow: 1; font-size: 15px; font-weight: 500">Update face scan</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#9a9ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+  </div>
+
+  <h2 style="margin: 22px 0 0; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: #525455">APP</h2>
+  <div style="margin-top: 8px; border-radius: 20px; background: #ffffff; box-shadow: 2px 2px 16px rgba(0,0,0,0.08); padding: 2px 16px">
+    <a href="#privacy" style="display: flex; align-items: center; gap: 12px; height: 52px; border-bottom: 1px solid #f0f1f3; color: #1c1b1f"><span style="width: 32px; height: 32px; border-radius: 10px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg></span><span style="flex-grow: 1; font-size: 15px; font-weight: 500">Privacy &amp; control</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#9a9ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+    <a href="#family" style="display: flex; align-items: center; gap: 12px; height: 52px; border-bottom: 1px solid #f0f1f3; color: #1c1b1f"><span style="width: 32px; height: 32px; border-radius: 10px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span><span style="flex-grow: 1; font-size: 15px; font-weight: 500">Family</span><span style="font-size: 13px; color: #6b6f74">3</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#9a9ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+    <a href="#" style="display: flex; align-items: center; gap: 12px; height: 52px; color: #1c1b1f"><span style="width: 32px; height: 32px; border-radius: 10px; background: #f4fcff; box-shadow: inset 0 0 0 1px #d8f6ff; color: #007aff; display: flex; align-items: center; justify-content: center"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path></svg></span><span style="flex-grow: 1; font-size: 15px; font-weight: 500">Help &amp; support</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="#9a9ea4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></a>
+  </div>
+
+  <nav class="tabbar" aria-label="Primary" style="position: absolute; left: 16px; right: 16px; bottom: 24px; height: 70px; border-radius: 24px; background: rgba(255,255,255,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: inset 0 0 0 1px rgba(255,255,255,0.8), 0 10px 30px rgba(15,35,70,0.14); display: flex; align-items: center; justify-content: space-around; padding: 0 6px">
+    <a href="#home" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #6b6f74"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><path d="M9 22V12h6v10"></path></svg>Home</a>
+    <a href="#activity" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #6b6f74"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>Activity</a>
+    <a href="#pass" aria-label="My pass" style="width: 58px; height: 58px; margin-top: -30px; border-radius: 20px; background: linear-gradient(145deg, #3aa0ff, #007aff 55%, #0058d6); display: flex; align-items: center; justify-content: center; color: #ffffff; box-shadow: 0 10px 22px rgba(0,122,255,0.4), inset 0 1px 0 rgba(255,255,255,0.35), 0 0 0 5px #ffffff"><svg viewBox="0 0 24 24" width="27" height="27" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2"></path><path d="M17 3h2a2 2 0 0 1 2 2v2"></path><path d="M21 17v2a2 2 0 0 1-2 2h-2"></path><path d="M7 21H5a2 2 0 0 1-2-2v-2"></path><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><path d="M9 9h.01"></path><path d="M15 9h.01"></path></svg></a>
+    <a href="#documents" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #6b6f74"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"></path><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"></path></svg>Wallet</a>
+    <a href="#profile" aria-current="page" style="width: 60px; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; font-weight: 600; color: #007aff"><svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile</a>
+  </nav>
+</div>
+</div>
+          <div class="homebar" id="homebar" aria-hidden="true"></div>
+        </div>
+      </div>
+      <button type="button" class="side side-prev" id="side-prev" aria-label="Previous screen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+      <button type="button" class="side side-next" id="side-next" aria-label="Next screen"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+    </div>
+
+    <div class="bar">
+      <button type="button" class="navbtn menu" id="menu" aria-label="All screens"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg></button>
+      <button type="button" class="navbtn" id="prev" aria-label="Previous screen"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path></svg></button>
+      <div class="label" aria-live="polite">
+        <div class="label-top" id="label-top"></div>
+        <div class="label-cap" id="label-cap"></div>
+      </div>
+      <button type="button" class="navbtn" id="next" aria-label="Next screen"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"></path></svg></button>
+    </div>
+  </main>
+
+  <button type="button" class="edge" id="edge" aria-label="All screens"><span></span><span></span><span></span></button>
+  <div class="scrim" id="scrim"></div>
+  <div class="hint" id="hint" role="status">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"></path><path d="m9 6 6 6-6 6" opacity="0"></path></svg>
+    Swipe left or right for the next screen. Tap the tab on the left edge to see all screens.
+  </div>
+</div>
+
+<script>
+(function () {
+  var SCREENS = [{"id":"welcome","title":"Welcome","cap":"First launch: the truepas.com promise and the face-scan visual.","dark":false},{"id":"signup","title":"Create account","cap":"Step 1 of 4: name, email and phone, with a kiosk option.","dark":false},{"id":"idscan","title":"Scan ID","cap":"Step 2: choose a document and capture it inside the frame.","dark":false},{"id":"facescan","title":"Face & liveness","cap":"Step 3: 3D liveness check with guided head turns.","dark":true},{"id":"consent","title":"Consent","cap":"Step 4: choose which industries can verify you. Toggles work.","dark":false},{"id":"enrolled","title":"All set","cap":"Enrollment summary, then into the app.","dark":false},{"id":"home","title":"Home","cap":"TruePas ID card, quick actions, next trip and recent checks.","dark":false},{"id":"pass","title":"My pass","cap":"Pass status and the nearest touchpoint. Nothing to show at the gate.","dark":false},{"id":"verified","title":"Verified","cap":"Confirmation after a gate scan, with exactly what was shared.","dark":false},{"id":"trip","title":"Trip","cap":"Flight details and every face check from curb to gate.","dark":false},{"id":"activity","title":"Activity","cap":"Every verification in one place. Filters work.","dark":false},{"id":"documents","title":"Wallet","cap":"Verified IDs and passes issued by venues.","dark":false},{"id":"family","title":"Family","cap":"Group travel: members, a pending scan and an invite.","dark":false},{"id":"privacy","title":"Privacy & control","cap":"Turn industries on or off; export or delete your data.","dark":false},{"id":"profile","title":"Profile","cap":"Account, security and app settings.","dark":false}];
+  var GROUPS = [
+    { name: 'Onboarding', ids: ['welcome', 'signup', 'idscan', 'facescan', 'consent', 'enrolled'] },
+    { name: 'Everyday', ids: ['home', 'pass', 'verified', 'trip', 'activity'] },
+    { name: 'Control', ids: ['documents', 'family', 'privacy', 'profile'] }
+  ];
+  var order = SCREENS.map(function (s) { return s.id; });
+  var byId = {};
+  SCREENS.forEach(function (s, i) { s.n = i + 1; byId[s.id] = s; });
+
+  var body = document.body;
+  var index = document.getElementById('index');
+  var wrap = document.getElementById('wrap');
+  var device = document.getElementById('device');
+  var stage = document.getElementById('stage');
+  var statusbar = document.getElementById('statusbar');
+  var homebar = document.getElementById('homebar');
+  var current = null;
+
+  // screen list
+  GROUPS.forEach(function (g) {
+    var lab = document.createElement('div');
+    lab.className = 'group-label';
+    lab.innerHTML = '<span>' + g.name + '</span><span>' + g.ids.length + '</span>';
+    index.appendChild(lab);
+    g.ids.forEach(function (id) {
+      var s = byId[id];
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'item';
+      b.dataset.id = id;
+      b.innerHTML = '<span class="item-num">' + String(s.n).padStart(2, '0') + '</span><span>' + s.title + '</span>';
+      b.addEventListener('click', function () { go(id); closeDrawer(); });
+      index.appendChild(b);
+    });
+  });
+
+  function show(id, dir) {
+    if (!byId[id]) id = order[0];
+    if (id === current) return;
+    var prevIdx = current ? order.indexOf(current) : -1;
+    var nextIdx = order.indexOf(id);
+    if (!dir) dir = nextIdx >= prevIdx ? 'next' : 'prev';
+    document.querySelectorAll('.vp').forEach(function (vp) {
+      var on = vp.dataset.id === id;
+      vp.hidden = !on;
+      vp.classList.remove('in-next', 'in-prev');
+      if (on) {
+        vp.scrollTop = 0;
+        if (current) { void vp.offsetWidth; vp.classList.add(dir === 'next' ? 'in-next' : 'in-prev'); }
+      }
+    });
+    current = id;
+    var s = byId[id];
+    var dark = !!s.dark;
+    statusbar.classList.toggle('is-light', dark);
+    homebar.classList.toggle('is-light', dark);
+    document.getElementById('label-top').innerHTML = '<span>' + String(s.n).padStart(2, '0') + ' / ' + order.length + '</span>' + s.title;
+    document.getElementById('label-cap').textContent = s.cap;
+    document.getElementById('prev').disabled = nextIdx === 0;
+    document.getElementById('next').disabled = nextIdx === order.length - 1;
+    document.getElementById('side-prev').disabled = nextIdx === 0;
+    document.getElementById('side-next').disabled = nextIdx === order.length - 1;
+    document.querySelectorAll('.item').forEach(function (b) {
+      var on = b.dataset.id === id;
+      b.classList.toggle('is-on', on);
+      if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current');
+    });
+    document.title = 'TruePas App Preview';
+  }
+
+  function go(id, dir) {
+    if (location.hash.slice(1) === id) { show(id, dir); return; }
+    pendingDir = dir || null;
+    location.hash = id;
+  }
+  var pendingDir = null;
+  window.addEventListener('hashchange', function () { show(location.hash.slice(1), pendingDir); pendingDir = null; });
+
+  function step(d) {
+    var i = order.indexOf(current) + d;
+    if (i < 0 || i >= order.length) return;
+    go(order[i], d > 0 ? 'next' : 'prev');
+  }
+  document.getElementById('prev').addEventListener('click', function () { step(-1); });
+  document.getElementById('next').addEventListener('click', function () { step(1); });
+  document.getElementById('side-prev').addEventListener('click', function () { step(-1); });
+  document.getElementById('side-next').addEventListener('click', function () { step(1); });
+  document.getElementById('drawer-prev').addEventListener('click', function () { step(-1); closeDrawer(); });
+  document.getElementById('drawer-next').addEventListener('click', function () { step(1); closeDrawer(); });
+  document.addEventListener('keydown', function (e) {
+    if (e.target.closest && e.target.closest('input, textarea')) return;
+    if (e.key === 'ArrowRight') step(1);
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'Escape') closeDrawer();
+  });
+
+  // drawer
+  function openDrawer() { body.classList.add('drawer-open'); }
+  function closeDrawer() { body.classList.remove('drawer-open'); }
+  document.getElementById('menu').addEventListener('click', openDrawer);
+  document.getElementById('edge').addEventListener('click', openDrawer);
+  document.getElementById('scrim').addEventListener('click', closeDrawer);
+
+  // links and controls inside the screens
+  document.getElementById('area').addEventListener('click', function (e) {
+    var tg = e.target.closest('.tg');
+    if (tg) {
+      var on = tg.getAttribute('aria-checked') !== 'true';
+      tg.setAttribute('aria-checked', on ? 'true' : 'false');
+      var row = tg.parentElement;
+      var note = row.querySelector('.tg-note');
+      if (note) note.textContent = on ? note.dataset.on : note.dataset.off;
+      return;
+    }
+    var fc = e.target.closest('.fchip');
+    if (fc) {
+      var vp = fc.closest('.vp');
+      vp.querySelectorAll('.fchip').forEach(function (b) { b.setAttribute('aria-selected', b === fc ? 'true' : 'false'); });
+      var f = fc.dataset.f;
+      vp.querySelectorAll('.act-group').forEach(function (g) {
+        var any = false;
+        g.querySelectorAll('.act-row').forEach(function (r) {
+          var vis = f === 'all' || r.dataset.cat === f;
+          r.hidden = !vis;
+          if (vis) any = true;
+        });
+        g.hidden = !any;
+      });
+      return;
+    }
+    var a = e.target.closest('a[href]');
+    if (a) {
+      var h = a.getAttribute('href');
+      if (h === '#') { e.preventDefault(); return; }
+      if (h.charAt(0) === '#' && byId[h.slice(1)]) {
+        e.preventDefault();
+        go(h.slice(1));
+      }
+    }
+    var btn = e.target.closest('button');
+    if (btn && btn.closest('form')) e.preventDefault();
+  });
+  document.querySelectorAll('.area form').forEach(function (f) { f.addEventListener('submit', function (e) { e.preventDefault(); }); });
+
+  // phone vs desktop
+  var mq = window.matchMedia('(max-width: 560px)');
+  function fit() {
+    if (body.classList.contains('native')) return;
+    var bar = document.querySelector('.bar');
+    var availH = stage.clientHeight - bar.offsetHeight - 20 - 48;
+    var availW = stage.clientWidth - 32 - 144;
+    var s = Math.min(1, availH / 872, availW / 418);
+    s = Math.max(s, 0.3);
+    device.style.transform = 'scale(' + s + ')';
+    wrap.style.width = (418 * s) + 'px';
+    wrap.style.height = (872 * s) + 'px';
+  }
+  function applyMode() {
+    body.classList.toggle('native', mq.matches);
+    if (mq.matches) { wrap.style.width = ''; wrap.style.height = ''; device.style.transform = ''; }
+    fit();
+  }
+  if (mq.addEventListener) mq.addEventListener('change', applyMode); else mq.addListener(applyMode);
+  window.addEventListener('resize', fit);
+  applyMode();
+
+  // swipe between screens on a phone
+  var sx = 0, sy = 0, st = 0, tracking = false;
+  document.getElementById('area').addEventListener('touchstart', function (e) {
+    if (!body.classList.contains('native') || e.touches.length !== 1) { tracking = false; return; }
+    tracking = true; sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now();
+  }, { passive: true });
+  document.getElementById('area').addEventListener('touchend', function (e) {
+    if (!tracking) return;
+    tracking = false;
+    var t = e.changedTouches[0];
+    var dx = t.clientX - sx, dy = t.clientY - sy;
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.6 && Date.now() - st < 700) step(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  // first-visit hint on a phone
+  var seen = false;
+  try { seen = localStorage.getItem('tp-hint') === '1'; } catch (err) {}
+  if (mq.matches && !seen) {
+    var hint = document.getElementById('hint');
+    setTimeout(function () { hint.classList.add('is-on'); }, 700);
+    setTimeout(function () { hint.classList.remove('is-on'); }, 5200);
+    try { localStorage.setItem('tp-hint', '1'); } catch (err) {}
+  }
+
+  show(location.hash.slice(1) || order[0]);
+})();
+</script>

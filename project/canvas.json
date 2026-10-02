@@ -1,0 +1,37 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-10-02T10:00:00Z"},
+  "title": "TruePas App — Premium UI",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 900, "title": "Cover · Foundations"},
+    "Welcome.dc.html": {"x": 0, "y": 1280, "w": 390, "h": 844, "title": "01 Welcome", "radius": 40, "is_interactive": true},
+    "SignUp.dc.html": {"x": 470, "y": 1280, "w": 390, "h": 844, "title": "02 Create account", "radius": 40, "is_interactive": true},
+    "IdScan.dc.html": {"x": 940, "y": 1280, "w": 390, "h": 844, "title": "03 Scan ID document", "radius": 40, "is_interactive": true},
+    "FaceScan.dc.html": {"x": 1410, "y": 1280, "w": 390, "h": 844, "title": "04 Face & liveness", "radius": 40, "is_interactive": true},
+    "Consent.dc.html": {"x": 1880, "y": 1280, "w": 390, "h": 844, "title": "05 Consent & privacy", "radius": 40, "is_interactive": true},
+    "Enrolled.dc.html": {"x": 2350, "y": 1280, "w": 390, "h": 844, "title": "06 Enrollment complete", "radius": 40, "is_interactive": true},
+    "Home.dc.html": {"x": 0, "y": 2504, "w": 390, "h": 844, "title": "07 Home", "radius": 40, "is_interactive": true},
+    "Pass.dc.html": {"x": 470, "y": 2504, "w": 390, "h": 844, "title": "08 My pass", "radius": 40, "is_interactive": true},
+    "Verified.dc.html": {"x": 940, "y": 2504, "w": 390, "h": 844, "title": "09 Verified at touchpoint", "radius": 40, "is_interactive": true},
+    "Trip.dc.html": {"x": 1410, "y": 2504, "w": 390, "h": 844, "title": "10 Trip journey", "radius": 40, "is_interactive": true},
+    "Activity.dc.html": {"x": 1880, "y": 2504, "w": 390, "h": 844, "title": "11 Activity", "radius": 40, "is_interactive": true},
+    "Documents.dc.html": {"x": 0, "y": 3728, "w": 390, "h": 844, "title": "12 Document wallet", "radius": 40, "is_interactive": true},
+    "Family.dc.html": {"x": 470, "y": 3728, "w": 390, "h": 844, "title": "13 Family", "radius": 40, "is_interactive": true},
+    "Privacy.dc.html": {"x": 940, "y": 3728, "w": 390, "h": 844, "title": "14 Privacy & control", "radius": 40, "is_interactive": true},
+    "Profile.dc.html": {"x": 1410, "y": 3728, "w": 390, "h": 844, "title": "15 Profile & settings", "radius": 40, "is_interactive": true}
+  },
+  "order": [
+    "Main.dc.html",
+    "Welcome.dc.html", "SignUp.dc.html", "IdScan.dc.html", "FaceScan.dc.html", "Consent.dc.html", "Enrolled.dc.html",
+    "Home.dc.html", "Pass.dc.html", "Verified.dc.html", "Trip.dc.html", "Activity.dc.html",
+    "Documents.dc.html", "Family.dc.html", "Privacy.dc.html", "Profile.dc.html"
+  ],
+  "notes": {
+    "flow1": {"x": 0, "y": 1040, "text": "01 · Onboarding — enroll once", "kind": "title1", "maxW": 2740},
+    "flow2": {"x": 0, "y": 2264, "text": "02 · Everyday — your face is the pass", "kind": "title1", "maxW": 2270},
+    "flow3": {"x": 0, "y": 3488, "text": "03 · Wallet, family & control", "kind": "title1", "maxW": 1800}
+  },
+  "designSystems": []
+}
