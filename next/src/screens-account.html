@@ -1,0 +1,264 @@
+<!-- EDIT PROFILE -->
+<section class="vp" data-id="edit-profile" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#profile" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Edit profile</span><a class="link" href="#profile" style="text-decoration: none">Save</a></div>
+  <div class="c-col mt-20"><span style="position: relative"><img src="{{img:pradeep}}" alt="" style="width: 92px; height: 92px; border-radius: 46px; object-fit: cover; box-shadow: 0 0 0 4px #fff, 0 16px 30px -12px rgba(10,30,42,.4)"><span style="position: absolute; right: -2px; bottom: 0; width: 32px; height: 32px; border-radius: 16px; background: var(--ink); color: #fff; display: grid; place-items: center; box-shadow: 0 0 0 3px #fff">{{i:camera:16}}</span></span><span class="small mt-12">Photo comes from your face scan</span></div>
+  <div class="sec-head"><h3>From your passport</h3><span class="chip chip-ok">{{i:lock:12}} Verified</span></div>
+  <div class="stack" style="gap: 12px">
+    <div class="field"><label for="ep-name">Full name</label><div class="box locked"><input id="ep-name" value="Pradeep Mali" readonly><span class="lk">{{i:lock:18}}</span></div></div>
+    <div class="field"><label for="ep-dob">Date of birth</label><div class="box locked"><input id="ep-dob" value="14 Aug 1994" readonly><span class="lk">{{i:lock:18}}</span></div></div>
+  </div>
+  <p class="small mt-12">Locked because they were verified from your passport. Rescan to change them.</p>
+  <div class="sec-head"><h3>Contact</h3></div>
+  <div class="stack" style="gap: 12px">
+    <div class="field"><label for="ep-phone">Mobile</label><div class="box"><span class="pre">+91</span><input id="ep-phone" value="98200 41827" autocomplete="off"></div></div>
+    <div class="field"><label for="ep-mail">Email</label><div class="box focus"><input id="ep-mail" value="pradeep.mali@mail.com" autocomplete="off"></div></div>
+    <div class="field"><label for="ep-city">City</label><div class="box"><input id="ep-city" value="Mumbai, Maharashtra" autocomplete="off"></div></div>
+  </div>
+  <a class="btn btn-primary mt-24" href="#profile">Save changes</a>
+</div>
+</section>
+
+<!-- SETTINGS -->
+<section class="vp" data-id="settings" hidden>
+<div class="scr">
+  <div class="topbar"><a class="iconbtn" href="#profile" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Settings</span><span style="width: 44px"></span></div>
+  <h1 class="t-xl mt-20">Make it <em>yours.</em></h1>
+  <div class="sec-head"><h3>Check-in</h3></div>
+  <div class="card list">
+    <div class="lrow"><span class="ic">{{i:scan-face}}</span><span class="main"><b>Face check-in</b><span>At every venue you’ve allowed</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Face check-in"></button></div>
+    <div class="lrow"><span class="ic">{{i:fingerprint}}</span><span class="main"><b>Unlock app with Face ID</b><span>Instead of your PIN</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Unlock with Face ID"></button></div>
+    <div class="lrow"><span class="ic">{{i:calendar-check}}</span><span class="main"><b>Import bookings</b><span>From email confirmations</span></span><button type="button" class="tg" role="switch" aria-checked="false" aria-label="Import bookings"></button></div>
+  </div>
+  <div class="sec-head"><h3>Appearance</h3></div>
+  <div class="seg three"><span class="thumb" style="width: calc(33.333% - 2.67px); transform: translateX(200%)"></span><button type="button" aria-pressed="false">Light</button><button type="button" aria-pressed="false">Dark</button><button type="button" aria-pressed="true">Auto</button></div>
+  <div class="sec-head"><h3>Preferences</h3></div>
+  <div class="card list">
+    <a class="lrow" href="#notifications" style="text-decoration: none"><span class="ic">{{i:bell}}</span><span class="main"><b>Notifications</b><span>Check-ins, family, security</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+    <button type="button" class="lrow"><span class="ic">{{i:globe}}</span><span class="main"><b>Language</b><span>English · हिन्दी · मराठी</span></span><span class="small" style="font-weight: 700; color: var(--ink-2)">English</span></button>
+  </div>
+  <div class="sec-head"><h3>Privacy</h3></div>
+  <div class="card list" style="margin-bottom: 8px">
+    <a class="lrow" href="#privacy" style="text-decoration: none"><span class="ic">{{i:shield-check}}</span><span class="main"><b>Biometric data</b><span>Who can verify you, what was shared</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+    <a class="lrow" href="#delete" style="text-decoration: none"><span class="ic red">{{i:trash}}</span><span class="main"><b style="color: var(--red)">Delete account</b><span>Erase everything, permanently</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+  </div>
+</div>
+</section>
+
+<!-- SECURITY -->
+<section class="vp" data-id="security" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#profile" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Security</span><span style="width: 44px"></span></div>
+  <div class="big-ring mt-20"><svg viewBox="0 0 176 176" aria-hidden="true"><circle cx="88" cy="88" r="78" fill="none" stroke="#E3F6EC" stroke-width="10"></circle><circle cx="88" cy="88" r="78" fill="none" stroke="#14A866" stroke-width="10" stroke-linecap="round" stroke-dasharray="490" stroke-dashoffset="19.6" transform="rotate(-90 88 88)"></circle></svg><div class="in"><b style="color: var(--mint-ink)">96</b><span>Excellent</span></div></div>
+  <h1 class="t-xl mt-16 center">Well <em>protected.</em></h1>
+  <div class="card pad mt-20 row-x" style="gap: 12px; background: var(--amber-soft); box-shadow: none">
+    <span class="ic" style="width: 40px; height: 40px; flex: none; border-radius: 13px; background: #fff; color: var(--amber); display: grid; place-items: center">{{i:mail:20}}</span>
+    <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><b style="font-size: 14.5px">Add a recovery email</b><span class="small" style="color: #7A4A0B">+4 points · takes 30 seconds</span></span>
+    <button type="button" class="btn-sm" style="background: var(--ink); color: #fff">Add</button>
+  </div>
+  <div class="sec-head"><h3>Sign-in</h3></div>
+  <div class="card list">
+    <a class="lrow" href="#change-password" style="text-decoration: none"><span class="ic">{{i:key}}</span><span class="main"><b>Password</b><span>Changed 2 months ago</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+    <a class="lrow" href="#new-pin" style="text-decoration: none"><span class="ic">{{i:lock}}</span><span class="main"><b>App PIN</b><span>4 digits · used when face can’t match</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+    <div class="lrow"><span class="ic">{{i:shield-check}}</span><span class="main"><b>Two-step verification</b><span>Code by SMS on new devices</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Two-step verification"></button></div>
+  </div>
+  <div class="sec-head"><h3>Signed-in devices</h3></div>
+  <div class="card list" style="margin-bottom: 8px">
+    <div class="lrow"><span class="ic">{{i:smartphone}}</span><span class="main"><b>iPhone 15 Pro</b><span>This device · Mumbai</span></span><span class="chip chip-ok dotted">Active</span></div>
+    <div class="lrow"><span class="ic">{{i:tablet}}</span><span class="main"><b>iPad Air</b><span>Mumbai · today 11:20 AM</span></span><button type="button" class="btn-sm" style="background: var(--red-soft); color: var(--red)">Sign out</button></div>
+  </div>
+</div>
+</section>
+
+<!-- CHANGE PASSWORD -->
+<section class="vp" data-id="change-password" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#security" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Change password</span><span style="width: 44px"></span></div>
+  <h1 class="t-xl mt-24">A new <em>password.</em></h1>
+  <p class="lead mt-8">Try typing — the meter and rules update live.</p>
+  <div class="field mt-24"><label for="pw-cur">Current password</label><div class="box"><input id="pw-cur" type="password" value="oldpassword1" autocomplete="off"></div></div>
+  <div class="field mt-16"><label for="pw-new">New password</label><div class="box focus"><input id="pw-new" type="text" value="Truepas@26" autocomplete="off"><span style="color: var(--ink-3)">{{i:eye:20}}</span></div></div>
+  <div class="meter mt-12" id="pw-meter" data-l="4"><i></i><i></i><i></i><i></i></div>
+  <div class="between mt-8"><span class="small">Strength</span><b id="pw-word" style="font-size: 13px; color: var(--mint-ink)">Strong</b></div>
+  <ul class="rules mt-16" id="pw-rules">
+    <li data-r="len"><span class="rm">{{i:check:12}}</span>At least 8 characters</li>
+    <li data-r="up"><span class="rm">{{i:check:12}}</span>An uppercase letter</li>
+    <li data-r="num"><span class="rm">{{i:check:12}}</span>A number</li>
+    <li data-r="sym"><span class="rm">{{i:check:12}}</span>A symbol, like @ or #</li>
+  </ul>
+  <div class="grow"></div>
+  <a class="btn btn-primary mt-24" id="pw-cta" href="#security">Update password</a>
+</div>
+</section>
+
+<!-- NEW PIN -->
+<section class="vp" data-id="new-pin" hidden>
+<div class="scr" data-seq="pin" data-next="confirm-pin">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#security" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Change PIN</span><span class="count">1/2</span></div>
+  <div class="steps-bar mt-16" style="grid-template-columns: repeat(2, minmax(0, 1fr))"><i class="on"></i><i></i></div>
+  <div class="c-col mt-28"><h1 class="t-xl">Create a new <em>PIN.</em></h1><p class="lead mt-8">Four digits. Avoid birthdays and 1234.</p></div>
+  <div class="dots mt-28" data-len="4"><i></i><i></i><i></i><i></i></div>
+  <p class="status-line mt-12" data-role="status" style="text-align: center"></p>
+  <div class="grow"></div>
+  <div class="keypad">
+    <button type="button" class="key" data-k="1">1<small>&nbsp;</small></button><button type="button" class="key" data-k="2">2<small>ABC</small></button><button type="button" class="key" data-k="3">3<small>DEF</small></button>
+    <button type="button" class="key" data-k="4">4<small>GHI</small></button><button type="button" class="key" data-k="5">5<small>JKL</small></button><button type="button" class="key" data-k="6">6<small>MNO</small></button>
+    <button type="button" class="key" data-k="7">7<small>PQRS</small></button><button type="button" class="key" data-k="8">8<small>TUV</small></button><button type="button" class="key" data-k="9">9<small>WXYZ</small></button>
+    <span></span><button type="button" class="key" data-k="0">0</button><button type="button" class="key plain" data-k="del" aria-label="Delete">{{i:delete:24}}</button>
+  </div>
+</div>
+</section>
+
+<!-- CONFIRM PIN -->
+<section class="vp" data-id="confirm-pin" hidden>
+<div class="scr" data-seq="pin" data-next="security" data-start-bad="1">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#new-pin" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Change PIN</span><span class="count">2/2</span></div>
+  <div class="steps-bar mt-16" style="grid-template-columns: repeat(2, minmax(0, 1fr))"><i class="on"></i><i class="on"></i></div>
+  <div class="c-col mt-28"><h1 class="t-xl">Confirm your <em>PIN.</em></h1><p class="lead mt-8">Type the same four digits again.</p></div>
+  <div class="dots mt-28" data-len="4"><i></i><i></i><i></i><i></i></div>
+  <p class="status-line mt-12" data-role="status" style="text-align: center"></p>
+  <div class="grow"></div>
+  <div class="keypad">
+    <button type="button" class="key" data-k="1">1<small>&nbsp;</small></button><button type="button" class="key" data-k="2">2<small>ABC</small></button><button type="button" class="key" data-k="3">3<small>DEF</small></button>
+    <button type="button" class="key" data-k="4">4<small>GHI</small></button><button type="button" class="key" data-k="5">5<small>JKL</small></button><button type="button" class="key" data-k="6">6<small>MNO</small></button>
+    <button type="button" class="key" data-k="7">7<small>PQRS</small></button><button type="button" class="key" data-k="8">8<small>TUV</small></button><button type="button" class="key" data-k="9">9<small>WXYZ</small></button>
+    <span></span><button type="button" class="key" data-k="0">0</button><button type="button" class="key plain" data-k="del" aria-label="Delete">{{i:delete:24}}</button>
+  </div>
+</div>
+</section>
+
+<!-- HELP -->
+<section class="vp" data-id="help" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#profile" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Help</span><span style="width: 44px"></span></div>
+  <h1 class="t-xl mt-20">How can we <em>help?</em></h1>
+  <div class="field mt-20"><div class="box"><span style="color: var(--ink-3)">{{i:search:20}}</span><input id="help-q" placeholder="Search questions" autocomplete="off" style="font-weight: 500"></div></div>
+  <div class="choices mt-16"><button type="button" class="choice" aria-pressed="true">Check-in</button><button type="button" class="choice" aria-pressed="false">Documents</button><button type="button" class="choice" aria-pressed="false">Family</button><button type="button" class="choice" aria-pressed="false">Privacy</button></div>
+  <div class="card mt-20" style="padding: 0 18px">
+    <div class="acc open"><button type="button" class="acc-q">Why didn’t my face match?{{i:plus:20}}</button><div class="acc-a"><div><p>Usually light. Face a window or lamp, take off sunglasses, and hold the phone at eye level. After three tries you can confirm with your PIN.</p></div></div></div>
+    <div class="acc"><button type="button" class="acc-q">Is my face stored as a photo?{{i:plus:20}}</button><div class="acc-a"><div><p>No. Your face becomes an encrypted template — a set of numbers — that stays on your phone. Venues only receive a yes or no.</p></div></div></div>
+    <div class="acc"><button type="button" class="acc-q">Can my child check in alone?{{i:plus:20}}</button><div class="acc-a"><div><p>Children under 18 check in alongside a guardian. When they turn 18, they can take over their own identity.</p></div></div></div>
+    <div class="acc"><button type="button" class="acc-q">How do I delete my data?{{i:plus:20}}</button><div class="acc-a"><div><p>Go to Settings → Delete account, or Biometric data → Delete. Everything is erased within 72 hours, and you get a confirmation.</p></div></div></div>
+  </div>
+  <div class="sec-head"><h3>Talk to a person</h3><span class="small">24 × 7</span></div>
+  <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-bottom: 8px">
+    <button type="button" class="card" style="border: 0; padding: 16px; text-align: left; display: flex; flex-direction: column; gap: 8px"><span style="width: 40px; height: 40px; border-radius: 13px; background: var(--grad); color: #fff; display: grid; place-items: center">{{i:chat:20}}</span><b style="font-size: 15px">Chat with us</b><span class="small">Replies in ~2 min</span></button>
+    <div class="card" style="padding: 16px; display: flex; flex-direction: column; gap: 8px"><span style="width: 40px; height: 40px; border-radius: 13px; background: #E9F6FF; color: var(--blue); display: grid; place-items: center">{{i:phone:20}}</span><b style="font-size: 15px">Call us</b><span class="mono" style="font-size: 12.5px; color: var(--ink-2); user-select: all">1800 200 7272</span></div>
+  </div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section class="vp" data-id="about-tp" hidden>
+<div class="scr dark" style="background: radial-gradient(120% 80% at 50% 0%, #0E5C8C 0%, #052338 45%, #030B13 100%)">
+  <svg class="guilloche" viewBox="0 0 350 520" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 100%; height: 520px; pointer-events: none"></svg>
+  <div class="topbar"><a class="iconbtn glass" href="#profile" aria-label="Back">{{i:chev-left}}</a><span></span><span></span></div>
+  <div class="c-col" style="margin-top: 70px">
+    <span class="born-in" style="color: #36C9FF; filter: drop-shadow(0 0 24px rgba(54,201,255,.6))">{{logo:84}}</span>
+    <b style="font-size: 40px; font-weight: 800; letter-spacing: -.05em; margin-top: 16px">truepas</b>
+    <h1 class="t-l mt-12" style="font-weight: 400; font-family: var(--f-serif); font-style: italic; font-size: 30px; color: rgba(234,244,250,.85)">Your face is your pass.</h1>
+    <span class="mono mt-16" style="font-size: 12px; color: rgba(234,244,250,.5)">Version 3.0.1 (Next) · build 2026.10</span>
+  </div>
+  <div class="grow"></div>
+  <div class="dcard list mt-32">
+    <a class="lrow" href="#terms" style="text-decoration: none"><span class="ic">{{i:file-plus:20}}</span><span class="main"><b>Terms of service</b><span>Updated 1 Oct 2026</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+    <a class="lrow" href="#privacy-policy" style="text-decoration: none"><span class="ic">{{i:shield-check:20}}</span><span class="main"><b>Privacy policy</b><span>In plain language</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+    <button type="button" class="lrow"><span class="ic">{{i:sparkles:20}}</span><span class="main"><b>Rate Truepas</b><span>4.9 on the App Store</span></span><span class="chev">{{i:chev-right:18}}</span></button>
+  </div>
+  <p class="small mt-20 center" style="color: rgba(234,244,250,.45)">Made in Mumbai · © 2026 Truepas</p>
+</div>
+</section>
+
+<!-- TERMS -->
+<section class="vp" data-id="terms" hidden>
+<div class="scr">
+  <div class="topbar"><a class="iconbtn" href="#about-tp" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Terms</span><span style="width: 44px"></span></div>
+  <h1 class="t-xl mt-20">Terms of <em>service.</em></h1>
+  <span class="small mt-8">Effective 1 October 2026</span>
+  <div class="short mt-20"><b>The short version</b><ul><li>Your Truepas is for you only — don’t let others use it.</li><li>Venues decide where face check-in is offered.</li><li>You can close your account any time.</li><li>We never sell your data.</li></ul></div>
+  <div class="legal">
+    <h2><span>01</span>Your account</h2><p>You need to be 18 or older to hold your own Truepas, or be added by a guardian. Keep your PIN private and tell us quickly if your phone is lost.</p>
+    <h2><span>02</span>Using face check-in</h2><p>Face check-in works only at venues you allow in Privacy center. A venue may ask for another form of ID where the law requires it.</p>
+    <h2><span>03</span>Your documents</h2><p>You confirm that documents you add are genuine and yours, or belong to a family member you are responsible for.</p>
+    <h2><span>04</span>Ending the service</h2><p>You can delete your account in Settings. We may suspend accounts used for fraud, and we will tell you why.</p>
+  </div>
+</div>
+</section>
+
+<!-- PRIVACY POLICY -->
+<section class="vp" data-id="privacy-policy" hidden>
+<div class="scr">
+  <div class="topbar"><a class="iconbtn" href="#about-tp" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Privacy policy</span><span style="width: 44px"></span></div>
+  <h1 class="t-xl mt-20">Privacy, <em>plainly.</em></h1>
+  <span class="small mt-8">Aligned with India’s DPDP Act 2023 and the EU GDPR</span>
+  <div class="short mt-20"><b>The short version</b><ul><li>Your face is stored as an encrypted template on your phone.</li><li>Venues get a yes or no, never your face or documents.</li><li>You can see, download or erase everything.</li></ul></div>
+  <div class="legal">
+    <h2><span>01</span>What we collect</h2><p>Your name, contact details, the documents you add and an encrypted face template. We don’t keep photos of your face.</p>
+    <h2><span>02</span>How we use it</h2><p>Only to confirm it’s you at places you’ve allowed, to prevent fraud, and to keep your account working.</p>
+    <h2><span>03</span>Who sees it</h2><p>Venues receive a match result and the fields a check-in needs, such as your name and booking. Every share appears in your Privacy center.</p>
+    <h2><span>04</span>Your rights</h2><p>You can access, correct and erase your data, withdraw consent per industry, and reach our Grievance Officer within the app.</p>
+  </div>
+</div>
+</section>
+
+<!-- DELETE ACCOUNT -->
+<section class="vp" data-id="delete" hidden>
+<div class="scr">
+  <div class="topbar"><a class="iconbtn" href="#settings" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Delete account</span><span style="width: 44px"></span></div>
+  <div class="glow red mt-8" style="width: 130px; height: 130px"><span class="core" style="width: 80px; height: 80px">{{i:trash:34}}</span></div>
+  <h1 class="t-xl center">Sorry to see you <em>go.</em></h1>
+  <div class="card pad mt-20">
+    <b style="font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink-3)">This permanently erases</b>
+    <ul class="erase mt-12">
+      <li>{{i:x:16}}Your face template, everywhere</li>
+      <li>{{i:x:16}}4 documents in your wallet</li>
+      <li>{{i:x:16}}24 check-ins of history</li>
+      <li>{{i:x:16}}Links to 4 family members</li>
+    </ul>
+  </div>
+  <div class="sec-head"><h3>Why are you leaving?</h3><span class="small">Optional</span></div>
+  <div class="choices" data-multi="1"><button type="button" class="choice" aria-pressed="false">Privacy worries</button><button type="button" class="choice" aria-pressed="false">Not using it</button><button type="button" class="choice" aria-pressed="false">Too few venues</button><button type="button" class="choice" aria-pressed="false">Other</button></div>
+  <div class="field mt-20"><label for="del-input">Type DELETE to confirm</label><input class="input-big" id="del-input" placeholder="DELETE" autocomplete="off"></div>
+  <a class="btn btn-danger mt-20 is-off" id="del-cta" href="#deleting">Delete my account</a>
+  <a class="btn btn-text" href="#settings">Keep my account</a>
+</div>
+</section>
+
+<!-- DELETING -->
+<section class="vp" data-id="deleting" hidden>
+<div class="scr" data-seq="process" data-auto-next="deleted">
+  <div class="big-ring mt-32" data-role="ring"><svg viewBox="0 0 176 176" aria-hidden="true"><circle cx="88" cy="88" r="78" fill="none" stroke="#FDECEC" stroke-width="10"></circle><circle class="p" cx="88" cy="88" r="78" fill="none" stroke="#E5484D" stroke-width="10" stroke-linecap="round" stroke-dasharray="490" stroke-dashoffset="490" transform="rotate(-90 88 88)"></circle></svg><div class="in"><b data-role="pct" style="color: var(--red)">0%</b><span>erased</span></div></div>
+  <div class="c-col mt-16"><h1 class="t-xl" data-role="title" data-done="All <em>erased.</em>">Deleting your <em>data.</em></h1><p class="lead mt-8">This takes a few seconds. Please keep the app open.</p></div>
+  <div class="card proc mt-24">
+    <div class="pstep"><span class="pm"></span><b>Face template erased</b><span class="pt">on device</span></div>
+    <div class="pstep"><span class="pm"></span><b>Documents shredded</b><span class="pt">4 files</span></div>
+    <div class="pstep"><span class="pm"></span><b>Check-in history removed</b><span class="pt">24 items</span></div>
+    <div class="pstep"><span class="pm"></span><b>Family links released</b><span class="pt">4 people</span></div>
+  </div>
+  <div class="grow"></div>
+  <a class="btn btn-light is-hidden mt-20" data-role="cta" href="#deleted">Continue</a>
+</div>
+</section>
+
+<!-- DELETED -->
+<section class="vp" data-id="deleted" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="grow"></div>
+  <div class="glow navy"><span class="core">{{i:check:40}}</span></div>
+  <div class="c-col mt-12">
+    <h1 class="t-xl">Account <em>deleted.</em></h1>
+    <p class="lead mt-8">Everything is erased. A confirmation is on its way to pradeep.mali@mail.com.</p>
+    <span class="chip mt-16" style="background: #EEF2F5; color: var(--ink-2); height: 32px"><span class="mono">Ref DEL-7Q2K-91</span></span>
+  </div>
+  <div class="grow"></div>
+  <p class="small center">Thank you for trying Truepas. The door is always open.</p>
+  <a class="btn btn-light mt-16" href="#welcome">Create a new Truepas</a>
+</div>
+</section>

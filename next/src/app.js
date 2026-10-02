@@ -2,84 +2,68 @@
   'use strict';
 
   /* ------------------------------------------------------------------
-     Screens + design notes
+     53 screens + design notes
      ------------------------------------------------------------------ */
+  function S(id, group, title, headline, note, refs, points, extra) {
+    var o = { id: id, group: group, title: title, headline: headline, note: note, refs: refs || [], points: points || [] };
+    if (extra) for (var k in extra) o[k] = extra[k];
+    return o;
+  }
+  var D = { dark: true };
   var SCREENS = [
-    { id: 'welcome', group: 'Onboarding', title: 'Welcome', dark: true,
-      headline: 'One face. Every <em>check-in.</em>',
-      note: 'The first frame sells the promise. A live 3D face assembles out of light over the hotel at dusk, while two glass cards show the outcome: verified, checked in.',
-      refs: ['CLEAR', 'Apple Face ID', 'Airbnb'],
-      points: ['Point-cloud face renders live and rotates, so the hero is never a static picture', 'Serif italic accent is the brand’s editorial signature', 'truepas.com blue drives the primary action'] },
-    { id: 'create', group: 'Onboarding', title: 'Create account',
-      headline: 'Create your <em>Truepas.</em>',
-      note: 'Three steps, one decision per row. The name label says “as on your ID” so the document scan matches later.',
-      refs: ['Royal Caribbean', 'Revolut'],
-      points: ['Segmented progress shows exactly what is left', 'Live focus ring on the active field', 'Returning users go straight to face sign-in'] },
-    { id: 'consent', group: 'Onboarding', title: 'Biometric consent',
-      headline: 'Your face, <em>your control.</em>',
-      note: 'Trust before the camera. Three plain promises, then a per-industry switchboard taken from truepas.com. The toggles work.',
-      refs: ['DigiYatra', 'Apple privacy labels'],
-      points: ['Venues receive a yes or no, never the face', 'DPDP Act 2023 and GDPR named explicitly', 'Industries are opt-in, one switch each'] },
-    { id: 'facescan', group: 'Onboarding', title: 'Face scan', dark: true,
-      headline: 'Verify your <em>face.</em>',
-      note: 'The biometric moment gets a dark studio. The point-cloud head follows each liveness instruction — blink, turn left, smile — while the ring fills.',
-      refs: ['Apple Face ID', 'CLEAR'],
-      points: ['Liveness steps tick off on their own', 'The 3D head turns when you are asked to turn', 'Turns mint when the template is sealed'] },
-    { id: 'born', group: 'Onboarding', title: 'Identity sealed', dark: true,
-      headline: 'You’re <em>verified.</em>',
-      note: 'The payoff: the identity card is born. It flips in, catches the light and stays tiltable — move your pointer over it.',
-      refs: ['Apple Wallet', 'Amex Centurion'],
-      points: ['Holographic sheen and guilloché security pattern', 'Summary of what was verified, in three lines'] },
-    { id: 'home', group: 'Everyday', title: 'Home', tab: 'home',
-      headline: 'Where are you going <em>today?</em>',
-      note: 'Home is “my identity plus my journey”. The holographic card, today’s stay as a full photo card with the face check-in on it, then what is coming up.',
-      refs: ['Airbnb', 'Hilton', 'Disney'],
-      points: ['Today’s stay is the hero, with the action on it', 'Swipeable “Coming up” across flight, park and cruise', 'Liquid-glass tab bar with a raised face button'] },
-    { id: 'checkin', group: 'Everyday', title: 'Live check-in', dark: true,
-      headline: 'Look at the <em>camera.</em>',
-      note: 'The moment of truth, timed to the millisecond. Face found, liveness, match — then the Dynamic Island blooms into a Live Activity.',
-      refs: ['iOS Live Activities', 'CLEAR'],
-      points: ['Three-step live status with a running timer', 'Matched state turns the ring and mesh mint', 'Replay to watch it again'] },
-    { id: 'welcomed', group: 'Everyday', title: 'Checked in',
-      headline: 'Welcome, <em>Pradeep.</em>',
-      note: 'The match lands with the room: photo, number, checkout time — plus a privacy receipt of exactly what the hotel received.',
-      refs: ['Hilton', 'Apple Pay receipt'],
-      points: ['“Matched in 0.8 seconds” makes speed visible', 'Shared vs never-shared, side by side'] },
-    { id: 'key', group: 'Everyday', title: 'Digital key', dark: true,
-      headline: 'Your room <em>key.</em>',
-      note: 'The room number is the biggest thing on the page. Press and hold to unlock — a deliberate gesture for a door.',
-      refs: ['Hilton Digital Key', 'Apple Home Key'],
-      points: ['Hold-to-unlock with a filling bar and a haptic tap', 'NFC pulse shows the phone is ready', 'Stay services underneath'] },
-    { id: 'journey', group: 'Everyday', title: 'Trip journey',
-      headline: 'Curb to gate, <em>by face.</em>',
-      note: 'A boarding pass without a barcode. The plane flies its arc while the timeline shows every face check from terminal entry to boarding.',
-      refs: ['DigiYatra', 'Apple Wallet boarding pass'],
-      points: ['Live “now” step pulses', 'Each checkpoint shows its match time'] },
-    { id: 'checkins', group: 'Everyday', title: 'Check-ins', tab: 'checkins',
-      headline: 'Your year in <em>check-ins.</em>',
-      note: 'History opens with the year in numbers, then every venue with a photo. The filters work.',
-      refs: ['Airbnb Trips', 'Spotify Wrapped'],
-      points: ['Hours saved, made concrete', 'Photo thumbnails make venues recognisable'] },
-    { id: 'wallet', group: 'Wallet & control', title: 'Wallet', tab: 'wallet',
-      headline: 'Documents as <em>cards.</em>',
-      note: 'Government IDs as a physical wallet. Tap any card and it springs to the front.',
-      refs: ['Apple Wallet', 'Revolut'],
-      points: ['Identity strength score up top', 'Guilloché security pattern on every card', 'In-review shown in amber, never red'] },
-    { id: 'family', group: 'Wallet & control', title: 'Family',
-      headline: 'Travel <em>together.</em>',
-      note: 'Family members as portrait cards, each with its own status. A pending face scan is one tap from being finished.',
-      refs: ['Disney MagicBand', 'Apple Family Sharing'],
-      points: ['Guardian rule for children in one sentence', 'Amber for pending, green for verified'] },
-    { id: 'privacy', group: 'Wallet & control', title: 'Privacy center',
-      headline: 'Your data, <em>your rules.</em>',
-      note: 'Every switch, every share and the delete button in one place — the truepas.com promise made operable.',
-      refs: ['Apple App Privacy Report'],
-      points: ['Per-industry switches with real usage', 'Ledger of recent shares', 'Delete biometric data, clearly marked'] },
-    { id: 'profile', group: 'Wallet & control', title: 'Profile', tab: 'me',
-      headline: 'You, <em>verified.</em>',
-      note: 'Person first: portrait, Truepas ID and three numbers, then calm grouped settings.',
-      refs: ['iOS Settings'],
-      points: ['Security score shown as a chip', 'Sign out kept apart, in red'] }
+    S('welcome', 'Onboarding', 'Welcome', 'One face. Every <em>check-in.</em>', 'The first frame sells the promise. A live 3D face assembles out of light over the hotel at dusk, while two glass cards show the outcome.', ['CLEAR', 'Apple Face ID', 'Airbnb'], ['Point-cloud face renders live and rotates', 'Serif italic accent is the brand’s editorial signature', 'truepas.com blue on the primary action'], D),
+    S('signin', 'Onboarding', 'Sign in', 'Welcome <em>back.</em>', 'Returning users see their own face first — one tap to continue. The number field is the fallback, not the default.', ['Apple ID', 'Revolut'], ['“Continue as Pradeep” card with face sign-in', 'Mobile / Email switch that actually switches', 'Forgot password one tap away']),
+    S('create', 'Onboarding', 'Create account', 'Create your <em>Truepas.</em>', 'Three steps, one decision per row. The name label says “as on your ID” so the document scan matches later.', ['Royal Caribbean', 'Revolut'], ['Segmented progress shows what is left', 'Live focus ring on the active field']),
+    S('otp', 'Onboarding', 'Verify mobile', 'Enter the <em>code.</em>', 'Six large cells, a live cursor and a built-in keypad. The code auto-fills like an SMS would — and the keypad works too.', ['iOS one-time code'], ['Auto-read from SMS, shown as a chip', 'Resend timer counts down instead of a disabled button']),
+    S('email', 'Onboarding', 'Verify email', 'Check your <em>inbox.</em>', 'Result screens share one template: a glowing medallion, a short headline, one primary action.', [], ['The address is repeated so people know where to look', 'Spam-folder hint saves support tickets']),
+    S('about', 'Onboarding', 'About you', 'A few <em>details.</em>', 'Fields mirror a government ID so the document scan can confirm them automatically.', ['Royal Caribbean'], ['Chips instead of a dropdown for gender', 'CTA names the next step: face setup']),
+    S('forgot', 'Onboarding', 'Forgot password', 'Reset your <em>password.</em>', 'Email reset, with a faster path promoted underneath: recover with your face in two seconds.', ['CLEAR'], ['Biometric recovery turns a dead end into a product moment']),
+    S('consent', 'Face setup', 'Biometric consent', 'Your face, <em>your control.</em>', 'Trust before the camera. Three plain promises, then a per-industry switchboard from truepas.com. The toggles work.', ['DigiYatra', 'Apple privacy labels'], ['Venues receive a yes or no, never the face', 'DPDP Act 2023 and GDPR named explicitly']),
+    S('facescan', 'Face setup', 'Face scan', 'Verify your <em>face.</em>', 'A dark studio. The point-cloud head follows each liveness instruction — blink, turn left, smile — while the ring fills.', ['Apple Face ID', 'CLEAR'], ['Steps tick off on their own', 'The 3D head turns when you are asked to turn', 'Turns mint when the template is sealed'], D),
+    S('born', 'Face setup', 'You’re verified', 'You’re <em>verified.</em>', 'The payoff: the identity card is born. It flips in, catches the light and stays tiltable.', ['Apple Wallet', 'Amex Centurion'], ['Holographic sheen and guilloché pattern', 'What was verified, in three lines'], D),
+    S('home', 'Main', 'Home', 'Where are you going <em>today?</em>', 'Home is “my identity plus my journey”: the holographic card, today’s stay with the face check-in on it, then what’s next.', ['Airbnb', 'Hilton', 'Disney'], ['Today’s stay is the hero, with the action on it', 'Swipeable “Coming up”', 'Liquid-glass tab bar with a raised face button'], { tab: 'home' }),
+    S('checkins', 'Main', 'Check-ins', 'Your year in <em>check-ins.</em>', 'History opens with the year in numbers, then every venue with a photo. The filters work.', ['Airbnb Trips', 'Spotify Wrapped'], ['Hours saved, made concrete', 'Photo thumbnails make venues recognisable'], { tab: 'checkins' }),
+    S('wallet', 'Main', 'Wallet', 'Documents as <em>cards.</em>', 'Government IDs as a physical wallet. Tap a card to bring it forward; tap again to open it.', ['Apple Wallet', 'Revolut'], ['Identity strength score up top', 'Guilloché pattern on every card', 'In review in amber, never red'], { tab: 'wallet' }),
+    S('key', 'Main', 'Hotel stay', 'Your room <em>key.</em>', 'The room number is the biggest thing on the page. Press and hold to unlock — a deliberate gesture for a door.', ['Hilton Digital Key', 'Apple Home Key'], ['Hold-to-unlock with a filling bar and haptic tap', 'NFC pulse shows the phone is ready'], D),
+    S('park', 'Main', 'Theme park visit', 'Fast lane, <em>by face.</em>', 'The same stay template adapts per venue. For a theme park the pass becomes a fast-lane entry for the whole family.', ['Disney MagicBand'], ['Pass content changes by venue type', 'All four guests verified at a glance'], D),
+    S('pass', 'Main', 'My Truepas', 'Show your <em>pass.</em>', 'A scannable pass for venues without a face camera. The code rotates every minute so screenshots can’t be reused — watch the timer.', ['CLEAR', 'Apple Wallet'], ['White pass on navy for scan contrast', 'Live countdown ring, then a new code'], D),
+    S('notifications', 'Main', 'Notifications', 'Stay in the <em>loop.</em>', 'Grouped by day, colour-coded by kind, unread marked with a sky dot. Security alerts carry their own actions.', ['iOS Notification Center'], ['Check-in, family, trip, security and document events', '“Mark all read” works']),
+    S('journey', 'Main', 'Trip journey', 'Curb to gate, <em>by face.</em>', 'A boarding pass without a barcode. The plane flies its arc while the timeline shows every face check.', ['DigiYatra', 'Apple Wallet boarding pass'], ['Live “now” step pulses', 'Each checkpoint shows its match time']),
+    S('checkin', 'Face check-in', 'Live face check-in', 'Look at the <em>camera.</em>', 'The moment of truth, timed to the millisecond. Then the Dynamic Island blooms into a Live Activity.', ['iOS Live Activities', 'CLEAR'], ['Found → live → matching, with a running timer', 'Replay to watch it again'], D),
+    S('welcomed', 'Face check-in', 'Checked in', 'Welcome, <em>Pradeep.</em>', 'The match lands with the room — plus a privacy receipt of exactly what the hotel received.', ['Hilton', 'Apple Pay receipt'], ['“Matched in 0.8 seconds” makes speed visible', 'Shared vs never-shared, side by side']),
+    S('nomatch', 'Face check-in', 'Couldn’t match', 'We couldn’t <em>see you.</em>', 'Failure framed as a camera problem, not a person problem, with three concrete fixes.', [], ['Amber, never red, for recoverable errors', 'PIN fallback so nobody is stuck at the desk']),
+    S('pin', 'Face check-in', 'Confirm with PIN', 'Enter your <em>PIN.</em>', 'A calm keypad-first screen. Type any four digits and it confirms, then lands you in your room.', [], ['Large dots that fill as you type', 'Face shortcut on the keypad']),
+    S('doc-choose', 'Documents', 'Choose document', 'Which ID do you <em>have?</em>', 'Each document type is a miniature of the card itself, so people recognise theirs instantly. Tap to select.', [], ['Passport recommended for travel', '190+ countries via National ID']),
+    S('doc-scan', 'Documents', 'Scan document', 'Fit it in the <em>frame.</em>', 'A dark viewfinder with corner brackets and a moving scan line. Quality checks tick off, then it captures by itself.', ['Royal Caribbean'], ['No glare · all corners · sharp', 'Gallery upload as a fallback'], D),
+    S('doc-verifying', 'Documents', 'Verifying', 'Checking your <em>passport.</em>', 'Real steps instead of a spinner: photo, security features, face match, issuer check.', ['Royal Caribbean'], ['Each step says what was checked', 'Trust line: bank-grade encryption, ISO 27001']),
+    S('doc-verified', 'Documents', 'Verified', 'Passport <em>verified.</em>', 'Success shows the finished card and exactly what was read from it.', [], ['Extracted fields for a quick sanity check']),
+    S('doc-mismatch', 'Documents', 'Details mismatch', 'Details don’t <em>match.</em>', 'Instead of a generic error, field by field: what differs and what matches.', [], ['“Pradeep Mali” vs “Pradeep K. Mali” highlighted', 'Two fixes: use the passport name or retake']),
+    S('doc-detail', 'Documents', 'Document detail', 'One card, <em>full detail.</em>', 'The card (tiltable), share/replace/remove, its data and where it was recently used.', [], ['“Venues never see this document” reassurance', 'Usage history builds trust']),
+    S('family', 'Family', 'Family', 'Travel <em>together.</em>', 'Family members as portrait cards, each with its own status. Tap a card to open that person.', ['Disney', 'Apple Family Sharing'], ['Pending face scan flagged in amber', 'Guardian rule in one sentence']),
+    S('member', 'Family', 'Member', 'Every member, <em>their own face.</em>', 'A member’s page leads with their portrait, then identity, permissions and activity.', ['Disney'], ['Independent check-in toggle for adults', 'Real-time alerts for every check-in'], D),
+    S('member-pending', 'Family', 'Member · face pending', 'One step <em>left.</em>', 'When a member hasn’t scanned their face, the page leads with the action to finish it.', [], ['Status chip, step list and CTA all agree'], D),
+    S('member-activity', 'Family', 'Member activity', 'Their <em>journey.</em>', 'A vertical timeline of a member’s check-ins with venue icons and match time.', [], ['Average check-in time in the header']),
+    S('add-member', 'Family', 'Add member', 'Who’s joining <em>you?</em>', 'A four-step guided flow that starts with the relationship. The under-18 rule appears right at the date.', ['Royal Caribbean'], ['Selectable relationship chips', 'Guardian note in amber']),
+    S('member-doc', 'Family', 'Member document', 'Scan Kiara’s <em>ID.</em>', 'Document options adapt to the member: birth certificate first for children.', [], ['Recommended vs other documents']),
+    S('member-capture', 'Family', 'Capture document', 'Birth <em>certificate.</em>', 'The same viewfinder as the main flow, in a tall format for a paper certificate.', [], ['Consistent capture pattern everywhere'], D),
+    S('member-face', 'Family', 'Member face scan', 'Now scan <em>Kiara.</em>', 'The scanner adapts to scanning someone else: instructions speak to the parent holding the phone.', ['Disney'], ['Two short liveness steps for children'], D),
+    S('member-verifying', 'Family', 'Verifying member', 'Verifying <em>Kiara.</em>', 'Member verification mirrors document verification, ending with the link to the family.', [], ['Safe to leave; a notification follows']),
+    S('turns18', 'Family', 'Turns 18', 'Meera is now <em>18.</em>', 'A milestone moment: when a child comes of age, they’re invited to own their identity and keep their history.', [], ['Warm framing for a compliance requirement', 'Clear list of what changes'], D),
+    S('profile', 'Account', 'Profile', 'You, <em>verified.</em>', 'Person first: portrait, Truepas ID and three numbers, then calm grouped settings.', ['iOS Settings'], ['Every row leads somewhere', 'Sign out kept apart, in red'], { tab: 'me' }),
+    S('edit-profile', 'Account', 'Edit profile', 'Edit <em>profile.</em>', 'Fields verified from a document are locked, with the reason shown. Contact details stay editable.', [], ['Lock icon plus “verified from your passport”']),
+    S('settings', 'Account', 'Settings', 'Make it <em>yours.</em>', 'Grouped settings: check-in, appearance, preferences and privacy. Switches and the appearance control work.', ['iOS Settings'], ['Face check-in and Face ID unlock up front', 'Delete account kept in the privacy group']),
+    S('security', 'Account', 'Security', 'Well <em>protected.</em>', 'A score ring turns abstract settings into one number with one suggestion to improve it.', ['Google Security Checkup'], ['Signed-in devices with sign-out']),
+    S('change-password', 'Account', 'Change password', 'A new <em>password.</em>', 'A live strength meter with a checklist. Type in the field — rules turn green as they’re met.', [], ['Update button unlocks only at “Strong”']),
+    S('new-pin', 'Account', 'New PIN', 'Create a new <em>PIN.</em>', 'Two-step PIN change with progress at the top. Type four digits to continue.', [], []),
+    S('confirm-pin', 'Account', 'Confirm PIN', 'Confirm your <em>PIN.</em>', 'The mismatch state is shown inline under the dots, not in a popup. Type four digits to fix it.', [], ['The error says what to do next']),
+    S('help', 'Account', 'Help', 'How can we <em>help?</em>', 'Search, topic chips, an FAQ with the most common question open, and two ways to reach a person.', [], ['Accordion works', '24 × 7 chat and phone']),
+    S('about-tp', 'Account', 'About', 'Your face is your <em>pass.</em>', 'A brand moment: the mark glowing on navy with the guilloché pattern, then the legal links.', [], [], D),
+    S('terms', 'Account', 'Terms', 'Terms of <em>service.</em>', 'Readable legal: numbered sections, generous line height and a plain-language summary at the top.', [], ['“The short version” on every legal page']),
+    S('privacy-policy', 'Account', 'Privacy policy', 'Privacy, <em>plainly.</em>', 'Four short sections in plain language: what we collect, how we use it, who sees it, your rights.', [], ['DPDP Act rights named explicitly']),
+    S('privacy', 'Account', 'Biometric data', 'Your data, <em>your rules.</em>', 'Every switch, every share and the delete button in one place — the truepas.com promise made operable.', ['Apple App Privacy Report'], ['Per-industry switches with real usage', 'Pause the face template entirely', 'Ledger of recent shares']),
+    S('delete', 'Account', 'Delete account', 'Sorry to see you <em>go.</em>', 'Honest about consequences, with a deliberate typed confirmation. Type DELETE to unlock the button.', [], ['Lists exactly what gets erased', 'Optional reason chips']),
+    S('deleting', 'Account', 'Deleting', 'Deleting your <em>data.</em>', 'Deletion progress uses the same step pattern as verification, in red.', [], ['Moves on by itself when finished']),
+    S('deleted', 'Account', 'Deleted', 'Account <em>deleted.</em>', 'A graceful goodbye that confirms erasure, gives a reference and leaves the door open.', [], [])
   ];
   var order = SCREENS.map(function (s) { return s.id; });
   var byId = {};
@@ -91,8 +75,12 @@
   var timers = [];
   function later(fn, ms) { var t = setTimeout(fn, ms); timers.push(t); return t; }
   function clearTimers() { timers.forEach(clearTimeout); timers = []; }
-  function vibrate(ms) { try { if (navigator.vibrate) navigator.vibrate(ms); } catch (e) {} }
+  function vibrate(p) { try { if (navigator.vibrate) navigator.vibrate(p); } catch (e) {} }
   var CHECK = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"></path></svg>';
+  function vpOf(id) { return document.querySelector('.vp[data-id="' + id + '"]'); }
+
+  /* photos: each stored once, shared by every <img> that uses it */
+  if (window.IMAGES) document.querySelectorAll('img[data-img]').forEach(function (img) { img.src = window.IMAGES[img.dataset.img]; });
 
   /* ------------------------------------------------------------------
      Screen list
@@ -136,7 +124,6 @@
       if (on) {
         vp.scrollTop = 0;
         if (current) { void vp.offsetWidth; vp.classList.add(dir === 'next' ? 'in-next' : 'in-prev'); }
-        // restart entrance animations
         vp.querySelectorAll('.rise, .born-in, .medal').forEach(function (el) { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; });
       }
     });
@@ -157,10 +144,12 @@
     $('n-eyebrow').textContent = s.group;
     $('n-title').innerHTML = s.headline;
     $('n-text').textContent = s.note;
-    $('n-refs').innerHTML = (s.refs || []).map(function (r) { return '<span class="n-ref">' + r + '</span>'; }).join('');
-    $('n-list').innerHTML = (s.points || []).map(function (p) { return '<li>' + p + '</li>'; }).join('');
-    if (enter[id]) enter[id]();
+    $('n-refs').innerHTML = s.refs.map(function (r) { return '<span class="n-ref">' + r + '</span>'; }).join('');
+    $('n-list').innerHTML = s.points.map(function (p) { return '<li>' + p + '</li>'; }).join('');
     fields.forEach(function (f) { f.visible = !f.canvas.closest('.vp').hidden; if (f.visible && f.mode === 'welcome') f.assemble(); });
+    var vp = vpOf(id), seq = vp.querySelector('[data-seq]');
+    if (seq && SEQ[seq.dataset.seq]) SEQ[seq.dataset.seq](seq, vp);
+    if (enter[id]) enter[id](vp);
   }
   function go(id, dir) {
     if (location.hash.slice(1) === id) { show(id, dir); return; }
@@ -180,6 +169,8 @@
     if (e.key === 'ArrowRight') step(1);
     if (e.key === 'ArrowLeft') step(-1);
     if (e.key === 'Escape') closeDrawer();
+    if (/^[0-9]$/.test(e.key) && keyInput[current]) keyInput[current](e.key);
+    if (e.key === 'Backspace' && keyInput[current]) keyInput[current]('del');
   });
   function openDrawer() { body.classList.add('drawer-open'); }
   function closeDrawer() { body.classList.remove('drawer-open'); }
@@ -200,19 +191,18 @@
       t.classList.toggle('is-on', is);
       if (is) { on = t; t.setAttribute('aria-current', 'page'); } else t.removeAttribute('aria-current');
     });
-    var blob = $('tb-blob');
-    if (on) {
-      requestAnimationFrame(function () { blob.style.left = (on.offsetLeft + on.offsetWidth / 2 - 29) + 'px'; blob.style.opacity = 1; });
-    }
+    if (on) requestAnimationFrame(function () { var blob = $('tb-blob'); blob.style.left = (on.offsetLeft + on.offsetWidth / 2 - 29) + 'px'; blob.style.opacity = 1; });
   }
 
   /* ------------------------------------------------------------------
-     In-screen interactions
+     In-screen interactions (one delegated handler)
      ------------------------------------------------------------------ */
+  var keyInput = {};
   $('area').addEventListener('click', function (e) {
-    var tg = e.target.closest('.tg');
+    var t = e.target;
+    var tg = t.closest('.tg');
     if (tg) { tg.setAttribute('aria-checked', tg.getAttribute('aria-checked') === 'true' ? 'false' : 'true'); vibrate(8); return; }
-    var pill = e.target.closest('.pill');
+    var pill = t.closest('.pill');
     if (pill) {
       var vp = pill.closest('.vp');
       vp.querySelectorAll('.pill').forEach(function (p) { p.setAttribute('aria-selected', p === pill ? 'true' : 'false'); });
@@ -224,10 +214,33 @@
       });
       return;
     }
-    var w = e.target.closest('.wcard');
-    if (w) { bringToFront(w.dataset.k); vibrate(6); return; }
-    if (e.target.closest('#ci-replay')) { enter.checkin(); return; }
-    var a = e.target.closest('a[href]');
+    var segb = t.closest('.seg button');
+    if (segb) {
+      var seg = segb.parentElement, btns = Array.prototype.slice.call(seg.querySelectorAll('button')), i = btns.indexOf(segb);
+      btns.forEach(function (b) { b.setAttribute('aria-pressed', b === segb ? 'true' : 'false'); });
+      seg.querySelector('.thumb').style.transform = 'translateX(' + (i * 100) + '%)';
+      if (seg.dataset.panes) seg.closest('.vp').querySelectorAll('[data-pane-id]').forEach(function (p) { p.hidden = p.dataset.paneId !== segb.dataset.pane; });
+      vibrate(6);
+      return;
+    }
+    var ch = t.closest('.choice');
+    if (ch) {
+      var grp = ch.parentElement;
+      if (grp.dataset.multi) ch.setAttribute('aria-pressed', ch.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+      else grp.querySelectorAll('.choice').forEach(function (c) { c.setAttribute('aria-pressed', c === ch ? 'true' : 'false'); });
+      return;
+    }
+    var dc = t.closest('.dchoice');
+    if (dc && dc.tagName === 'BUTTON') { dc.closest('.vp').querySelectorAll('.dchoice').forEach(function (d) { d.classList.toggle('sel', d === dc); }); vibrate(6); return; }
+    var acc = t.closest('.acc-q');
+    if (acc) { acc.parentElement.classList.toggle('open'); return; }
+    var key = t.closest('.key[data-k]');
+    if (key) { if (keyInput[current]) keyInput[current](key.dataset.k); vibrate(5); return; }
+    var w = t.closest('.wcard[data-k]');
+    if (w) { if (wOrder[wOrder.length - 1] === w.dataset.k) go('doc-detail'); else bringToFront(w.dataset.k); vibrate(6); return; }
+    if (t.closest('#ci-replay')) { enter.checkin(); return; }
+    if (t.closest('[data-role="markall"]')) { vpOf('notifications').querySelectorAll('.nrow.unread').forEach(function (n) { n.classList.remove('unread'); }); return; }
+    var a = t.closest('a[href]');
     if (a) {
       var h = a.getAttribute('href');
       if (h === '#') { e.preventDefault(); return; }
@@ -240,16 +253,13 @@
   var wOrder = ['pan', 'dl', 'aadhaar', 'passport'];
   function layoutWallet() {
     wOrder.forEach(function (k, i) {
-      var el = document.querySelector('.wcard[data-k="' + k + '"]');
+      var el = document.querySelector('#wallet-stack .wcard[data-k="' + k + '"]');
       el.style.top = (i * 66) + 'px';
       el.style.zIndex = i + 1;
       el.style.transform = i === wOrder.length - 1 ? 'none' : 'scale(' + (0.94 + i * 0.02) + ')';
     });
   }
-  function bringToFront(k) {
-    wOrder = wOrder.filter(function (x) { return x !== k; }).concat(k);
-    layoutWallet();
-  }
+  function bringToFront(k) { wOrder = wOrder.filter(function (x) { return x !== k; }).concat(k); layoutWallet(); }
   layoutWallet();
 
   /* holographic tilt */
@@ -263,18 +273,16 @@
       card.style.setProperty('--mx', (px * 100).toFixed(1) + '%');
       card.style.setProperty('--my', (py * 100).toFixed(1) + '%');
     });
-    card.addEventListener('pointerleave', function () {
-      card.classList.remove('is-live');
-      card.style.setProperty('--ry', '0deg'); card.style.setProperty('--rx', '0deg');
-    });
+    card.addEventListener('pointerleave', function () { card.classList.remove('is-live'); card.style.setProperty('--ry', '0deg'); card.style.setProperty('--rx', '0deg'); });
   });
 
   /* guilloché security pattern */
   function guilloche(svg) {
     var vb = svg.getAttribute('viewBox').split(' ').map(Number), w = vb[2], h = vb[3];
     var d = '';
-    for (var k = 0; k < 22; k++) {
-      var y0 = (k / 21) * h;
+    var rows = Math.round(h / 10);
+    for (var k = 0; k < rows; k++) {
+      var y0 = (k / (rows - 1)) * h;
       for (var fam = 0; fam < 2; fam++) {
         d += 'M0 ' + y0.toFixed(1);
         for (var x = 6; x <= w; x += 6) {
@@ -283,7 +291,7 @@
         }
       }
     }
-    var cx = w * 0.86, cy = h * 0.2;
+    var cx = w * 0.86, cy = Math.min(h * 0.2, 60);
     for (var r = 0; r < 14; r++) {
       var R = 30 + r * 9;
       d += ' M' + (cx + R).toFixed(1) + ' ' + cy.toFixed(1);
@@ -297,13 +305,8 @@
   document.querySelectorAll('svg.guilloche').forEach(guilloche);
 
   /* hold to unlock */
-  var hold = $('key-hold'), holdT = null;
-  function holdReset() {
-    clearTimeout(holdT);
-    hold.classList.remove('is-holding', 'is-done');
-    $('key-lbl').innerHTML = $('key-lbl').dataset.idle;
-  }
-  $('key-lbl').dataset.idle = $('key-lbl').innerHTML;
+  var hold = $('key-hold'), holdT = null, holdIdle = $('key-lbl').innerHTML;
+  function holdReset() { clearTimeout(holdT); hold.classList.remove('is-holding', 'is-done'); $('key-lbl').innerHTML = holdIdle; }
   hold.addEventListener('pointerdown', function (e) {
     if (hold.classList.contains('is-done')) return;
     e.preventDefault();
@@ -320,6 +323,42 @@
     hold.addEventListener(ev, function () { if (!hold.classList.contains('is-done')) { clearTimeout(holdT); hold.classList.remove('is-holding'); } });
   });
 
+  /* password strength */
+  function pwCheck() {
+    var v = $('pw-new').value;
+    var rules = { len: v.length >= 8, up: /[A-Z]/.test(v), num: /[0-9]/.test(v), sym: /[^A-Za-z0-9]/.test(v) };
+    var n = 0;
+    $('pw-rules').querySelectorAll('li').forEach(function (li) { var ok = rules[li.dataset.r]; li.classList.toggle('ok', ok); if (ok) n++; });
+    if (!v) n = 0;
+    $('pw-meter').dataset.l = n;
+    var words = ['Too short', 'Weak', 'Fair', 'Good', 'Strong'], cols = ['#85949E', '#E5484D', '#C86E0A', '#0A8BFF', '#0B7A45'];
+    $('pw-word').textContent = words[n];
+    $('pw-word').style.color = cols[n];
+    $('pw-cta').classList.toggle('is-off', n < 4);
+  }
+  $('pw-new').addEventListener('input', pwCheck);
+  pwCheck();
+
+  /* type DELETE */
+  $('del-input').addEventListener('input', function () { $('del-cta').classList.toggle('is-off', this.value.trim().toUpperCase() !== 'DELETE'); });
+
+  /* rotating QR */
+  function qrSVG(seed) {
+    var n = 29, s = seed >>> 0, cells = '';
+    function rnd() { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }
+    function finder(x, y) { return '<rect x="' + x + '" y="' + y + '" width="7" height="7" fill="#0A1E2A"></rect><rect x="' + (x + 1) + '" y="' + (y + 1) + '" width="5" height="5" fill="#fff"></rect><rect x="' + (x + 2) + '" y="' + (y + 2) + '" width="3" height="3" fill="#0A1E2A"></rect>'; }
+    for (var y = 0; y < n; y++) for (var x = 0; x < n; x++) {
+      var inF = (x < 8 && y < 8) || (x > n - 9 && y < 8) || (x < 8 && y > n - 9);
+      var inLogo = x > 10 && x < 18 && y > 10 && y < 18;
+      if (inF || inLogo) continue;
+      var on = (y === 6 || x === 6) ? ((x + y) % 2 === 0) : rnd() > 0.52;
+      if (on) cells += '<rect x="' + x + '" y="' + y + '" width="1" height="1"></rect>';
+    }
+    return '<g fill="#0A1E2A">' + cells + '</g>' + finder(0, 0) + finder(n - 7, 0) + finder(0, n - 7);
+  }
+  var qrSeed = 4821;
+  document.querySelectorAll('svg.qr').forEach(function (q) { q.innerHTML = qrSVG(qrSeed); });
+
   /* ------------------------------------------------------------------
      Dynamic Island / Live Activity
      ------------------------------------------------------------------ */
@@ -331,51 +370,177 @@
   function closeIsland() { $('island').classList.remove('is-open'); $('live-toast').classList.remove('is-open'); }
 
   /* ------------------------------------------------------------------
-     Screen entry sequences
+     Shared sequences, keyed by data-seq
      ------------------------------------------------------------------ */
-  var enter = {};
   var C = 879.6;
-  enter.key = holdReset;
+  var SEQ = {};
 
-  enter.facescan = function () {
-    var steps = [
-      { el: 'fs-s1', text: 'Blink slowly, twice.', yaw: 0, prog: 0.33 },
-      { el: 'fs-s2', text: 'Slowly turn your head to the left.', yaw: -0.62, prog: 0.66 },
-      { el: 'fs-s3', text: 'Now give us a smile.', yaw: 0, prog: 1 }
-    ];
-    var f = fieldFor('fs-canvas');
-    $('fs-cta').classList.add('is-hidden');
-    $('fs-prog').style.stroke = '';
-    $('fs-prog').style.strokeDashoffset = C;
-    $('fs-bar3').style.opacity = '.45';
-    steps.forEach(function (s) { $(s.el).className = 'ls'; });
-    if (f) { f.done = false; f.targetYaw = 0; f.smile = 0; f.assemble(); }
-    steps.forEach(function (s, i) {
+  // labels for liveness chips
+  document.querySelectorAll('.ls').forEach(function (c) { c.dataset.label = c.textContent.trim(); });
+
+  SEQ.liveness = function (scr) {
+    var chips = scr.querySelectorAll('.ls'), n = chips.length;
+    var instr = scr.querySelector('[data-role="instr"]'), prog = scr.querySelector('[data-role="prog"]');
+    var cta = scr.querySelector('[data-role="cta"]'), bar = scr.querySelector('[data-role="bar"]');
+    var f = fieldIn(scr);
+    cta.classList.add('is-hidden');
+    prog.style.stroke = ''; prog.style.strokeDashoffset = C;
+    if (bar) bar.style.opacity = '.45';
+    chips.forEach(function (c) { c.className = 'ls'; c.innerHTML = '<span class="d"></span>' + c.dataset.label; });
+    instr.textContent = chips[0].dataset.text;
+    if (f) { f.done = false; f.targetYaw = 0; f.smile = 0; f.blink = false; f.assemble(); }
+    var per = 1900;
+    chips.forEach(function (c, i) {
       later(function () {
-        $(s.el).className = 'ls on';
-        $('fs-instr').textContent = s.text;
-        if (f) { f.targetYaw = s.yaw; f.smile = i === 2 ? 1 : 0; f.blink = i === 0; }
-      }, 300 + i * 1900);
+        c.className = 'ls on';
+        instr.textContent = c.dataset.text;
+        if (f) { f.targetYaw = +(c.dataset.yaw || 0); f.smile = c.dataset.smile ? 1 : 0; f.blink = !!c.dataset.blink; }
+      }, 300 + i * per);
       later(function () {
-        $(s.el).className = 'ls done';
-        $(s.el).innerHTML = CHECK + ' ' + $(s.el).textContent;
-        $('fs-prog').style.strokeDashoffset = C * (1 - s.prog);
+        c.className = 'ls done';
+        c.innerHTML = CHECK + ' ' + c.dataset.label;
+        prog.style.strokeDashoffset = C * (1 - (i + 1) / n);
         vibrate(8);
-      }, 300 + i * 1900 + 1600);
+      }, 300 + i * per + 1600);
     });
     later(function () {
       if (f) { f.targetYaw = 0; f.done = true; f.blink = false; f.smile = 0; }
-      $('fs-prog').style.stroke = '#4BE39A';
-      $('fs-bar3').style.opacity = '1';
-      $('fs-instr').textContent = 'Done. Your face template is sealed on this phone.';
-      $('fs-cta').classList.remove('is-hidden');
+      prog.style.stroke = '#4BE39A';
+      if (bar) bar.style.opacity = '1';
+      instr.textContent = scr.dataset.done || 'Done.';
+      cta.classList.remove('is-hidden');
       vibrate([15, 30, 25]);
-    }, 300 + 3 * 1900);
+    }, 300 + n * per);
   };
-  // reset labels that got a check prepended
-  ['fs-s1', 'fs-s2', 'fs-s3'].forEach(function (id) { $(id).dataset.label = $(id).textContent.trim(); });
-  var _fs = enter.facescan;
-  enter.facescan = function () { ['fs-s1', 'fs-s2', 'fs-s3'].forEach(function (id) { $(id).innerHTML = '<span class="d"></span>' + $(id).dataset.label; }); _fs(); };
+
+  document.querySelectorAll('[data-role="title"]').forEach(function (t) { t.dataset.orig = t.innerHTML; });
+  SEQ.process = function (scr) {
+    var steps = scr.querySelectorAll('.pstep'), n = steps.length;
+    var ring = scr.querySelector('[data-role="ring"] circle.p'), pct = scr.querySelector('[data-role="pct"]');
+    var title = scr.querySelector('[data-role="title"]'), cta = scr.querySelector('[data-role="cta"]');
+    steps.forEach(function (s) { s.className = 'pstep'; s.querySelector('.pm').innerHTML = ''; });
+    if (ring) { ring.style.strokeDashoffset = 490; }
+    if (pct) pct.textContent = '0%';
+    title.innerHTML = title.dataset.orig;
+    cta.classList.add('is-hidden');
+    var per = 820;
+    steps.forEach(function (s, i) {
+      later(function () { s.classList.add('is-active'); }, 350 + i * per);
+      later(function () {
+        s.classList.remove('is-active'); s.classList.add('is-done'); s.querySelector('.pm').innerHTML = CHECK;
+        var p = (i + 1) / n;
+        if (ring) ring.style.strokeDashoffset = 490 * (1 - p);
+        if (pct) pct.textContent = Math.round(p * 100) + '%';
+        vibrate(6);
+      }, 350 + i * per + 680);
+    });
+    later(function () {
+      title.innerHTML = title.dataset.done;
+      cta.classList.remove('is-hidden');
+      vibrate([15, 30, 25]);
+      if (scr.dataset.autoNext) later(function () { go(scr.dataset.autoNext); }, 1500);
+    }, 350 + n * per + 200);
+  };
+
+  SEQ.capture = function (scr) {
+    var vf = scr.querySelector('.vf'), bar = scr.querySelector('.capbar'), chip = scr.querySelector('[data-role="chip"]');
+    var cta = scr.querySelector('[data-role="cta"]'), instr = scr.querySelector('[data-role="instr"]'), tips = scr.querySelectorAll('.tip');
+    if (!instr.dataset.orig) instr.dataset.orig = instr.textContent;
+    vf.classList.remove('is-captured');
+    bar.className = 'capbar mt-16';
+    chip.textContent = 'Hold steady · auto-capturing';
+    instr.textContent = instr.dataset.orig;
+    cta.classList.add('is-hidden');
+    tips.forEach(function (tp) { var m = tp.querySelector('.ci-mark'); m.innerHTML = ''; m.style.background = ''; tp.style.color = ''; });
+    later(function () { void bar.offsetWidth; bar.classList.add('go'); }, 300);
+    tips.forEach(function (tp, i) {
+      later(function () { var m = tp.querySelector('.ci-mark'); m.innerHTML = CHECK; m.style.background = '#14A866'; tp.style.color = '#EAF4FA'; vibrate(5); }, 800 + i * 600);
+    });
+    later(function () {
+      vf.classList.add('is-captured');
+      bar.className = 'capbar mt-16 done';
+      chip.textContent = 'Captured · looks sharp';
+      instr.textContent = 'Captured. Make sure every detail is readable.';
+      cta.classList.remove('is-hidden');
+      vibrate([10, 30, 20]);
+    }, 2700);
+  };
+
+  SEQ.otp = function (scr, vp) {
+    var box = scr.querySelector('.otp'), cells = box.querySelectorAll('i'), status = scr.querySelector('[data-role="status"]'), cta = scr.querySelector('[data-role="cta"]');
+    var code = '';
+    function paint() {
+      cells.forEach(function (c, i) { c.textContent = code[i] || ''; c.classList.toggle('cur', i === code.length && code.length < 6); });
+      if (code.length === 6) {
+        box.classList.add('ok');
+        status.className = 'status-line ok';
+        status.textContent = 'Verified · +91 98200 41827';
+        cta.classList.remove('is-hidden');
+        vibrate([15, 30, 25]);
+      }
+    }
+    box.classList.remove('ok');
+    status.className = 'status-line';
+    cta.classList.add('is-hidden');
+    var sec = 24;
+    (function tick() { if (code.length < 6) { status.textContent = 'Resend code in 0:' + String(sec).padStart(2, '0'); if (sec > 0) { sec--; later(tick, 1000); } else status.textContent = 'Didn’t get it? Resend code'; } })();
+    keyInput[vp.dataset.id] = function (k) {
+      if (code.length === 6) return;
+      code = k === 'del' ? code.slice(0, -1) : code + k;
+      paint();
+    };
+    paint();
+    var auto = box.dataset.auto;
+    for (var i = 0; i < 6; i++) (function (i) { later(function () { if (code.length === i) { code += auto[i]; paint(); } }, 1400 + i * 240); })(i);
+  };
+
+  SEQ.pin = function (scr, vp) {
+    var dots = scr.querySelector('.dots'), d = dots.querySelectorAll('i'), status = scr.querySelector('[data-role="status"]');
+    var pin = '';
+    if (!status.dataset.orig) status.dataset.orig = status.textContent;
+    function paint() { d.forEach(function (x, i) { x.classList.toggle('on', i < pin.length); }); }
+    dots.className = 'dots mt-28';
+    status.className = 'status-line mt-12';
+    status.textContent = status.dataset.orig;
+    if (scr.dataset.startBad) {
+      later(function () { dots.classList.add('bad'); status.className = 'status-line mt-12 bad'; status.textContent = 'Those PINs didn’t match. Type it again.'; vibrate([30, 40, 30]); }, 450);
+    }
+    keyInput[vp.dataset.id] = function (k) {
+      if (pin.length === 4) return;
+      dots.classList.remove('bad');
+      pin = k === 'del' ? pin.slice(0, -1) : pin + k;
+      paint();
+      if (pin.length === 4) {
+        dots.classList.add('ok');
+        status.className = 'status-line mt-12 ok';
+        status.textContent = scr.dataset.next === 'confirm-pin' ? 'Got it. Now confirm.' : 'Confirmed';
+        vibrate([15, 30, 25]);
+        later(function () { go(scr.dataset.next); }, 750);
+      }
+    };
+    paint();
+  };
+
+  /* ------------------------------------------------------------------
+     Screen-specific entries
+     ------------------------------------------------------------------ */
+  var enter = {};
+  enter.key = holdReset;
+  enter['delete'] = function () { $('del-input').value = ''; $('del-cta').classList.add('is-off'); };
+  enter.pass = function () {
+    var sec = 60, ring = $('qr-ring');
+    function tick() {
+      $('qr-sec').textContent = '0:' + String(sec).padStart(2, '0');
+      ring.style.strokeDashoffset = 50.3 * (1 - sec / 60);
+      if (sec === 0) {
+        qrSeed += 7919;
+        document.querySelectorAll('svg.qr').forEach(function (q) { q.style.opacity = 0; setTimeout(function () { q.innerHTML = qrSVG(qrSeed); q.style.opacity = 1; }, 250); });
+        sec = 60; vibrate(8);
+      } else sec--;
+      later(tick, 1000);
+    }
+    tick();
+  };
 
   enter.checkin = function () {
     clearTimers(); closeIsland();
@@ -394,13 +559,12 @@
     later(function () { act(0); $('ci-prog').style.strokeDashoffset = C * 0.72; }, 350);
     later(function () { done(0); act(1); $('ci-prog').style.strokeDashoffset = C * 0.42; }, 900);
     later(function () { done(1); act(2); $('ci-prog').style.strokeDashoffset = C * 0.12; startTimer(); }, 1500);
-    var raf = null, t0 = 0;
     function startTimer() {
-      t0 = performance.now();
+      var t0 = performance.now();
       (function tick(now) {
         var el = Math.min(0.82, (now - t0) / 1000 * 0.82 / 0.9);
         $('ci-timer').textContent = el.toFixed(2) + ' s';
-        if (el < 0.82 && current === 'checkin') raf = requestAnimationFrame(tick);
+        if (el < 0.82 && current === 'checkin') requestAnimationFrame(tick);
       })(t0);
     }
     later(function () {
@@ -425,28 +589,27 @@
     var pts = [];
     var N = 2300, ga = Math.PI * (3 - Math.sqrt(5));
     function g(x, y, sx, sy) { return Math.exp(-(x * x) / sx - (y * y) / sy); }
+    function F(fx, fy) {
+      var ax = Math.abs(fx);
+      return 0.30 * g(fx, fy + 0.06, 0.010, 0.05)
+        - 0.08 * g(ax - 0.29, fy - 0.17, 0.014, 0.006)
+        + 0.05 * g(ax - 0.29, fy - 0.31, 0.03, 0.004)
+        + 0.06 * g(fx, fy + 0.46, 0.035, 0.006)
+        - 0.035 * g(fx, fy + 0.46, 0.04, 0.0006)
+        + 0.045 * g(ax - 0.42, fy + 0.1, 0.03, 0.03);
+    }
     for (var i = 0; i < N; i++) {
       var uy = 1 - (i / (N - 1)) * 2, rad = Math.sqrt(1 - uy * uy), th = ga * i;
       var ux = Math.cos(th) * rad, uz = Math.sin(th) * rad;
       var x = ux * 0.78, y = uy * 1.0, z = uz * 0.84;
       if (y < -0.15) { var k = Math.min(1, (-0.15 - y) / 0.85); x *= 1 - 0.38 * k * k; z *= 1 - 0.18 * k; }
-      var front = Math.max(0, uz);
-      var fw = front * front;
-      var F = function (fx, fy) {
-        var ax = Math.abs(fx);
-        return 0.30 * g(fx, fy + 0.06, 0.010, 0.05)
-          - 0.08 * g(ax - 0.29, fy - 0.17, 0.014, 0.006)
-          + 0.05 * g(ax - 0.29, fy - 0.31, 0.03, 0.004)
-          + 0.06 * g(fx, fy + 0.46, 0.035, 0.006)
-          - 0.035 * g(fx, fy + 0.46, 0.04, 0.0006)
-          + 0.045 * g(ax - 0.42, fy + 0.1, 0.03, 0.03);
-      };
+      var fw = Math.max(0, uz); fw *= fw;
       var ep = 0.012;
       var gx = (F(x + ep, y) - F(x - ep, y)) / (2 * ep), gy = (F(x, y + ep) - F(x, y - ep)) / (2 * ep);
       z += fw * F(x, y);
       var nx = ux - fw * gx * 0.9, ny = uy - fw * gy * 0.9, nz = uz, nl = Math.sqrt(nx * nx + ny * ny + nz * nz) || 1;
-      var axx = Math.abs(x);
-      pts.push({ x: x, y: y, z: z, nx: nx / nl, ny: ny / nl, nz: nz / nl, eye: g(axx - 0.29, y - 0.17, 0.006, 0.003) > 0.5 && uz > 0.3, mouth: g(x, y + 0.46, 0.02, 0.002) > 0.4 && uz > 0.3 });
+      var ax = Math.abs(x);
+      pts.push({ x: x, y: y, z: z, nx: nx / nl, ny: ny / nl, nz: nz / nl, eye: g(ax - 0.29, y - 0.17, 0.006, 0.003) > 0.5 && uz > 0.3, mouth: g(x, y + 0.46, 0.02, 0.002) > 0.4 && uz > 0.3 });
     }
     for (var j = 0; j < 260; j++) {
       var a = Math.random() * Math.PI * 2, yy = -0.95 - Math.random() * 0.55;
@@ -460,12 +623,9 @@
 
   var fields = [];
   function FaceField(canvas) {
-    this.canvas = canvas;
-    this.ctx = canvas.getContext('2d');
-    this.mode = canvas.dataset.mode;
+    this.canvas = canvas; this.ctx = canvas.getContext('2d'); this.mode = canvas.dataset.mode;
     this.yaw = 0; this.targetYaw = 0; this.smile = 0; this.done = false; this.blink = false;
-    this.t0 = performance.now();
-    this.visible = false;
+    this.t0 = performance.now(); this.visible = false;
   }
   FaceField.prototype.assemble = function () { this.t0 = performance.now(); };
   FaceField.prototype.draw = function (now) {
@@ -476,9 +636,7 @@
     if (c.width !== Math.round(w * dpr)) { c.width = Math.round(w * dpr); c.height = Math.round(h * dpr); }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, w, h);
-    var t = (now - this.t0) / 1000;
-    var prog = Math.min(1, t / 2.2);
-    var yaw;
+    var t = (now - this.t0) / 1000, prog = Math.min(1, t / 2.2), yaw;
     if (this.mode === 'welcome') yaw = 0.32 + Math.sin(now / 2600) * 0.42;
     else { this.yaw += (this.targetYaw - this.yaw) * 0.06; yaw = this.yaw + 0.22 + Math.sin(now / 1800) * 0.12; }
     var pitch = Math.sin(now / 3400) * 0.08 - 0.05;
@@ -489,18 +647,18 @@
     var col = this.done ? [75, 227, 154] : [110, 205, 255];
     var blinkK = this.blink ? Math.max(0, Math.sin(now / 160)) : 0;
     ctx.globalCompositeOperation = 'lighter';
-    var proj = function (x, y, z) {
+    function proj(x, y, z) {
       var x1 = x * cy + z * sy, z1 = -x * sy + z * cy;
       var y1 = y * cp - z1 * sp, z2 = y * sp + z1 * cp;
       var s = 3.2 / (3.2 - z2);
       return [ox + x1 * s * R, oy - y1 * s * R, z2];
-    };
+    }
     for (var i = 0; i < HEAD.length; i++) {
       var p = HEAD[i];
       var e = Math.max(0, Math.min(1, (prog - p.delay * 0.6) / 0.55));
       e = 1 - Math.pow(1 - e, 3);
       var py = p.y, px = p.x;
-      if (p.mouth && this.smile) { py += 0.03 * this.smile * (Math.abs(px) / 0.2); }
+      if (p.mouth && this.smile) py += 0.03 * this.smile * (Math.abs(px) / 0.2);
       if (p.eye && blinkK > 0.6) continue;
       var x = p.sx + (px - p.sx) * e, y = p.sy + (py - p.sy) * e, z = p.sz + (p.z - p.sz) * e;
       var q = proj(x, y, z);
@@ -511,8 +669,7 @@
       var depth = (q[2] + 0.9) / 1.9;
       var a = (p.neck ? 0.3 : 1) * (0.08 + 0.92 * Math.pow(lam, 1.5)) * (0.35 + 0.65 * depth) * (0.3 + 0.7 * e);
       var size = 0.55 + 1.35 * lam;
-      var band = Math.abs(y - scanY) < 0.05 && e > 0.95;
-      if (band) { a = Math.min(1, a + 0.6); size *= 1.7; ctx.fillStyle = 'rgba(225,248,255,' + a.toFixed(3) + ')'; }
+      if (Math.abs(y - scanY) < 0.05 && e > 0.95) { a = Math.min(1, a + 0.6); size *= 1.7; ctx.fillStyle = 'rgba(225,248,255,' + a.toFixed(3) + ')'; }
       else ctx.fillStyle = 'rgba(' + col[0] + ',' + col[1] + ',' + col[2] + ',' + a.toFixed(3) + ')';
       ctx.fillRect(q[0] - size / 2, q[1] - size / 2, size, size);
     }
@@ -535,7 +692,7 @@
     ctx.globalCompositeOperation = 'source-over';
   };
   document.querySelectorAll('canvas.facefield').forEach(function (c) { fields.push(new FaceField(c)); });
-  function fieldFor(id) { for (var i = 0; i < fields.length; i++) if (fields[i].canvas.id === id) return fields[i]; return null; }
+  function fieldIn(scr) { for (var i = 0; i < fields.length; i++) if (scr.contains(fields[i].canvas)) return fields[i]; return null; }
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   (function loop(now) {
     fields.forEach(function (f) { if (f.visible) f.draw(reduce ? f.t0 + 5000 : now); });
@@ -570,7 +727,7 @@
   /* swipe between screens */
   var sx = 0, sy = 0, st = 0, tracking = false;
   $('area').addEventListener('touchstart', function (e) {
-    if (!body.classList.contains('native') || e.touches.length !== 1 || e.target.closest('.carousel, .pills, .hold')) { tracking = false; return; }
+    if (!body.classList.contains('native') || e.touches.length !== 1 || e.target.closest('.carousel, .pills, .hold, .keypad, .seg, input')) { tracking = false; return; }
     tracking = true; sx = e.touches[0].clientX; sy = e.touches[0].clientY; st = Date.now();
   }, { passive: true });
   $('area').addEventListener('touchend', function (e) {

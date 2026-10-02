@@ -27,7 +27,7 @@
   <div class="row-x rise" style="--d: 5; gap: 6px; margin-top: 18px"><i style="width: 26px; height: 5px; border-radius: 3px; background: #08B6FC"></i><i style="width: 6px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.3)"></i><i style="width: 6px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.3)"></i></div>
   <div class="stack rise" style="--d: 6; margin-top: 24px">
     <a class="btn btn-primary" href="#create">Create your Truepas {{i:arrow-right}}</a>
-    <a class="btn btn-glass" href="#home">I already have an account</a>
+    <a class="btn btn-glass" href="#signin">I already have an account</a>
   </div>
 </div>
 </section>
@@ -47,8 +47,8 @@
   </form>
   <label class="row-x mt-20 rise" style="--d: 3; align-items: flex-start; gap: 12px; font-size: 13px; line-height: 1.5; color: var(--ink-2)"><span style="width: 22px; height: 22px; flex: none; border-radius: 7px; background: var(--grad); color: #fff; display: grid; place-items: center; margin-top: 1px">{{i:check:14}}</span><span>I agree to the <b style="color: var(--ink)">Terms</b> and <b style="color: var(--ink)">Privacy Policy</b>, and to receive verification codes.</span></label>
   <div class="grow"></div>
-  <a class="btn btn-primary mt-24" href="#consent">Continue {{i:arrow-right}}</a>
-  <p class="small mt-16" style="text-align: center">Already have an account? <a href="#home" style="color: var(--blue); font-weight: 700; text-decoration: none">Sign in with your face</a></p>
+  <a class="btn btn-primary mt-24" href="#otp">Continue {{i:arrow-right}}</a>
+  <p class="small mt-16" style="text-align: center">Already have an account? <a href="#signin" style="color: var(--blue); font-weight: 700; text-decoration: none">Sign in with your face</a></p>
 </div>
 </section>
 
@@ -56,7 +56,7 @@
 <section class="vp" data-id="consent" hidden>
 <div class="scr">
   <div class="sky-wash"></div>
-  <div class="topbar"><a class="iconbtn" href="#create" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Biometric consent</span><span class="count">2/3</span></div>
+  <div class="topbar"><a class="iconbtn" href="#about" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Biometric consent</span><span class="count">2/3</span></div>
   <div class="steps-bar mt-16"><i class="on"></i><i class="on"></i><i></i></div>
   <h1 class="t-xl mt-28 rise" style="--d: 0">Your face, <em>your control.</em></h1>
   <p class="lead mt-8 rise" style="--d: 1">Three promises before we ever open the camera.</p>
@@ -81,28 +81,28 @@
 
 <!-- 04 FACE SCAN -->
 <section class="vp" data-id="facescan" hidden>
-<div class="scr dark">
+<div class="scr dark" data-seq="liveness" data-done="Done. Your face template is sealed on this phone.">
   <div class="aurora"><i></i><i></i><i></i></div>
   <div class="topbar"><a class="iconbtn glass" href="#consent" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Face verification</span><span class="count" style="color: rgba(234,244,250,.5)">3/3</span></div>
-  <div class="steps-bar mt-16"><i class="on"></i><i class="on"></i><i class="on" id="fs-bar3" style="opacity: .45"></i></div>
+  <div class="steps-bar mt-16"><i class="on"></i><i class="on"></i><i class="on" data-role="bar" style="opacity: .45"></i></div>
   <h1 class="t-xl mt-28" style="text-align: center">Verify your <em>face</em></h1>
-  <p class="lead mt-8" id="fs-instr" style="text-align: center; color: rgba(234,244,250,.72); min-height: 46px">Blink slowly, twice.</p>
+  <p class="lead mt-8" data-role="instr" style="text-align: center; color: rgba(234,244,250,.72); min-height: 46px">Blink slowly, twice.</p>
   <div class="scanner mt-20" id="fs-scanner">
     <svg class="ring" viewBox="0 0 300 300" aria-hidden="true">
       <defs><linearGradient id="fsg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7FD8FF"></stop><stop offset="1" stop-color="#0A8BFF"></stop></linearGradient></defs>
       <circle cx="150" cy="150" r="148" fill="none" stroke="rgba(127,216,255,.12)" stroke-width="1"></circle>
       <circle cx="150" cy="150" r="128" fill="none" stroke="rgba(127,216,255,.28)" stroke-width="9" stroke-dasharray="1.6 8.45"></circle>
-      <circle class="ring-prog" id="fs-prog" cx="150" cy="150" r="140" fill="none" stroke="url(#fsg)" stroke-width="4" stroke-linecap="round" stroke-dasharray="879.6" stroke-dashoffset="879.6" transform="rotate(-90 150 150)"></circle>
+      <circle class="ring-prog" data-role="prog" cx="150" cy="150" r="140" fill="none" stroke="url(#fsg)" stroke-width="4" stroke-linecap="round" stroke-dasharray="879.6" stroke-dashoffset="879.6" transform="rotate(-90 150 150)"></circle>
     </svg>
-    <div class="core"><canvas class="facefield" data-mode="scan" id="fs-canvas"></canvas></div>
+    <div class="core"><canvas class="facefield" data-mode="scan"></canvas></div>
   </div>
   <div class="live-steps mt-28">
-    <span class="ls on" id="fs-s1"><span class="d"></span>Blink</span>
-    <span class="ls" id="fs-s2"><span class="d"></span>Turn left</span>
-    <span class="ls" id="fs-s3"><span class="d"></span>Smile</span>
+    <span class="ls" data-text="Blink slowly, twice." data-blink="1">Blink</span>
+    <span class="ls" data-text="Slowly turn your head to the left." data-yaw="-0.62">Turn left</span>
+    <span class="ls" data-text="Now give us a smile." data-smile="1">Smile</span>
   </div>
   <div class="grow"></div>
-  <a class="btn btn-primary is-hidden" id="fs-cta" href="#born">Continue {{i:arrow-right}}</a>
+  <a class="btn btn-primary is-hidden" data-role="cta" href="#born">Continue {{i:arrow-right}}</a>
   <p class="small mt-16 row-x" style="justify-content: center; gap: 8px; color: rgba(234,244,250,.5)">{{i:shield-check:16}}Encrypted on-device · never stored as a photo</p>
 </div>
 </section>
@@ -141,8 +141,8 @@
   <div class="row-x">
     <a href="#profile" aria-label="Profile"><img class="av ring" src="{{img:pradeep}}" alt=""></a>
     <span style="flex: 1; display: flex; flex-direction: column"><span class="small" style="font-size: 13px">Good evening</span><b style="font-size: 18px; letter-spacing: -.02em">Pradeep</b></span>
-    <button type="button" class="iconbtn" aria-label="Show my code">{{i:qr}}</button>
-    <button type="button" class="iconbtn" aria-label="Notifications">{{i:bell}}<span class="dot"></span></button>
+    <a class="iconbtn" href="#pass" aria-label="Show my code">{{i:qr}}</a>
+    <a class="iconbtn" href="#notifications" aria-label="Notifications">{{i:bell}}<span class="dot"></span></a>
   </div>
   <h1 class="t-xl mt-20 rise" style="--d: 0">Where are you going <em>today?</em></h1>
   <div class="holo-wrap mt-20 rise" style="--d: 1">
@@ -170,7 +170,7 @@
   <div class="sec-head"><h3>Coming up</h3><a class="link" href="#checkins">See all</a></div>
   <div class="carousel">
     <a class="ccard" href="#journey" style="text-decoration: none; color: inherit"><div class="im"><img src="{{img:t_flight}}" alt=""><span class="chip chip-dark">{{i:plane:14}} Flight</span></div><div class="tx"><span class="w">Sat, 4 Oct · 06:45</span><b>Mumbai → Jaipur</b><span>BOM T2 · Gate 42B</span></div></a>
-    <div class="ccard"><div class="im"><img src="{{img:park}}" alt=""><span class="chip chip-dark">{{i:ticket:14}} Theme park</span></div><div class="tx"><span class="w">Tomorrow · 10:30 AM</span><b>Celestia Wonderland</b><span>Lonavala · 4 guests</span></div></div>
+    <a class="ccard" href="#park" style="text-decoration: none; color: inherit"><div class="im"><img src="{{img:park}}" alt=""><span class="chip chip-dark">{{i:ticket:14}} Theme park</span></div><div class="tx"><span class="w">Tomorrow · 10:30 AM</span><b>Celestia Wonderland</b><span>Lonavala · 4 guests</span></div></a>
     <div class="ccard"><div class="im"><img src="{{img:t_cruise}}" alt=""><span class="chip chip-dark">{{i:ship:14}} Cruise</span></div><div class="tx"><span class="w">12 – 16 Oct</span><b>Coral Voyager</b><span>Goa → Lakshadweep</span></div></div>
   </div>
 
@@ -231,6 +231,7 @@
   <div class="grow"></div>
   <a class="btn btn-primary is-hidden mt-20" id="ci-cta" href="#welcomed">See your room {{i:arrow-right}}</a>
   <button type="button" class="btn btn-text is-hidden" id="ci-replay" style="margin-top: 4px">{{i:replay:18}} Replay</button>
+  <a class="btn btn-text" href="#nomatch" style="height: 40px; font-size: 14px; color: rgba(234,244,250,.6)">Having trouble?</a>
 </div>
 </section>
 
@@ -342,7 +343,7 @@
   <div class="f-group"><div class="sec-head"><h3>Upcoming</h3><span class="link">5 trips</span></div>
   <div class="card list">
     <a class="lrow f-row" data-cat="hotel" href="#key" style="text-decoration: none"><img class="thumb" src="{{img:t_marine}}" alt=""><span class="main"><b>Marine Bay Grand</b><span>Hotel · Colaba · Today 2:00 PM</span></span><span class="chip chip-ok">Ready</span></a>
-    <div class="lrow f-row" data-cat="event"><img class="thumb" src="{{img:t_park}}" alt=""><span class="main"><b>Celestia Wonderland</b><span>Theme park · Tomorrow 10:30</span></span><span class="chip chip-info">Upcoming</span></div>
+    <a class="lrow f-row" data-cat="event" href="#park" style="text-decoration: none"><img class="thumb" src="{{img:t_park}}" alt=""><span class="main"><b>Celestia Wonderland</b><span>Theme park · Tomorrow 10:30</span></span><span class="chip chip-info">Upcoming</span></a>
     <a class="lrow f-row" data-cat="travel" href="#journey" style="text-decoration: none"><img class="thumb" src="{{img:t_flight}}" alt=""><span class="main"><b>Mumbai → Jaipur</b><span>Flight · BOM T2 · Sat 06:45</span></span><span class="chip chip-info">Upcoming</span></a>
     <div class="lrow f-row" data-cat="event"><img class="thumb" src="{{img:t_cinema}}" alt=""><span class="main"><b>Midnight Monsoon</b><span>Cinema · IMAX · Sat 7:30 PM</span></span><span class="chip chip-info">Upcoming</span></div>
     <div class="lrow f-row" data-cat="travel"><img class="thumb" src="{{img:t_cruise}}" alt=""><span class="main"><b>Coral Voyager</b><span>Cruise · Goa → Lakshadweep</span></span><span class="chip chip-info">Upcoming</span></div>
@@ -360,12 +361,12 @@
 <!-- 12 WALLET -->
 <section class="vp" data-id="wallet" hidden>
 <div class="scr has-tab">
-  <div class="between"><h1 class="t-xl">Wallet</h1><button type="button" class="iconbtn" aria-label="Add a document" style="background: var(--grad); color: #fff; box-shadow: 0 10px 22px -8px rgba(10,139,255,.6)">{{i:plus}}</button></div>
+  <div class="between"><h1 class="t-xl">Wallet</h1><a class="iconbtn" href="#doc-choose" aria-label="Add a document" style="background: var(--grad); color: #fff; box-shadow: 0 10px 22px -8px rgba(10,139,255,.6)">{{i:plus}}</a></div>
   <div class="card pad mt-20 strength">
     <div class="ringnum"><svg width="58" height="58" viewBox="0 0 58 58" aria-hidden="true"><circle cx="29" cy="29" r="25" fill="none" stroke="#E3F6EC" stroke-width="6"></circle><circle cx="29" cy="29" r="25" fill="none" stroke="#14A866" stroke-width="6" stroke-linecap="round" stroke-dasharray="157" stroke-dashoffset="12.6" transform="rotate(-90 29 29)"></circle></svg><b>92</b></div>
     <span style="display: flex; flex-direction: column; gap: 2px"><b style="font-size: 16px">3 of 4 documents verified</b><span class="small" style="font-size: 13px">Your identity strength is excellent</span></span>
   </div>
-  <p class="small mt-20">Tap a card to bring it forward.</p>
+  <p class="small mt-20">Tap a card to bring it forward. Tap it again to open it.</p>
   <div class="wallet mt-12" id="wallet-stack">
     <button type="button" class="wcard pan" data-k="pan"><svg class="guilloche" viewBox="0 0 350 216" preserveAspectRatio="none" aria-hidden="true"></svg><div class="between"><div><div class="issuer">INCOME TAX DEPT.</div><div class="doc">PAN Card</div></div><span class="chip chip-warn dotted">In review</span></div><div class="between" style="align-items: flex-end"><div><div class="num">ABC••••21F</div><div class="meta">Pradeep Mali · No expiry</div></div><span class="chipgold sm"></span></div></button>
     <button type="button" class="wcard dl" data-k="dl"><svg class="guilloche" viewBox="0 0 350 216" preserveAspectRatio="none" aria-hidden="true"></svg><div class="between"><div><div class="issuer">MAHARASHTRA RTO</div><div class="doc">Driving Licence</div></div><span class="chip chip-glass">{{i:scan-face:14}} Verified</span></div><div class="between" style="align-items: flex-end"><div><div class="num">MH01 ••••• 4410</div><div class="meta">Valid till Jun 2034</div></div><span class="chipgold sm"></span></div></button>
@@ -374,8 +375,8 @@
   </div>
   <div class="sec-head" style="margin-top: 8px"><h3>Add more to your wallet</h3></div>
   <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
-    <button type="button" style="border: 1.5px dashed #CBD6DD; border-radius: 22px; background: none; padding: 16px; text-align: left; display: flex; flex-direction: column; gap: 10px"><span class="ic" style="width: 38px; height: 38px; border-radius: 12px; background: #E9F6FF; color: var(--blue); display: grid; place-items: center">{{i:plus:18}}</span><b style="font-size: 15px">Voter ID</b><span class="small">Election Commission</span></button>
-    <button type="button" style="border: 1.5px dashed #CBD6DD; border-radius: 22px; background: none; padding: 16px; text-align: left; display: flex; flex-direction: column; gap: 10px"><span class="ic" style="width: 38px; height: 38px; border-radius: 12px; background: #E9F6FF; color: var(--blue); display: grid; place-items: center">{{i:plus:18}}</span><b style="font-size: 15px">Visa</b><span class="small">Any country</span></button>
+    <a href="#doc-choose" style="text-decoration: none; color: inherit; border: 1.5px dashed #CBD6DD; border-radius: 22px; background: none; padding: 16px; text-align: left; display: flex; flex-direction: column; gap: 10px"><span class="ic" style="width: 38px; height: 38px; border-radius: 12px; background: #E9F6FF; color: var(--blue); display: grid; place-items: center">{{i:plus:18}}</span><b style="font-size: 15px">Voter ID</b><span class="small">Election Commission</span></a>
+    <a href="#doc-choose" style="text-decoration: none; color: inherit; border: 1.5px dashed #CBD6DD; border-radius: 22px; background: none; padding: 16px; text-align: left; display: flex; flex-direction: column; gap: 10px"><span class="ic" style="width: 38px; height: 38px; border-radius: 12px; background: #E9F6FF; color: var(--blue); display: grid; place-items: center">{{i:plus:18}}</span><b style="font-size: 15px">Visa</b><span class="small">Any country</span></a>
   </div>
   <p class="small row-x mt-20" style="justify-content: center; gap: 8px">{{i:shield-check:15}} Stored with AES-256 · on-device keys</p>
 </div>
@@ -388,14 +389,14 @@
   <h1 class="t-xl mt-20 rise" style="--d: 0">Travel <em>together.</em></h1>
   <p class="lead mt-8 rise" style="--d: 1">Everyone checks in with their own face — kids included, under your supervision.</p>
   <div class="fam mt-20">
-    <div class="fcard rise" style="--d: 2"><img src="{{img:ananya}}" alt=""><div class="shade"></div><span class="chip chip-ok dotted">Verified</span><div class="who"><b>Ananya</b><span>Spouse · 31</span></div></div>
+    <a class="fcard rise" href="#member" style="--d: 2"><img src="{{img:ananya}}" alt=""><div class="shade"></div><span class="chip chip-ok dotted">Verified</span><div class="who"><b>Ananya</b><span>Spouse · 31</span></div></a>
     <div class="fcard rise" style="--d: 3"><img src="{{img:kiara}}" alt=""><div class="shade"></div><span class="chip chip-ok dotted">Verified</span><div class="who"><b>Kiara</b><span>Daughter · 7</span></div></div>
-    <a class="fcard rise" href="#facescan" style="--d: 4"><img src="{{img:rajesh}}" alt=""><div class="shade"></div><span class="chip chip-warn dotted">Face pending</span><div class="who"><b>Rajesh</b><span>Father · 64 · Tap to finish</span></div></a>
-    <div class="fcard rise" style="--d: 5"><img src="{{img:meera}}" alt=""><div class="shade"></div><span class="chip chip-ok dotted">Verified</span><div class="who"><b>Meera</b><span>Sister · 18</span></div></div>
+    <a class="fcard rise" href="#member-pending" style="--d: 4"><img src="{{img:rajesh}}" alt=""><div class="shade"></div><span class="chip chip-warn dotted">Face pending</span><div class="who"><b>Rajesh</b><span>Father · 64 · Tap to finish</span></div></a>
+    <a class="fcard rise" href="#turns18" style="--d: 5"><img src="{{img:meera}}" alt=""><div class="shade"></div><span class="chip chip-ok dotted">Verified</span><div class="who"><b>Meera</b><span>Sister · just turned 18</span></div></a>
   </div>
   <div class="card pad mt-16 row-x" style="align-items: flex-start; gap: 14px"><span class="ic" style="width: 42px; height: 42px; flex: none; border-radius: 14px; background: #E9F6FF; color: var(--blue); display: grid; place-items: center">{{i:shield-check}}</span><span style="display: flex; flex-direction: column; gap: 3px"><b style="font-size: 15px">Guardian controls on</b><span class="small" style="font-size: 13px">Kiara (7) can only check in alongside an adult.</span></span></div>
   <div class="grow"></div>
-  <a class="btn btn-primary mt-24" href="#create">{{i:user-plus}} Add a family member</a>
+  <a class="btn btn-primary mt-24" href="#add-member">{{i:user-plus}} Add a family member</a>
   <p class="small mt-12" style="text-align: center">Up to 8 members per family plan</p>
 </div>
 </section>
@@ -404,7 +405,7 @@
 <section class="vp" data-id="privacy" hidden>
 <div class="scr">
   <div class="sky-wash"></div>
-  <div class="topbar"><a class="iconbtn" href="#profile" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Privacy center</span><span style="width: 44px"></span></div>
+  <div class="topbar"><a class="iconbtn" href="#settings" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Biometric data</span><span style="width: 44px"></span></div>
   <h1 class="t-xl mt-20 rise" style="--d: 0">Your data, <em>your rules.</em></h1>
   <div class="card pad mt-20 row-x rise" style="--d: 1; gap: 14px">
     <span style="width: 52px; height: 52px; flex: none; border-radius: 17px; background: var(--grad); color: #fff; display: grid; place-items: center; box-shadow: 0 12px 24px -10px rgba(10,139,255,.6)">{{i:shield-check:26}}</span>
@@ -424,8 +425,9 @@
   </div>
   <div class="sec-head"><h3>Your data</h3></div>
   <div class="card list" style="margin-bottom: 8px">
+    <div class="lrow"><span class="ic">{{i:scan-face}}</span><span class="main"><b>Use my face template</b><span>Turn off to pause every face check-in</span></span><button type="button" class="tg" role="switch" aria-checked="true" aria-label="Use my face template"></button></div>
     <button type="button" class="lrow"><span class="ic">{{i:download}}</span><span class="main"><b>Download my data</b><span>Ready in about a minute</span></span><span class="chev">{{i:chev-right:18}}</span></button>
-    <button type="button" class="lrow"><span class="ic red">{{i:trash}}</span><span class="main"><b style="color: var(--red)">Delete biometric data</b><span>Your face template is erased everywhere</span></span><span class="chev">{{i:chev-right:18}}</span></button>
+    <a class="lrow" href="#delete" style="text-decoration: none"><span class="ic red">{{i:trash}}</span><span class="main"><b style="color: var(--red)">Delete biometric data</b><span>Your face template is erased everywhere</span></span><span class="chev">{{i:chev-right:18}}</span></a>
   </div>
 </div>
 </section>
@@ -446,15 +448,17 @@
   </div>
   <div class="sec-head"><h3>Account</h3></div>
   <div class="card list">
-    <button type="button" class="lrow"><span class="ic">{{i:user}}</span><span class="main"><b>Personal details</b><span>Verified from your passport</span></span><span class="chev">{{i:chev-right:18}}</span></button>
-    <button type="button" class="lrow"><span class="ic">{{i:lock}}</span><span class="main"><b>Security &amp; PIN</b><span>Score 96 · 2 devices</span></span><span class="chip chip-ok">Strong</span></button>
+    <a class="lrow" href="#edit-profile" style="text-decoration: none"><span class="ic">{{i:user}}</span><span class="main"><b>Personal details</b><span>Verified from your passport</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+    <a class="lrow" href="#security" style="text-decoration: none"><span class="ic">{{i:lock}}</span><span class="main"><b>Security &amp; PIN</b><span>Score 96 · 2 devices</span></span><span class="chip chip-ok">Strong</span></a>
     <a class="lrow" href="#facescan" style="text-decoration: none"><span class="ic">{{i:scan-face}}</span><span class="main"><b>Update face scan</b><span>Last updated Oct 2026</span></span><span class="chev">{{i:chev-right:18}}</span></a>
   </div>
   <div class="sec-head"><h3>Preferences</h3></div>
   <div class="card list">
-    <a class="lrow" href="#privacy" style="text-decoration: none"><span class="ic">{{i:shield-check}}</span><span class="main"><b>Privacy center</b><span>4 industries on</span></span><span class="chev">{{i:chev-right:18}}</span></a>
-    <button type="button" class="lrow"><span class="ic">{{i:bell}}</span><span class="main"><b>Notifications</b><span>Check-ins, family, security</span></span><span class="chev">{{i:chev-right:18}}</span></button>
-    <button type="button" class="lrow"><span class="ic">{{i:help}}</span><span class="main"><b>Help &amp; support</b><span>24 × 7 chat and phone</span></span><span class="chev">{{i:chev-right:18}}</span></button>
+    <a class="lrow" href="#settings" style="text-decoration: none"><span class="ic">{{i:settings}}</span><span class="main"><b>Settings</b><span>Check-in, appearance, language</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+    <a class="lrow" href="#privacy" style="text-decoration: none"><span class="ic">{{i:shield-check}}</span><span class="main"><b>Biometric data</b><span>4 industries on</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+    <a class="lrow" href="#notifications" style="text-decoration: none"><span class="ic">{{i:bell}}</span><span class="main"><b>Notifications</b><span>Check-ins, family, security</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+    <a class="lrow" href="#help" style="text-decoration: none"><span class="ic">{{i:help}}</span><span class="main"><b>Help &amp; support</b><span>24 × 7 chat and phone</span></span><span class="chev">{{i:chev-right:18}}</span></a>
+    <a class="lrow" href="#about-tp" style="text-decoration: none"><span class="ic">{{i:info}}</span><span class="main"><b>About Truepas</b><span>Version 3.0.1 · legal</span></span><span class="chev">{{i:chev-right:18}}</span></a>
   </div>
   <a class="btn btn-text mt-16" href="#welcome" style="color: var(--red)">{{i:logout:18}} Sign out</a>
 </div>

@@ -1,0 +1,102 @@
+<!-- SIGN IN -->
+<section class="vp" data-id="signin" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#welcome" aria-label="Back">{{i:chev-left}}</a><span class="row-x" style="gap: 8px; font-weight: 800; font-size: 18px; color: #0A8BFF">{{logo:22}}<span style="color: var(--ink)">truepas</span></span><span style="width: 44px"></span></div>
+  <h1 class="t-xl mt-28 rise" style="--d: 0">Welcome <em>back.</em></h1>
+  <p class="lead mt-8 rise" style="--d: 1">Sign in with your face, or the number you enrolled with.</p>
+  <a class="card pad mt-24 row-x rise" href="#home" style="--d: 2; text-decoration: none; color: inherit; gap: 14px">
+    <img class="av ring" src="{{img:pradeep}}" alt="" style="width: 52px; height: 52px">
+    <span style="flex: 1; display: flex; flex-direction: column; gap: 2px"><span class="small">Recently on this phone</span><b style="font-size: 16px">Continue as Pradeep</b></span>
+    <span style="width: 46px; height: 46px; border-radius: 23px; background: var(--grad); color: #fff; display: grid; place-items: center; box-shadow: 0 10px 22px -8px rgba(10,139,255,.6)">{{i:scan-face:22}}</span>
+  </a>
+  <div class="or mt-24">or use your details</div>
+  <div class="seg mt-20" data-panes="1"><span class="thumb" style="width: calc(50% - 4px)"></span><button type="button" aria-pressed="true" data-pane="si-mobile">Mobile</button><button type="button" aria-pressed="false" data-pane="si-email">Email</button></div>
+  <div class="field mt-16" data-pane-id="si-mobile"><label for="si-phone">Mobile number</label><div class="box focus"><span class="pre">+91</span><input id="si-phone" value="98200 41827" autocomplete="off"></div></div>
+  <div class="field mt-16" data-pane-id="si-email" hidden><label for="si-mail">Email</label><div class="box focus"><input id="si-mail" value="pradeep.mali@mail.com" autocomplete="off"></div></div>
+  <div class="between mt-12"><span class="small">We’ll send a one-time code.</span><a class="link" href="#forgot" style="text-decoration: none">Forgot password?</a></div>
+  <div class="grow"></div>
+  <a class="btn btn-primary mt-24" href="#otp">Continue {{i:arrow-right}}</a>
+  <p class="small mt-16" style="text-align: center">New here? <a href="#create" style="color: var(--blue); font-weight: 700; text-decoration: none">Create your Truepas</a></p>
+</div>
+</section>
+
+<!-- VERIFY MOBILE (OTP) -->
+<section class="vp" data-id="otp" hidden>
+<div class="scr" data-seq="otp">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#create" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Verify mobile</span><span class="count">1/3</span></div>
+  <div class="steps-bar mt-16"><i class="on"></i><i></i><i></i></div>
+  <h1 class="t-xl mt-28">Enter the <em>code.</em></h1>
+  <p class="lead mt-8">Sent to <b style="color: var(--ink)">+91 98200 41827</b> · <a href="#create" style="color: var(--blue); font-weight: 700; text-decoration: none">Change</a></p>
+  <div class="otp mt-24" data-auto="482916"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="between mt-16"><span class="status-line" data-role="status">Resend code in 0:24</span><span class="chip chip-info">{{i:lock:12}} Auto-read from SMS</span></div>
+  <div class="grow"></div>
+  <a class="btn btn-primary is-hidden" data-role="cta" href="#email">Continue {{i:arrow-right}}</a>
+  <div class="keypad mt-20">
+    <button type="button" class="key" data-k="1">1<small>&nbsp;</small></button><button type="button" class="key" data-k="2">2<small>ABC</small></button><button type="button" class="key" data-k="3">3<small>DEF</small></button>
+    <button type="button" class="key" data-k="4">4<small>GHI</small></button><button type="button" class="key" data-k="5">5<small>JKL</small></button><button type="button" class="key" data-k="6">6<small>MNO</small></button>
+    <button type="button" class="key" data-k="7">7<small>PQRS</small></button><button type="button" class="key" data-k="8">8<small>TUV</small></button><button type="button" class="key" data-k="9">9<small>WXYZ</small></button>
+    <span></span><button type="button" class="key" data-k="0">0</button><button type="button" class="key plain" data-k="del" aria-label="Delete">{{i:delete:24}}</button>
+  </div>
+</div>
+</section>
+
+<!-- VERIFY EMAIL -->
+<section class="vp" data-id="email" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#otp" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Verify email</span><span class="count">1/3</span></div>
+  <div class="steps-bar mt-16"><i class="on"></i><i></i><i></i></div>
+  <div class="glow navy mt-32"><span class="core">{{i:mail:38}}</span></div>
+  <div class="c-col mt-16">
+    <span class="eyebrow rise" style="--d: 0">Mobile verified · one more</span>
+    <h1 class="t-xl mt-12 rise" style="--d: 1">Check your <em>inbox.</em></h1>
+    <p class="lead mt-8 rise" style="--d: 2">We sent a sign-in link to<br><b style="color: var(--ink)">pradeep.mali@mail.com</b></p>
+  </div>
+  <div class="note mt-24 rise" style="--d: 3">{{i:info:18}}<span>Can’t see it? Look in <b>Spam</b> or <b>Promotions</b>. The link works for 30 minutes.</span></div>
+  <div class="grow"></div>
+  <a class="btn btn-primary mt-24" href="#about">{{i:mail:20}} Open mail app</a>
+  <button type="button" class="btn btn-text">Resend link</button>
+  <p class="small" style="text-align: center">Wrong address? <a href="#create" style="color: var(--blue); font-weight: 700; text-decoration: none">Change it</a></p>
+</div>
+</section>
+
+<!-- ABOUT YOU -->
+<section class="vp" data-id="about" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#email" aria-label="Back">{{i:chev-left}}</a><span class="ttl">About you</span><span class="count">1/3</span></div>
+  <div class="steps-bar mt-16"><i class="on"></i><i></i><i></i></div>
+  <h1 class="t-xl mt-28 rise" style="--d: 0">A few <em>details.</em></h1>
+  <p class="lead mt-8 rise" style="--d: 1">Match these to your ID so the scan can confirm them on its own.</p>
+  <div class="stack mt-24 rise" style="--d: 2; gap: 18px">
+    <div class="field"><label for="ab-dob">Date of birth</label><div class="box"><input id="ab-dob" value="14 Aug 1994" autocomplete="off"><span style="color: var(--ink-3)">{{i:calendar:20}}</span></div></div>
+    <div class="field"><label>Gender</label><div class="choices"><button type="button" class="choice" aria-pressed="true">Male</button><button type="button" class="choice" aria-pressed="false">Female</button><button type="button" class="choice" aria-pressed="false">Non-binary</button><button type="button" class="choice" aria-pressed="false">Prefer not to say</button></div></div>
+    <div class="field"><label for="ab-nat">Nationality</label><div class="box"><span class="chip chip-info" style="height: 26px">IN</span><input id="ab-nat" value="Indian" autocomplete="off"><span style="color: var(--ink-3)">{{i:chev-down:20}}</span></div></div>
+    <div class="field"><label for="ab-city">City</label><div class="box"><input id="ab-city" value="Mumbai, Maharashtra" autocomplete="off"><span style="color: var(--ink-3)">{{i:map-pin:20}}</span></div></div>
+  </div>
+  <div class="grow"></div>
+  <a class="btn btn-primary mt-24" href="#consent">Continue to face setup {{i:arrow-right}}</a>
+</div>
+</section>
+
+<!-- FORGOT PASSWORD -->
+<section class="vp" data-id="forgot" hidden>
+<div class="scr">
+  <div class="sky-wash"></div>
+  <div class="topbar"><a class="iconbtn" href="#signin" aria-label="Back">{{i:chev-left}}</a><span class="ttl">Forgot password</span><span style="width: 44px"></span></div>
+  <h1 class="t-xl mt-28 rise" style="--d: 0">Reset your <em>password.</em></h1>
+  <p class="lead mt-8 rise" style="--d: 1">Enter your email and we’ll send a reset link.</p>
+  <div class="field mt-24 rise" style="--d: 2"><label for="fg-mail">Email</label><div class="box focus"><input id="fg-mail" value="pradeep.mali@mail.com" autocomplete="off"></div></div>
+  <a class="btn btn-primary mt-20" href="#email">Send reset link</a>
+  <div class="or mt-28">or, much faster</div>
+  <div class="keycard mt-20 rise" style="--d: 3">
+    <div class="nfc" style="width: 72px; height: 72px; right: 18px; top: 18px"><i></i><i></i><i></i><span style="width: 44px; height: 44px">{{i:scan-face:22}}</span></div>
+    <span class="eyebrow" style="color: #7FD8FF">Face recovery</span>
+    <b style="display: block; font-size: 22px; letter-spacing: -.03em; margin-top: 8px; max-width: 220px">Recover with your face in 2 seconds.</b>
+    <p style="margin: 8px 0 0; font-size: 13.5px; line-height: 1.5; color: rgba(255,255,255,.7); max-width: 240px">No email, no waiting. Just look at your phone.</p>
+    <a class="btn btn-glass mt-16" href="#facescan" style="height: 50px">{{i:scan-face:18}} Use face recovery</a>
+  </div>
+</div>
+</section>

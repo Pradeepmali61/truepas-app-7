@@ -43,12 +43,37 @@ const ICONS = {
   'logout': P('M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4|m16 17 5-5-5-5|M21 12H9'),
   'home': P('M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8|M3 10a2 2 0 0 1 .71-1.53l7-6a2 2 0 0 1 2.58 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'),
   'wallet': P('M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1|M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4'),
-  'grid': '<rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect>'
+  'grid': '<rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect>',
+  'delete': P('M10 5a2 2 0 0 0-1.34.52l-6.33 5.74a1 1 0 0 0 0 1.48l6.33 5.74A2 2 0 0 0 10 19h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2z|m12 9 6 6|m18 9-6 6'),
+  'mail': '<rect x="2" y="4" width="20" height="16" rx="2"></rect>' + P('m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7'),
+  'chev-down': P('m6 9 6 6 6-6'),
+  'map-pin': P('M20 10c0 5-5.54 10.19-7.4 11.8a1 1 0 0 1-1.2 0C9.54 20.19 4 15 4 10a8 8 0 0 1 16 0') + '<circle cx="12" cy="10" r="3"></circle>',
+  'map': P('M14.1 5.55a2 2 0 0 0 1.8 0l3.66-1.83A1 1 0 0 1 21 4.62v12.76a1 1 0 0 1-.55.9l-4.55 2.27a2 2 0 0 1-1.8 0l-4.2-2.1a2 2 0 0 0-1.8 0l-3.66 1.83A1 1 0 0 1 3 19.38V6.62a1 1 0 0 1 .55-.9l4.55-2.27a2 2 0 0 1 1.8 0z|M15 5.76v15|M9 3.24v15'),
+  'utensils': P('M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2|M7 2v20|M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7'),
+  'shield-alert': P('M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z|M12 8v4|M12 16h.01'),
+  'sun': '<circle cx="12" cy="12" r="4"></circle>' + P('M12 2v2|M12 20v2|m4.93 4.93 1.41 1.41|m17.66 17.66 1.41 1.41|M2 12h2|M20 12h2|m6.34 17.66-1.41 1.41|m19.07 4.93-1.41 1.41'),
+  'glasses': '<circle cx="6" cy="15" r="4"></circle><circle cx="18" cy="15" r="4"></circle>' + P('M14 15a2 2 0 0 0-2-2 2 2 0 0 0-2 2|M2.5 13 5 7c.7-1.3 1.4-2 3-2|M21.5 13 19 7c-.7-1.3-1.5-2-3-2'),
+  'smartphone': '<rect x="5" y="2" width="14" height="20" rx="2"></rect>' + P('M12 18h.01'),
+  'tablet': '<rect x="4" y="2" width="16" height="20" rx="2"></rect>' + P('M12 18h.01'),
+  'camera': P('M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z') + '<circle cx="12" cy="13" r="3"></circle>',
+  'image': '<rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="9" cy="9" r="2"></circle>' + P('m21 15-3.09-3.09a2 2 0 0 0-2.82 0L6 21'),
+  'diff': '<circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle>' + P('M13 6h3a2 2 0 0 1 2 2v7|M11 18H8a2 2 0 0 1-2-2V9'),
+  'more': '<circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle>',
+  'film': '<rect x="3" y="3" width="18" height="18" rx="2"></rect>' + P('M7 3v18|M3 7.5h4|M3 12h18|M3 16.5h4|M17 3v18|M17 7.5h4|M17 16.5h4'),
+  'eye': P('M2.06 12.35a1 1 0 0 1 0-.7 10.75 10.75 0 0 1 19.88 0 1 1 0 0 1 0 .7 10.75 10.75 0 0 1-19.88 0') + '<circle cx="12" cy="12" r="3"></circle>',
+  'globe': '<circle cx="12" cy="12" r="10"></circle>' + P('M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20|M2 12h20'),
+  'chat': P('M7.9 20A9 9 0 1 0 4 16.1L2 22Z'),
+  'phone': P('M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z'),
+  'settings': P('M21 4h-7|M10 4H3|M21 12h-9|M8 12H3|M21 20h-5|M12 20H3|M14 2v4|M8 10v4|M16 18v4')
 };
 
 const images = JSON.parse(R('images.json'));
 function macros(s) {
   return s
+    .replace(/src="\{\{img:([a-z0-9_]+)\}\}"/g, (m, key) => {
+      if (!images[key]) throw new Error('missing image ' + key);
+      return `data-img="${key}"`;
+    })
     .replace(/\{\{i:([a-z-]+)(?::(\d+))?\}\}/g, (m, name, size) => {
       if (!ICONS[name]) throw new Error('missing icon ' + name);
       const z = size || 20;
@@ -64,11 +89,12 @@ function macros(s) {
     });
 }
 
+const SCREEN_FILES = ['screens.html', 'screens-onb.html', 'screens-main.html', 'screens-docs.html', 'screens-family.html', 'screens-account.html'];
 let out = R('src/shell.html')
-  .replace('/*STYLES*/', () => R('src/styles.css'))
-  .replace('<!--SCREENS-->', () => R('src/screens.html'))
-  .replace('/*APP*/', () => R('src/app.js'));
+  .replace('/*STYLES*/', () => R('src/styles.css') + '\n' + R('src/styles2.css'))
+  .replace('<!--SCREENS-->', () => SCREEN_FILES.map((f) => R('src/' + f)).join('\n'));
 out = macros(out);
+out = out.replace('/*APP*/', () => 'window.IMAGES = ' + JSON.stringify(images) + ';\n' + R('src/app.js'));
 const left = out.match(/\{\{[^}]*\}\}/g);
 if (left) throw new Error('unexpanded: ' + left.slice(0, 5).join(', '));
 fs.mkdirSync(path.join(__dirname, 'dist'), { recursive: true });
